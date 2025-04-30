@@ -46,7 +46,7 @@ model.eval()
 # =========================
 st.title("🧠 Predict SAD from MIMIC-IV")
 
-st.markdown("Fill in the patient features below to predict Suicidal Attempt/Depression (SAD).")
+st.markdown("Fill in the patient features below to predict SAD.")
 
 # Collect user input
 st.subheader("🧪 Continuous features")
@@ -80,7 +80,7 @@ if st.button("Predict"):
     # Predict
     input_tensor = torch.tensor(model_input, dtype=torch.float32)
     with torch.no_grad():
-        output = kan_model(input_tensor)
+        output = model(input_tensor)
         pred = torch.argmax(output, dim=1).item()
         prob = torch.softmax(output, dim=1).numpy()[0]
 
