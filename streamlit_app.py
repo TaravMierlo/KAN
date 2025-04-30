@@ -1,6 +1,5 @@
 import streamlit as st
 import numpy as np
-import torch
 import torch.nn as nn
 import pickle
 from pykan.kan import KAN
