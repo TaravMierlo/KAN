@@ -36,8 +36,11 @@ model = KAN(
         seed=42, device=None
     )
 
-state_dict = torch.load("kan_model.pt")
-model.load_state_dict(state_dict)
+try:
+    state_dict = torch.load("kan_model.pt")
+    model.load_state_dict(state_dict)
+except Exception as e:
+    st.error(f"Error loading model: {e}")
 
 model.eval()
 
