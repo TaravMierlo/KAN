@@ -6,3 +6,4 @@ scikit-learn
 pykan @ git+https://github.com/KindXiaoming/pykan.git
 pyyaml
 matplotlib
+tqdm
