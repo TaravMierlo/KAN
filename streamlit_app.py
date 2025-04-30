@@ -29,14 +29,17 @@ ordinal_labels = feature_config["ordinal_labels"]
 # =========================
 # Load trained KAN model
 # =========================
-input_dim = len(continuous_labels) + len(binary_labels) + len(ordinal_labels)
 
 # Use the exact same width you used during training
-kan_model = KAN(width=[input_dim, 1, 2])  # adjust width if different
+model = KAN(
+        width=[53, 1, 2], grid=5, k=3,
+        seed=42, device=None
+    )
 
-add_safe_globals([MultKAN])
-kan_model = torch.load("trained_kan_model.pt", map_location='cpu', weights_only=False)
-kan_model.eval()
+state_dict = torch.load("kan_model.pt")
+model.load_state_dict(state_dict)
+
+model.eval()
 
 # =========================
 # Streamlit UI
