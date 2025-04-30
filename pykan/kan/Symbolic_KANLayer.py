@@ -5,6 +5,11 @@ import sympy
 from .utils import *
 
 
+def zero_func(x):
+    return x * 0.
+
+def zero_func_avoid_singularity(x, y_th):
+    return (), x * 0.
 
 class Symbolic_KANLayer(nn.Module):
     '''
@@ -53,12 +58,12 @@ class Symbolic_KANLayer(nn.Module):
         self.in_dim = in_dim
         self.mask = torch.nn.Parameter(torch.zeros(out_dim, in_dim, device=device)).requires_grad_(False)
         # torch
-        self.funs = [[lambda x: x*0. for i in range(self.in_dim)] for j in range(self.out_dim)]
-        self.funs_avoid_singularity = [[lambda x, y_th: ((), x*0.) for i in range(self.in_dim)] for j in range(self.out_dim)]
+        self.funs = [[zero_func for _ in range(self.in_dim)] for _ in range(self.out_dim)]
+        self.funs_avoid_singularity = [[zero_func_avoid_singularity for _ in range(self.in_dim)] for _ in range(self.out_dim)]
         # name
         self.funs_name = [['0' for i in range(self.in_dim)] for j in range(self.out_dim)]
         # sympy
-        self.funs_sympy = [[lambda x: x*0. for i in range(self.in_dim)] for j in range(self.out_dim)]
+        self.funs_sympy = [[zero_func for _ in range(self.in_dim)] for _ in range(self.out_dim)]
         ### make funs_name the only parameter, and make others as the properties of funs_name?
         
         self.affine = torch.nn.Parameter(torch.zeros(out_dim, in_dim, 4, device=device))
