@@ -4,3 +4,4 @@ numpy
 pandas
 scikit-learn
 pykan @ git+https://github.com/KindXiaoming/pykan.git
+pyyaml
