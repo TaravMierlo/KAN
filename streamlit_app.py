@@ -33,7 +33,7 @@ input_dim = len(continuous_labels) + len(binary_labels) + len(ordinal_labels)
 kan_model = KAN(width=[input_dim, 1, 2])  # adjust width if different
 
 # Load model weights
-kan_model.load_state_dict(torch.load("trained_kan_model", map_location=torch.device("cpu")))
+kan_model.load_state_dict(torch.load("trained_kan_model.pt", map_location=torch.device("cpu")))
 kan_model.eval()
 
 # =========================
