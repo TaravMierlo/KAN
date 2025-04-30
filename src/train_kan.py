@@ -2,6 +2,7 @@ import os
 import datetime
 import torch
 import matplotlib.pyplot as plt
+import pickle
 
 from pykan.kan import KAN
 from utils.utils import count_parameters, compute_metrics
@@ -74,6 +75,9 @@ def train_kan_model(
         )
         plt.savefig(f"{output_path}/network-plots/seed={seed}_epochs={num_epochs}.png", dpi=4000)
         plt.show()
+
+    with open('kan_model', 'wb') as file:
+        pickle.dump(model,file)
 
     # Evaluate
     model.to('cpu')

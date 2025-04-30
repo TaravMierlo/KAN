@@ -1,4 +1,6 @@
 import torch
+import os
+import pickle
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder, MinMaxScaler
@@ -64,14 +66,19 @@ def load_and_preprocess_mimic(path="data/MIMIC-IV.dta", batch_size=512, test_siz
     # Scale continuous and ordinal data
     scaler = MinMaxScaler()
     normalized_continuous_data = scaler.fit_transform(X[:, continuous_indices].astype(np.float32))
-    encoded_ordinal_data = MinMaxScaler().fit_transform(X[:, ordinal_indices].astype(np.float32))
+    scaler_ord = MinMaxScaler()
+    encoded_ordinal_data = scaler_ord.fit_transform(X[:, ordinal_indices].astype(np.float32))
+
 
     # Encode binary features
     binary_data = X[:, binary_indices]
-    encoded_binary_data = np.array([
-        LabelEncoder().fit_transform(binary_data[:, i]) 
-        for i in range(binary_data.shape[1])
-    ]).T.astype(np.int64)
+    label_encoders = []
+    encoded_binary_data = np.empty_like(binary_data, dtype=np.int64)
+
+    for i in range(binary_data.shape[1]):
+        le = LabelEncoder()
+        encoded_binary_data[:, i] = le.fit_transform(binary_data[:, i])
+        label_encoders.append(le)
 
     # Concatenate all features
     processed_data = np.hstack([normalized_continuous_data, encoded_binary_data, encoded_ordinal_data])
@@ -114,5 +121,8 @@ def load_and_preprocess_mimic(path="data/MIMIC-IV.dta", batch_size=512, test_siz
         "binary_labels": binary_labels,
         "ordinal_labels": ordinal_labels,
         "train_indices": train_idx,
-        "test_indices": test_idx
+        "test_indices": test_idx,
+        "scaler_cont": scaler, 
+        "scaler_ord": scaler_ord, 
+        "label_encoders": label_encoders
     }
