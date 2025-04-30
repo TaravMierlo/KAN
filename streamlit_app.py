@@ -4,6 +4,8 @@ import torch
 import torch.nn as nn
 import pickle
 from pykan.kan import KAN
+from pykan.kan.MultKAN import MultKAN
+from torch.serialization import add_safe_globals
 
 # =========================
 # Load preprocessing artifacts
@@ -32,8 +34,8 @@ input_dim = len(continuous_labels) + len(binary_labels) + len(ordinal_labels)
 # Use the exact same width you used during training
 kan_model = KAN(width=[input_dim, 1, 2])  # adjust width if different
 
-# Load model weights
-kan_model.load_state_dict(torch.load("trained_kan_model.pt", map_location=torch.device("cpu"), weights_only=False))
+add_safe_globals([MultKAN])
+kan_model = torch.load("trained_kan_model.pt", map_location='cpu', weights_only=False)
 kan_model.eval()
 
 # =========================
