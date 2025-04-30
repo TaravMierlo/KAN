@@ -128,3 +128,22 @@ if st.button("Predict"):
 
     except Exception as e:
         st.error(f"Prediction failed: {e}")
+
+        # Feature Importance
+        # =========================
+        st.markdown("### 🧠 Feature Importance")
+        try:
+            import matplotlib.pyplot as plt
+
+            scores = model.feature_score.detach().numpy()
+            all_labels = continuous_labels + binary_labels + ordinal_labels
+
+            fig, ax = plt.subplots()
+            ax.barh(all_labels, scores)
+            ax.set_xlabel("Importance Score")
+            ax.set_title("Feature Importance (from KAN)")
+
+            st.pyplot(fig)
+
+        except Exception as e:
+            st.error(f"Error displaying feature importance: {e}")
