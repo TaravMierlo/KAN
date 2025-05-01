@@ -11,6 +11,8 @@ from torch.serialization import add_safe_globals
 
 # ========== Local Feature Importance Helpers ==========
 def plot_local_feature_importance(contributions, feature_names):
+    import matplotlib.pyplot as plt
+
     sorted_indices = np.argsort(np.abs(contributions))[::-1]
     sorted_contributions = contributions[sorted_indices]
     sorted_feature_names = [feature_names[i] for i in sorted_indices]
@@ -49,7 +51,7 @@ def plot_local_feature_importance(contributions, feature_names):
 
     plt.tight_layout()
     st.pyplot(fig)
-
+    plt.close(fig)
 
 def get_layer_components(layer):
     return layer.grid.detach(), layer.coef.detach(), layer.scale_base.detach(), layer.scale_sp.detach()
