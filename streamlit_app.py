@@ -4,7 +4,7 @@ import torch
 import pickle
 import matplotlib.pyplot as plt
 from pykan.kan import KAN
-from pykan.kan.spline import coef2curve  # Replace with correct import if needed
+from pykan.kan.spline import coef2curve
 
 # ========== Utility Functions ==========
 
