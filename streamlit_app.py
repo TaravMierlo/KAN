@@ -57,25 +57,29 @@ def get_layer_components(layer):
     return layer.grid.detach(), layer.coef.detach(), layer.scale_base.detach(), layer.scale_sp.detach()
 
 
-def compute_spline_outputs(x, grid, coef, k, plot=False, layer_idx=0):
+def compute_spline_outputs(x, grid, coef, k=None, plot=False, layer_idx=0):
     batch_size, input_dim = x.shape
     outputs = []
 
     for i in range(input_dim):
-        xi = x[:, i].unsqueeze(1)  # (batch_size, 1)
-        gi = grid[i]  # (k,)
-        ci = coef[i]  # (k,)
+        xi = x[:, i].unsqueeze(1)  # shape (batch_size, 1)
+        gi = grid[i]               # shape (n_knots,)
+        ci = coef[i]               # shape (n_knots,)
 
-        # Expand for broadcasting
-        xi_exp = xi.expand(batch_size, k)  # (batch_size, k)
-        gi_exp = gi.unsqueeze(0).expand(batch_size, k)  # (batch_size, k)
+        n_knots = gi.shape[0]
+        assert ci.shape[0] == n_knots, f"Grid and coef size mismatch at feature {i}"
 
-        basis = torch.clamp(1 - torch.abs((xi_exp - gi_exp) / (gi[1] - gi[0])), 0, 1)
-        yi = basis * ci  # (batch_size, k)
-        out = yi.sum(dim=1, keepdim=True)  # (batch_size, 1)
+        xi_exp = xi.expand(batch_size, n_knots)
+        gi_exp = gi.unsqueeze(0).expand(batch_size, n_knots)
+
+        denom = gi[1] - gi[0] if n_knots > 1 else 1.0  # Avoid division by zero
+        basis = torch.clamp(1 - torch.abs((xi_exp - gi_exp) / denom), 0, 1)
+        yi = basis * ci  # shape (batch_size, n_knots)
+        out = yi.sum(dim=1, keepdim=True)  # shape (batch_size, 1)
+
         outputs.append(out)
 
-    return torch.cat(outputs, dim=1)  # (batch_size, input_dim)
+    return torch.cat(outputs, dim=1)  # shape (batch_size, input_dim)
 
 def compute_combined_output(base_out, spline_out, scale_base, scale_sp):
     return scale_base * base_out + scale_sp * spline_out
