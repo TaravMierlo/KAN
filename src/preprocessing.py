@@ -28,101 +28,178 @@ def load_and_preprocess_mimic(path="data/MIMIC-IV.dta", batch_size=512, test_siz
         ]
     ).dropna()
 
-    # One-hot encode categorical variables
-    data = data.drop("race", axis=1).join(pd.get_dummies(data["race"]))
-    data = data.drop("first_careunit", axis=1).join(pd.get_dummies(data["first_careunit"]))
+    # Race and first_careunit will be separated into a new boolean 
+    #  column for each race or unit,
+    dummies = pd.get_dummies(data["race"])
+    data = data.drop("race", axis=1).join(dummies)
+    dummies = pd.get_dummies(data["first_careunit"])
+    data = data.drop("first_careunit", axis=1).join(dummies)
 
-    # Rename columns
-    rename_dict = {
-        "age": "Age", "weight": "Weight (Kg)", "gender": "Gender (Male)",
-        "temperature": "Temperature (Celcius)", "heart_rate": "Heart Rate (Beats per Minute)",
-        "resp_rate": "Respiratory Rate", "sbp": "Systolic BP (mmHG)", "dbp": "Diastolic BP (mmHG)",
-        "mbp": "Mean arterial BP (mmHG)", "wbc": "WBC (K/uL)", "hemoglobin": "Hemoglobin (g/dL)",
-        "platelet": "Platelet (k/uL)", "bun": "BUN (mg/dL)", "cr": "Creatinine (mg/dL)",
-        "glu": "Glucose (mg/dL)", "Na": "Sodium (mEq/L)", "Cl": "Chloride (mEq/L)",
-        "K": "Potassium (mEq/L)", "Mg": "Magnesium (mg/dL)", "Ca": "Total calcium (mg/dL)",
-        "P": "Phosphate (mg/dL)", "inr": "INR", "pt": "Prothrombin time (s)", "ptt": "PTT (s)",
-        "bicarbonate": "Bicarbonate (mEq/L)", "aniongap": "Anion gap (mEq/L)", "gcs": "GCS",
-        "vent": "MV n (%)", "crrt": "CRRT n (%)", "vaso": "Vasopressor n (%)", "seda": "Sedation n (%)",
-        "sofa_score": "SOFA", "ami": "AMI n (%)", "ckd": "CKD n (%)", "copd": "COPD n (%)",
-        "hyperte": "Hypertension n (%)", "dm": "Diabetes n (%)", "sad": "SAD", "aki": "AKI n (%)",
-        "stroke": "Stroke n (%)", "AISAN": "Race: Asian", "BLACK": "Race: Black", "HISPANIC": "Race: Hispanic",
-        "OTHER": "Race: Other", "WHITE": "Race: White", "unknown": "Race: Unknown",
-        "CCU": "ICU Type: CCU", "CVICU": "ICU Type: CVICU", "MICU": "ICU Type: MICU",
-        "MICU/SICU": "ICU Type: MICU/SICU", "NICU": "ICU Type: NICU", "SICU": "ICU Type: SICU",
-        "TSICU": "ICU Type: TSICU"
-    }
-    data.rename(columns=rename_dict, inplace=True)
-
-    # Define target and input features
+    # Write out abreviations in full and add type of measurement.
+    data = data.rename(
+        columns={
+            "age": "Age",
+            "weight": "Weight (Kg)",
+            "gender": "Gender (Male)",
+            "temperature": "Temperature (Celcius)",
+            "heart_rate": "Heart Rate (Beats per Minute)",
+            "resp_rate": "Respiratory Rate",
+            "sbp": "Systolic BP (mmHG)",
+            "dbp": "Diastolic BP (mmHG)",
+            "mbp": "Mean arterial BP (mmHG)",
+            "wbc": "WBC (K/uL)",
+            "hemoglobin": "Hemoglobin (g/dL)",
+            "platelet": "Platelet (k/uL)",
+            "bun": "BUN (mg/dL)",
+            "cr": "Creatinine (mg/dL)",
+            "glu": "Glucose (mg/dL)",
+            "Na": "Sodium (mEq/L)",
+            "Cl": "Chloride (mEq/L)",
+            "K": "Potassium (mEq/L)",
+            "Mg": "Magnesium (mg/dL)",
+            "Ca": "Total calcium (mg/dL)",
+            "P": "Phosphate (mg/dL)",
+            "inr": "INR",
+            "pt": "Prothrombin time (s)",
+            "ptt": "PTT (s)",
+            "bicarbonate": "Bicarbonate (mEq/L)",
+            "aniongap": "Anion gap (mEq/L)",
+            "gcs": "GCS",
+            "vent": "MV n (%)",
+            "crrt": "CRRT n (%)",
+            "vaso": "Vasopressor n (%)",
+            "seda": "Sedation n (%)",
+            "sofa_score": "SOFA",
+            "ami": "AMI n (%)",
+            "ckd": "CKD n (%)",
+            "copd": "COPD n (%)",
+            "hyperte": "Hypertension n (%)",
+            "dm": "Diabetes n (%)",
+            "sad": "SAD",
+            "aki": "AKI n (%)",
+            "stroke": "Stroke n (%)",
+            "AISAN": "Race: Asian",
+            "BLACK": "Race: Black",
+            "HISPANIC": "Race: Hispanic",
+            "OTHER": "Race: Other",
+            "WHITE": "Race: White",
+            "unknown": "Race: Unknown",
+            "CCU": "ICU Type: CCU",
+            "CVICU": "ICU Type: CVICU",
+            "MICU": "ICU Type: MICU",
+            "MICU/SICU": "ICU Type: MICU/SICU",
+            "NICU": "ICU Type: NICU",
+            "SICU": "ICU Type: SICU",
+            "TSICU": "ICU Type: TSICU"
+        }
+    )
+    
+    # The SAD column is the target.
+    x = data.drop("SAD", axis=1).values
     y = data["SAD"].values
-    X = data.drop("SAD", axis=1).values
 
-    # Feature indices
-    continuous_indices = list(range(0, 27))
+    # continuous features
+    continuous_indices = [
+        0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 
+        15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26
+    ]
+
+    # gcs: 27 and sofa score: 32
     ordinal_indices = [27, 32]
-    binary_indices = list(set(range(X.shape[1])) - set(continuous_indices) - set(ordinal_indices))
+
+    # binary features
+    binary_indices = [
+        2, 28, 29, 30, 31, 33, 34, 35, 36, 37, 38, 39, 40, 
+        41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52
+    ]
 
     # Scale continuous and ordinal data
+    continuous_data = x[:, continuous_indices].astype(np.float32)
     scaler = MinMaxScaler()
-    normalized_continuous_data = scaler.fit_transform(X[:, continuous_indices].astype(np.float32))
-    scaler_ord = MinMaxScaler()
-    encoded_ordinal_data = scaler_ord.fit_transform(X[:, ordinal_indices].astype(np.float32))
+    normalized_continuous_data = scaler.fit_transform(continuous_data)
 
+    # Label encode ordinal data (use min-max scaling for now, 
+    #  potentially use one-hot encoding) 
+    #  - same as race and first_careunit
+    ordinal_data = x[:, ordinal_indices]
+    ordinal_encoder = MinMaxScaler()
+    encoded_ordinal_data = ordinal_encoder.fit_transform(ordinal_data)
 
-    # Encode binary features
-    binary_data = X[:, binary_indices]
-    label_encoders = []
-    encoded_binary_data = np.empty_like(binary_data, dtype=np.int64)
+    # Label encode binary data
+    binary_data = x[:, binary_indices]
+    label_encoders = [LabelEncoder() for _ in binary_indices]
+    encoded_categorical_data = np.array(
+        [
+            le.fit_transform(binary_data[:, i]) 
+            for i, le in enumerate(label_encoders)
+        ]
+    ).T
 
-    for i in range(binary_data.shape[1]):
-        le = LabelEncoder()
-        encoded_binary_data[:, i] = le.fit_transform(binary_data[:, i])
-        label_encoders.append(le)
+    encoded_categorical_data = encoded_categorical_data.astype(np.int64)
 
-    # Concatenate all features
-    processed_data = np.hstack([normalized_continuous_data, encoded_binary_data, encoded_ordinal_data])
+    # Combine continuous and encoded categorical data
+    processed_data = np.hstack((
+        normalized_continuous_data, 
+        encoded_categorical_data, 
+        encoded_ordinal_data
+    ))
 
-    # Train-test split
-    X_train, X_test, y_train, y_test, train_idx, test_idx = train_test_split(
-        processed_data, y, np.arange(len(data)),
-        test_size=test_size, random_state=seed, stratify=y
-    )
+    X_train, X_test, y_train, y_test, train_indices, test_indices = \
+        train_test_split(
+            processed_data, 
+            y, 
+            np.arange(len(data)), 
+            random_state=42, 
+            test_size=0.3, 
+            stratify=y
+        )
 
-    # Store original feature labels
-    column_names = list(data.drop("SAD", axis=1).columns)
-    continuous_labels = [column_names[i] for i in continuous_indices]
-    binary_labels = [column_names[i] for i in binary_indices]
-    ordinal_labels = [column_names[i] for i in ordinal_indices]
+    # Keep a copy of the original data, 
+    # but put it in the same order as the processed data.
+    data_columns = list(data.drop("SAD", axis=1).columns.values)
+    continuous_labels = [data_columns[i] for i in continuous_indices]
+    binary_labels = [data_columns[i] for i in binary_indices]
+    ordinal_labels = [data_columns[i] for i in ordinal_indices]
+    data = data[[
+        *continuous_labels, 
+        *binary_labels, 
+        *ordinal_labels, 
+        "SAD"
+    ]]
+    original_data = data.copy()  
 
-    # Store reordered original DataFrame
-    reordered_data = data[continuous_labels + binary_labels + ordinal_labels + ["SAD"]]
-    original_data = reordered_data.copy()
-
-    # Convert to torch tensors
+    # Convert the numpy arrays to torch tensors
     X_train = torch.tensor(X_train, dtype=torch.float32)
     X_test = torch.tensor(X_test, dtype=torch.float32)
     y_train = torch.tensor(y_train, dtype=torch.long)
     y_test = torch.tensor(y_test, dtype=torch.long)
 
-    # Create DataLoaders
-    train_loader = DataLoader(TensorDataset(X_train, y_train), batch_size=batch_size, shuffle=True)
-    test_loader = DataLoader(TensorDataset(X_test, y_test), batch_size=len(X_test), shuffle=False)
+    # Dataloader for training and testing 
+    train_data = torch.utils.data.TensorDataset(X_train, y_train)
+    test_data = torch.utils.data.TensorDataset(X_test, y_test)
 
-    return {
-        "train_input": X_train,
-        "test_input": X_test,
-        "train_label": y_train,
-        "test_label": y_test,
-        "train_loader": train_loader,
-        "test_loader": test_loader,
-        "original_data": original_data,
-        "continuous_labels": continuous_labels,
+    # DataLoader
+    train_loader = DataLoader(train_data, batch_size=512, shuffle=True)
+    test_loader = DataLoader(
+        test_data, 
+        batch_size=len(test_data), 
+        shuffle=False
+    )
+
+    shape_dataset = X_train.shape[1]
+
+    dataset = {
+        "train_input" : X_train, 
+        "train_label" : y_train, 
+        "test_input" : X_test, 
+        "test_label" : y_test,
+        "scaler_cont": scaler,
+        "scaler_ord": ordinal_encoder,
+        "label_encoders": label_encoders,
+        "continuous_labels": continuous_labels, 
         "binary_labels": binary_labels,
         "ordinal_labels": ordinal_labels,
-        "train_indices": train_idx,
-        "test_indices": test_idx,
-        "scaler_cont": scaler, 
-        "scaler_ord": scaler_ord, 
-        "label_encoders": label_encoders
+        "original_data": original_data
     }
+
+    return dataset
