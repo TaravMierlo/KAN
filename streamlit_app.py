@@ -60,17 +60,22 @@ def get_layer_components(layer):
 def compute_spline_outputs(x, grid, coef, k, plot=False, layer_idx=0):
     batch_size, input_dim = x.shape
     outputs = []
-    for i in range(input_dim):
-        xi = x[:, i].unsqueeze(1)
-        gi = grid[i]
-        ci = coef[i]
-        yi = torch.zeros(batch_size, k)
-        for j in range(k):
-            basis = torch.clamp(1 - torch.abs((xi - gi[j]) / (gi[1] - gi[0])), 0, 1)
-            yi[:, j] = ci[j] * basis.squeeze()
-        outputs.append(yi.sum(dim=1, keepdim=True))
-    return torch.cat(outputs, dim=1)
 
+    for i in range(input_dim):
+        xi = x[:, i].unsqueeze(1)  # (batch_size, 1)
+        gi = grid[i]  # (k,)
+        ci = coef[i]  # (k,)
+
+        # Expand for broadcasting
+        xi_exp = xi.expand(batch_size, k)  # (batch_size, k)
+        gi_exp = gi.unsqueeze(0).expand(batch_size, k)  # (batch_size, k)
+
+        basis = torch.clamp(1 - torch.abs((xi_exp - gi_exp) / (gi[1] - gi[0])), 0, 1)
+        yi = basis * ci  # (batch_size, k)
+        out = yi.sum(dim=1, keepdim=True)  # (batch_size, 1)
+        outputs.append(out)
+
+    return torch.cat(outputs, dim=1)  # (batch_size, input_dim)
 
 def compute_combined_output(base_out, spline_out, scale_base, scale_sp):
     return scale_base * base_out + scale_sp * spline_out
