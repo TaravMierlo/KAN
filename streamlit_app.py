@@ -187,8 +187,8 @@ if pred == 1:
     st.error("⚠️ SAD Detected")
 else:
     st.success("✅ No SAD Detected")
-st.write(f"**Probability - No SAD**: {output[0]:.2f}")
-st.write(f"**Probability - SAD**: {output[1]:.2f}")
+st.write(f"**Probability - No SAD**: {output[0][0]}")
+st.write(f"**Probability - SAD**: {output[0][1]}")
 
 # Show local explanation
 st.markdown("---")
