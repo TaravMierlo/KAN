@@ -6,7 +6,7 @@ import torch
 import torch.nn as nn
 import pickle
 import matplotlib.pyplot as plt
-from pykan.kan import MultKan
+from pykan.kan import KAN
 from torch.serialization import add_safe_globals
 
 # ========== Local Feature Importance Helpers ==========
@@ -131,7 +131,7 @@ except Exception as e:
 
 # ========== Load model ==========
 st.markdown("### 🤖 Loading KAN model")
-model = MultKAN(width=[53, 1, 2], grid=5, k=3, seed=42, device=None)
+model = KAN(width=[53, 1, 2], grid=5, k=3, seed=42, device=None)
 
 try:
     state_dict = torch.load("kan_model.pt")
