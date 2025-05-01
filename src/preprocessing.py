@@ -199,7 +199,10 @@ def load_and_preprocess_mimic(path="data/MIMIC-IV.dta", batch_size=512, test_siz
         "continuous_labels": continuous_labels, 
         "binary_labels": binary_labels,
         "ordinal_labels": ordinal_labels,
-        "original_data": original_data
+        "original_data": original_data, 
+        "original_continuous_indices": continuous_indices, 
+        "original_ordinal_indices": ordinal_indices,
+        "original_binary_indices": binary_indices
     }
 
     return dataset
