@@ -1,130 +1,136 @@
 import streamlit as st
 import numpy as np
 import torch
-import torch.nn as nn
 import pickle
+import matplotlib.pyplot as plt
 from pykan.kan import KAN
-from pykan.kan.MultKAN import MultKAN
-from torch.serialization import add_safe_globals
+from your_module import coef2curve, explain_spline_minmax  # Replace with correct import if needed
 
-# =========================
-# Load preprocessing artifacts
-# =========================
+# ============== Page Setup ==============
+st.set_page_config(page_title="SAD Prediction with KAN", layout="wide")
 st.title("🧠 Predict SAD from MIMIC-IV")
 st.markdown("### 🔧 Loading preprocessing artifacts")
 
-try:
-    with open("models/scaler_cont.pkl", "rb") as f:
-        scaler_cont = pickle.load(f)
-    st.success("Loaded scaler for continuous features")
-
-    with open("models/scaler_ord.pkl", "rb") as f:
-        scaler_ord = pickle.load(f)
-    st.success("Loaded scaler for ordinal features")
-
-    with open("models/label_encoders.pkl", "rb") as f:
-        label_encoders = pickle.load(f)
-    st.success("Loaded label encoders for binary features")
-
-    with open("models/feature_config.pkl", "rb") as f:
-        feature_config = pickle.load(f)
-    st.success("Loaded feature configuration")
-except Exception as e:
-    st.error(f"Error loading preprocessing files: {e}")
+# ============== Load Preprocessing Artifacts ==============
+scaler_cont = pickle.load(open("models/scaler_cont.pkl", "rb"))
+scaler_ord = pickle.load(open("models/scaler_ord.pkl", "rb"))
+label_encoders = pickle.load(open("models/label_encoders.pkl", "rb"))
+feature_config = pickle.load(open("models/feature_config.pkl", "rb"))
 
 continuous_labels = feature_config["continuous_labels"]
 binary_labels = feature_config["binary_labels"]
 ordinal_labels = feature_config["ordinal_labels"]
+feature_names = continuous_labels + binary_labels + ordinal_labels
 
-# =========================
-# Load trained KAN model
-# =========================
-st.markdown("### 🤖 Loading KAN model")
-
-model = KAN(
-    width=[53, 1, 2], grid=5, k=3,
-    seed=42, device=None
-)
-
-try:
-    state_dict = torch.load("kan_model.pt")
-    model.load_state_dict(state_dict)
-    st.success("Model loaded successfully")
-except Exception as e:
-    st.error(f"Error loading model: {e}")
-
+# ============== Load Model ==============
+model = KAN(width=[53, 1, 2], grid=5, k=3, seed=42)
+model.load_state_dict(torch.load("kan_model.pt", map_location=torch.device("cpu")))
 model.eval()
 
-# =========================
-# Streamlit UI
-# =========================
-st.markdown("### 🧾 Input Features")
-st.markdown("Fill in the patient features below to predict SAD.")
+# ============== Fixed Input Tensor ==============
+x_input = torch.tensor([
+    0.4941, 0.1310, 0.5806, 0.6543, 0.4667, 0.7600, 0.1872, 0.1105, 0.1205,
+    0.1879, 0.4000, 0.2505, 0.0385, 0.0101, 0.1212, 0.5000, 0.4146, 0.2192,
+    0.2308, 0.4692, 0.1370, 0.0220, 0.0287, 0.0802, 0.5870, 0.2391, 1.0000,
+    0.0000, 0.0000, 1.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+    1.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 1.0000, 0.0000, 0.0000,
+    0.0000, 0.0000, 1.0000, 0.0000, 0.0000, 0.0000, 1.0000, 0.0667
+], dtype=torch.float32)
 
-st.subheader("🧪 Continuous features")
-user_cont = []
-for label in continuous_labels:
-    val = st.number_input(label, value=0.0, step=0.1)
-    user_cont.append(val)
-st.write("**Raw continuous input:**", user_cont)
+st.markdown("### 📥 Fixed Input Tensor")
+st.code(x_input, language="python")
 
-st.subheader("🔀 Binary features")
-user_bin = []
-for i, label in enumerate(binary_labels):
-    options = label_encoders[i].classes_.tolist()
-    val = st.selectbox(label, options=options, key=f"binary_{i}")
-    encoded_val = label_encoders[i].transform([val])[0]
-    user_bin.append(encoded_val)
-st.write("**Encoded binary input:**", user_bin)
+# ============== Main Button ==============
+if st.button("🔍 Run Explanation and Prediction"):
+    with st.spinner("Running forward pass..."):
+        try:
+            out, pred_class = manual_forward_kan(model, x_input, feature_names, splineplots=False, detailed_computation=True)
+            st.success(f"✅ Prediction: {pred_class} | Raw Output: {out.detach().numpy()}")
+        except Exception as e:
+            st.error(f"Error during computation: {e}")
 
-st.subheader("📊 Ordinal features")
-user_ord = []
-for label in ordinal_labels:
-    val = st.number_input(label, value=0.0, step=0.1)
-    user_ord.append(val)
-st.write("**Raw ordinal input:**", user_ord)
+# ============== Helper Functions ==============
+def manual_forward_kan(model, x_input, feature_names, splineplots=False, detailed_computation=False):
+    if x_input.dim() == 1:
+        x_input = x_input.unsqueeze(0)
 
-# =========================
-# Prediction logic
-# =========================
-if st.button("Predict"):
-    try:
-        # Preprocessing
-        st.markdown("### 🧼 Preprocessing Inputs")
-        cont_scaled = scaler_cont.transform([user_cont])
-        ord_scaled = scaler_ord.transform([user_ord])
-        bin_array = np.array(user_bin).reshape(1, -1)
+    # First Layer
+    layer1 = model.act_fun[0]
+    grid1, coef1, scale_base1, scale_sp1 = layer1.grid, layer1.coef, layer1.scale_base, layer1.scale_sp
 
-        st.write("**Scaled continuous:**", cont_scaled)
-        st.write("**Scaled ordinal:**", ord_scaled)
-        st.write("**Reshaped binary:**", bin_array)
+    spline_out1 = compute_spline_outputs(x_input, grid1, coef1, model.k)
+    base_out1 = layer1.base_fun(x_input)
+    combined1 = compute_combined_output(base_out1, spline_out1, scale_base1, scale_sp1)
+    layer1_out = combined1.sum(dim=1, keepdim=True)
 
-        model_input = np.hstack([cont_scaled, bin_array, ord_scaled])
-        st.write("**Final model input:**")
-        st.code(model_input)
+    if detailed_computation:
+        print_local_contributions_streamlit(combined1, base_out1, spline_out1, scale_base1, scale_sp1, feature_names)
 
-        # Model prediction
-        input_tensor = torch.tensor(model_input, dtype=torch.float32)
-        with torch.no_grad():
-            output = model(input_tensor)
-            pred = torch.argmax(output, dim=1).item()
-            prob = torch.softmax(output, dim=1).numpy()[0]
+    plot_local_feature_importance_streamlit(combined1[0].detach().numpy(), feature_names)
 
-        # Output results
-        st.markdown("---")
-        st.subheader("🔍 Prediction Result")
-        if pred == 1:
-            st.error("⚠️ SAD Detected")
-        else:
-            st.success("✅ No SAD Detected")
+    # Second Layer
+    layer2 = model.act_fun[1]
+    out = compute_output_second_layer(layer1_out, layer2, layer2.base_fun, model.k)
+    pred_class = torch.argmax(out, dim=1).item()
 
-        st.write("**Probability:**")
-        st.write(f"- No SAD: {prob[0]:.2f}")
-        st.write(f"- SAD: {prob[1]:.2f}")
+    return out, pred_class
 
-        st.markdown("---")
-        st.subheader("📤 Raw Model Output")
-        st.code(output.numpy())
+def compute_spline_outputs(x_input, grid, coef, k):
+    spline_outputs = []
+    for i in range(x_input.shape[1]):
+        xi = x_input[:, [i]]
+        grid_i = grid[i].unsqueeze(0)
+        coef_i = coef[i].unsqueeze(0)
+        spline_i = coef2curve(xi, grid_i, coef_i, k)[:, 0, 0]
+        spline_outputs.append(spline_i)
+    return torch.stack(spline_outputs, dim=1)
 
-    except Exception as e:
-        st.error(f"Prediction failed: {e}")
+def compute_combined_output(base_out, spline_out, scale_base, scale_sp):
+    return scale_base.T * base_out + scale_sp.T * spline_out
+
+def compute_output_second_layer(layer_input, layer, base_fun, k):
+    grid, coef, scale_base, scale_sp = layer.grid, layer.coef, layer.scale_base, layer.scale_sp
+    spline_out = coef2curve(layer_input, grid, coef, k)[:, 0, :]
+    base_out = base_fun(layer_input)
+    return scale_base * base_out + scale_sp * spline_out
+
+def print_local_contributions_streamlit(combined, base_out, spline_out, scale_base, scale_sp, feature_names):
+    st.markdown("### 🔍 Detailed Contribution Breakdown")
+    rows = []
+    for j in range(len(feature_names)):
+        sb = scale_base[j].item()
+        ss = scale_sp[j].item()
+        base_val = base_out[0, j].item()
+        spline_val = spline_out[0, j].item()
+        combined_val = combined[0, j].item()
+        rows.append(f"{feature_names[j]} = {sb:.4f} * {base_val:.4f} + {ss:.4f} * {spline_val:.4f} = {combined_val:.4f}")
+    st.text("\n".join(rows))
+
+def plot_local_feature_importance_streamlit(contributions, feature_names):
+    sorted_indices = np.argsort(np.abs(contributions))[::-1]
+    sorted_contributions = contributions[sorted_indices]
+    sorted_feature_names = [feature_names[i] for i in sorted_indices]
+    colors = ['blue' if val >= 0 else 'orange' for val in sorted_contributions]
+
+    total_for = np.sum([c for c in contributions if c > 0])
+    total_against = np.sum([-c for c in contributions if c < 0])
+
+    fig = plt.figure(figsize=(10, 14))
+    gs = fig.add_gridspec(2, 1, height_ratios=[1, 6])
+
+    ax1 = fig.add_subplot(gs[0])
+    ax1.barh(["SAD", "No SAD"], [total_for, total_against], color=["blue", "orange"])
+    ax1.set_title("Evidence For and Against SAD")
+    ax1.set_xlim(0, max(total_for, total_against) * 1.2)
+
+    ax2 = fig.add_subplot(gs[1])
+    bars = ax2.barh(range(len(sorted_contributions)), np.abs(sorted_contributions), color=colors)
+    ax2.set_yticks(range(len(sorted_feature_names)))
+    ax2.set_yticklabels(sorted_feature_names)
+    ax2.set_title("Feature Importance (Sorted)")
+    ax2.axvline(0, color='black', linewidth=0.8)
+    ax2.invert_yaxis()
+
+    plt.tight_layout()
+    st.pyplot(fig)
+    plt.clf()
