@@ -149,7 +149,7 @@ st.markdown("This app predicts SAD and explains spline activations for a standar
 
 # Load model
 model = KAN(width=[53, 1, 2], grid=5, k=3, seed=42)
-checkpoint = torch.load('model_with_scores.pth')
+checkpoint = torch.load('model_with_scores.pt')
 model.load_state_dict(checkpoint['model_state_dict'])
 model.feature_scores = checkpoint['feature_scores']
 model.eval()
