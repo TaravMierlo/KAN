@@ -1,5 +1,6 @@
 import streamlit as st
 import numpy as np
+import pandas as pd
 import torch
 import pickle
 import matplotlib.pyplot as plt
@@ -148,7 +149,9 @@ st.markdown("This app predicts SAD and explains spline activations for a standar
 
 # Load model
 model = KAN(width=[53, 1, 2], grid=5, k=3, seed=42)
-model.load_state_dict(torch.load("kan_model.pt", map_location=torch.device("cpu")))
+checkpoint = torch.load('model_with_scores.pth')
+model.load_state_dict(checkpoint['model_state_dict'])
+model.feature_scores = checkpoint['feature_scores']
 model.eval()
 
 # Load data artifacts
@@ -189,6 +192,31 @@ else:
     st.success("✅ No SAD Detected")
 st.write(f"**Probability - No SAD**: {output[0][0]}")
 st.write(f"**Probability - SAD**: {output[0][1]}")
+
+# Show global explanation
+st.markdown("---")
+st.subheader("Global Feature Importance")
+df_importances = pd.DataFrame({
+    'Feature': feature_names,
+    'Importance': model.feature_scores.detach().numpy()
+})
+
+# Sort by importance descending
+df = df_importances.sort_values(by='Importance', ascending=False)
+
+# Streamlit app
+st.title("Feature Importances")
+
+st.write("The following bar chart shows the feature importances ranked from most to least contribution.")
+
+fig, ax = plt.subplots(figsize=(10, 8))
+ax.barh(df['Feature'], df['Importance'])
+ax.invert_yaxis()  # Highest importance at the top
+ax.set_xlabel("Importance Score")
+ax.set_ylabel("Feature")
+ax.set_title("Feature Importance Ranking")
+
+st.pyplot(fig)
 
 # Show local explanation
 st.markdown("---")
