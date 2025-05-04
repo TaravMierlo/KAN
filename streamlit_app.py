@@ -73,7 +73,7 @@ with col2:
     
     # Show spline activation for selected feature (layer 0)
     img_path = f"static/splines/layer0_input{feature_idx}_to_output0.png"
-    st.image(img_path, caption=f"Spline activation for {selected_label}", use_container_width=True)
+    st.image(img_path, use_container_width=True)
 
     # Show two additional images side-by-side (layer 1)
     st.write("**Layer 1 Output Splines**")
