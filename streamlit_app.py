@@ -83,9 +83,11 @@ with col2:
     st.image(img_path, use_container_width=True)
 
     # Show two additional images side-by-side (layer 1)
-    st.write("**Layer 1 Output Splines**")
-    st.info("De outputs van alle activatiefuncties worden bij elkaar opgeteld tot één totaalscore. " \
-    "Dit is de basis voor de eindbeslissing van het model.")
+    with st.expander("ℹ️ **Uitkomst Advies**"):
+        st.write( "De outputs van alle activatiefuncties worden bij elkaar opgeteld tot één totaalscore. " \
+    "Dit is de basis voor de eindbeslissing van het model."
+    
+    "Op basis van de totaalscore kiest het model tussen twee uitkomsten: SAD of Geen SAD. De lijnen laten zien hoe de uiteindelijke beslissing verandert afhankelijk van de som van alle activatiefunctie-uitkomsten.")
     
     col2a, col2b = st.columns(2)
     with col2a:
@@ -94,9 +96,6 @@ with col2:
     with col2b:
         img_path2 = "static/splines/layer1_input0_to_output1.png"
         st.image(img_path2, use_container_width=True)
-    with st.expander("ℹ️ What does this plot show?"):
-        st.write("Here you see how the model transforms an input feature using an activation function. This function was learned during training and determines the signal each input value contributes to the final prediction.")
-    st.info("Op basis van de totaalscore kiest het model tussen twee uitkomsten: SAD of Geen SAD. De lijnen laten zien hoe de uiteindelijke beslissing verandert afhankelijk van de som van alle activatiefunctie-uitkomsten.")
 
 # ========== Local Explanation ==========
 st.markdown("---")
