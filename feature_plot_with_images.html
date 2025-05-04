@@ -1,0 +1,84 @@
+
+<html>
+<head>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+  <div id="plot"></div>
+  <div style="margin-top: 20px;">
+    <img id="feature-image" src="" style="max-width: 600px; display: none;" />
+  </div>
+
+  <script>
+    var data = {"data":[{"hovertemplate":"Belangrijkheid Score=%{x}\u003cbr\u003eFeature=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"","marker":{"color":"#636efa","pattern":{"shape":""}},"name":"","orientation":"h","showlegend":false,"textposition":"auto","x":{"dtype":"f8","bdata":"AAAAwCFs8D8AAACAt9jvPwAAAKBSpeI\u002fAAAAgAuj0j8AAACAk1HIPwAAAKCWP8g\u002fAAAAABPexj8AAABARM\u002fEPwAAAOAh7cM\u002fAAAAANfcwT8AAACA\u002fUzBPwAAAEBYssA\u002fAAAA4EUtvj8AAABAisy9PwAAAODa3bk\u002fAAAAIAapuD8AAABA9G+4PwAAAAAp1rc\u002fAAAAoC4Ztz8AAABAkfy2PwAAAEABxrY\u002fAAAA4DXWtD8AAABAuii0PwAAAIALjbM\u002fAAAAAChXsz8AAACAN1GxPwAAAMAe2K8\u002fAAAAAO7ZrD8AAACArgysPwAAAACq66o\u002fAAAAwIOYqj8AAACA3NeoPwAAAEAaq6c\u002fAAAAANb3pj8AAACAKHCmPwAAAMA8OKY\u002fAAAAwAUwpT8AAACAmKSkPwAAACDZc6Q\u002fAAAA4EFlpD8AAADg5XSiPwAAAIATAaI\u002fAAAAYLVBoT8AAAAAzuCgPwAAAIDs9p8\u002fAAAAQKk4nj8AAACAQa+bPwAAAIAbHJs\u002fAAAAgKAHmz8AAAAAod+QPwAAAKCghIs\u002fAAAA4CgCiz8AAADgETSJPw=="},"xaxis":"x","y":["Prothrombin time (s)","INR","MV n (%)","GCS","Stroke n (%)","Temperature (Celcius)","Sodium (mEq\u002fL)","Sedation n (%)","ICU Type: CVICU","AKI n (%)","BUN (mg\u002fdL)","Creatinine (mg\u002fdL)","Vasopressor n (%)","ICU Type: NICU","ICU Type: MICU","Anion gap (mEq\u002fL)","Platelet (k\u002fuL)","Race: Unknown","Age","SOFA","Bicarbonate (mEq\u002fL)","Chloride (mEq\u002fL)","Respiratory Rate","WBC (K\u002fuL)","Heart Rate (Beats per Minute)","Diastolic BP (mmHG)","Magnesium (mg\u002fdL)","Total calcium (mg\u002fdL)","Systolic BP (mmHG)","Phosphate (mg\u002fdL)","PTT (s)","Glucose (mg\u002fdL)","Weight (Kg)","Mean arterial BP (mmHG)","ICU Type: MICU\u002fSICU","Potassium (mEq\u002fL)","ICU Type: CCU","CRRT n (%)","Race: Asian","Hemoglobin (g\u002fdL)","spo2","COPD n (%)","Race: Other","ICU Type: SICU","Gender (Male)","AMI n (%)","ICU Type: TSICU","Hypertension n (%)","CKD n (%)","Race: Black","Race: White","Diabetes n (%)","Race: Hispanic"],"yaxis":"y","type":"bar"}],"layout":{"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"Belangrijkheid Score"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"Feature"},"categoryorder":"total ascending"},"legend":{"tracegroupgap":0},"title":{"text":"Belangrijkheiden (Hoog naar laag)"},"barmode":"relative","clickmode":"event+select"}};
+    Plotly.newPlot('plot', data.data, data.layout);
+
+    // Feature-to-image map (autogenerated from Python)
+    var featureToImage = {
+      'Age': 'assets/images/layer0_input0_to_output0.png',
+      'Weight (Kg)': 'assets/images/layer0_input1_to_output0.png',
+      'Temperature (Celcius)': 'assets/images/layer0_input2_to_output0.png',
+      'Heart Rate (Beats per Minute)': 'assets/images/layer0_input3_to_output0.png',
+      'Respiratory Rate': 'assets/images/layer0_input4_to_output0.png',
+      'spo2': 'assets/images/layer0_input5_to_output0.png',
+      'Systolic BP (mmHG)': 'assets/images/layer0_input6_to_output0.png',
+      'Diastolic BP (mmHG)': 'assets/images/layer0_input7_to_output0.png',
+      'Mean arterial BP (mmHG)': 'assets/images/layer0_input8_to_output0.png',
+      'WBC (K/uL)': 'assets/images/layer0_input9_to_output0.png',
+      'Hemoglobin (g/dL)': 'assets/images/layer0_input10_to_output0.png',
+      'Platelet (k/uL)': 'assets/images/layer0_input11_to_output0.png',
+      'BUN (mg/dL)': 'assets/images/layer0_input12_to_output0.png',
+      'Creatinine (mg/dL)': 'assets/images/layer0_input13_to_output0.png',
+      'Glucose (mg/dL)': 'assets/images/layer0_input14_to_output0.png',
+      'Sodium (mEq/L)': 'assets/images/layer0_input15_to_output0.png',
+      'Chloride (mEq/L)': 'assets/images/layer0_input16_to_output0.png',
+      'Potassium (mEq/L)': 'assets/images/layer0_input17_to_output0.png',
+      'Magnesium (mg/dL)': 'assets/images/layer0_input18_to_output0.png',
+      'Total calcium (mg/dL)': 'assets/images/layer0_input19_to_output0.png',
+      'Phosphate (mg/dL)': 'assets/images/layer0_input20_to_output0.png',
+      'INR': 'assets/images/layer0_input21_to_output0.png',
+      'Prothrombin time (s)': 'assets/images/layer0_input22_to_output0.png',
+      'PTT (s)': 'assets/images/layer0_input23_to_output0.png',
+      'Bicarbonate (mEq/L)': 'assets/images/layer0_input24_to_output0.png',
+      'Anion gap (mEq/L)': 'assets/images/layer0_input25_to_output0.png',
+      'Gender (Male)': 'assets/images/layer0_input26_to_output0.png',
+      'MV n (%)': 'assets/images/layer0_input27_to_output0.png',
+      'CRRT n (%)': 'assets/images/layer0_input28_to_output0.png',
+      'Vasopressor n (%)': 'assets/images/layer0_input29_to_output0.png',
+      'Sedation n (%)': 'assets/images/layer0_input30_to_output0.png',
+      'AMI n (%)': 'assets/images/layer0_input31_to_output0.png',
+      'CKD n (%)': 'assets/images/layer0_input32_to_output0.png',
+      'COPD n (%)': 'assets/images/layer0_input33_to_output0.png',
+      'Hypertension n (%)': 'assets/images/layer0_input34_to_output0.png',
+      'Diabetes n (%)': 'assets/images/layer0_input35_to_output0.png',
+      'AKI n (%)': 'assets/images/layer0_input36_to_output0.png',
+      'Stroke n (%)': 'assets/images/layer0_input37_to_output0.png',
+      'Race: Asian': 'assets/images/layer0_input38_to_output0.png',
+      'Race: Black': 'assets/images/layer0_input39_to_output0.png',
+      'Race: Hispanic': 'assets/images/layer0_input40_to_output0.png',
+      'Race: Other': 'assets/images/layer0_input41_to_output0.png',
+      'Race: White': 'assets/images/layer0_input42_to_output0.png',
+      'Race: Unknown': 'assets/images/layer0_input43_to_output0.png',
+      'ICU Type: CCU': 'assets/images/layer0_input44_to_output0.png',
+      'ICU Type: CVICU': 'assets/images/layer0_input45_to_output0.png',
+      'ICU Type: MICU': 'assets/images/layer0_input46_to_output0.png',
+      'ICU Type: MICU/SICU': 'assets/images/layer0_input47_to_output0.png',
+      'ICU Type: NICU': 'assets/images/layer0_input48_to_output0.png',
+      'ICU Type: SICU': 'assets/images/layer0_input49_to_output0.png',
+      'ICU Type: TSICU': 'assets/images/layer0_input50_to_output0.png',
+      'GCS': 'assets/images/layer0_input51_to_output0.png',
+      'SOFA': 'assets/images/layer0_input52_to_output0.png'
+    };
+
+    // On click, update image
+    document.getElementById('plot').on('plotly_click', function(eventData) {
+      var feature = eventData.points[0].y;
+      var imagePath = featureToImage[feature];
+
+      var img = document.getElementById('feature-image');
+      img.src = imagePath;
+      img.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
