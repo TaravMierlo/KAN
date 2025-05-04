@@ -97,6 +97,8 @@ with col2:
     with col2b:
         img_path2 = "static/splines/layer1_input0_to_output1.png"
         st.image(img_path2, use_container_width=True)
+    with st.expander("ℹ️ What does this plot show?"):
+        st.write("Here you see how the model transforms an input feature using an activation function. This function was learned during training and determines the signal each input value contributes to the final prediction.")
     st.info("Op basis van de totaalscore kiest het model tussen twee uitkomsten: SAD of Geen SAD. De lijnen laten zien hoe de uiteindelijke beslissing verandert afhankelijk van de som van alle activatiefunctie-uitkomsten.")
 
 # ========== Local Explanation ==========
