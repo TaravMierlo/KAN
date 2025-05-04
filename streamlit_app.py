@@ -70,8 +70,20 @@ with col2:
         df_sorted['Feature'].tolist()
     )
     feature_idx = feature_names.index(selected_label)
+    
+    # Show spline activation for selected feature (layer 0)
     img_path = f"static/splines/layer0_input{feature_idx}_to_output0.png"
     st.image(img_path, caption=f"Spline activation for {selected_label}", use_container_width=True)
+
+    # Show two additional images side-by-side (layer 1)
+    st.write("**Layer 1 Output Splines**")
+    col2a, col2b = st.columns(2)
+    with col2a:
+        img_path1 = "static/splines/layer1_input0_to_output0.png"
+        st.image(img_path1, caption="Layer 1: Input 0 → Output 0", use_container_width=True)
+    with col2b:
+        img_path2 = "static/splines/layer1_input0_to_output1.png"
+        st.image(img_path2, caption="Layer 1: Input 0 → Output 1", use_container_width=True)
 
 # ========== Local Explanation ==========
 st.markdown("---")
