@@ -143,6 +143,7 @@ def explain_spline_minmax(model, l, i, j, feature_min, feature_max, x_norm_val=N
     plt.close()
 
 # ========== Streamlit App ==========
+
 st.set_page_config(layout="wide")
 st.title("🧠 Predict SAD from MIMIC-IV")
 st.markdown("This app predicts SAD and explains spline activations for a standard patient.")
@@ -195,28 +196,35 @@ st.write(f"**Probability - SAD**: {output[0][1]}")
 
 # Show global explanation
 st.markdown("---")
-st.subheader("Global Feature Importance")
+st.subheader("🌍 Global Feature Importance")
+
 df_importances = pd.DataFrame({
     'Feature': feature_names,
     'Importance': model.feature_scores.detach().numpy()
 })
-
-# Sort by importance descending
 df = df_importances.sort_values(by='Importance', ascending=False)
 
-# Streamlit app
-st.title("Feature Importances")
+# Feature selector + explanation
+selected_feature = st.selectbox("Click on a feature to view its spline contribution plot", df['Feature'].tolist())
 
-st.write("The following bar chart shows the feature importances ranked from most to least contribution.")
-
+# Show bar chart
 fig, ax = plt.subplots(figsize=(8, 12))
 ax.barh(df['Feature'], df['Importance'])
-ax.invert_yaxis()  # Highest importance at the top
+ax.invert_yaxis()
 ax.set_xlabel("Importance Score")
 ax.set_ylabel("Feature")
 ax.set_title("Feature Importance Ranking")
-
 st.pyplot(fig)
+
+# Show spline plot for selected feature
+feature_idx = feature_names.index(selected_feature)
+x_val = standard_tensor[feature_idx].item()
+feature_min, feature_max = feature_bounds[feature_idx]
+explain_spline_minmax(
+    model, l=0, i=feature_idx, j=0,
+    feature_min=feature_min, feature_max=feature_max,
+    x_norm_val=x_val, feature_names=feature_names
+)
 
 # Show local explanation
 st.markdown("---")
@@ -227,19 +235,3 @@ spline_out1 = compute_spline_outputs(standard_tensor.unsqueeze(0), grid1, coef1,
 base_out1 = layer1.base_fun(standard_tensor.unsqueeze(0))
 combined1 = compute_combined_output(base_out1, spline_out1, scale_base1, scale_sp1)
 plot_local_feature_importance(combined1[0].detach().numpy(), feature_names)
-
-# Spline activation explanation
-st.markdown("---")
-st.subheader("🔬 Inspect Individual Spline Contribution")
-with st.expander("Show Spline Activation Plot"):
-    feature_idx = st.number_input("Choose input feature index", min_value=0, max_value=len(feature_names)-1, step=1)
-    layer_output_idx = st.number_input("Hidden neuron index (usually 0)", min_value=0, max_value=0, value=0)
-    x_val = standard_tensor[feature_idx].item()
-    feature_min, feature_max = feature_bounds[feature_idx]
-
-    if st.button("Plot Spline Contribution"):
-        explain_spline_minmax(
-            model, l=0, i=feature_idx, j=layer_output_idx,
-            feature_min=feature_min, feature_max=feature_max,
-            x_norm_val=x_val, feature_names=feature_names
-        )
