@@ -102,23 +102,17 @@ with col2:
 st.markdown("---")
 
 st.subheader("📊 Local Feature Importance")
+
+# Define columns outside the expanders
 column1, column2 = st.columns([1, 1])
 
+# Then use each column
 with column1:
-    with st.expander("ℹ️ **Belang van kenmerken voor specifiek advies**", expanded=True):
-        st.write(
-            "Hieronder zie je hoe belangrijk elk kenmerk was voor het advies voor deze specifieke patient. "
-            "Hoe hoger het belang, hoe meer dat kenmerk heeft bijgedragen aan het uiteindelijke advies van het model."
-        )
-        st.image("static/local_feature_importance_waterfall.png", use_container_width=True)
+    st.write("ℹ️ **Belang van kenmerken voor specifiek advies**")
+    st.image("static/local_feature_importance_waterfall.png", use_container_width=True)
 
 with column2:
-    with st.expander("ℹ️ **Ranglijst van Kenmerkbelang**", expanded=True):
-        st.write(
-            "Hieronder zie je hoe belangrijk elk kenmerk gemiddeld genomen is in het hele model. "
-            "Deze ranglijst geeft een algemeen beeld van welke gegevens het meest bijdragen aan het advies."
-        )
-        # Add something substantial here (optional), like:
-        st.image("static/global_feature_importance_bar.png", use_container_width=True)
+    st.write("ℹ️ **Ranglijst van Kenmerkbelang**")
+    st.image("static/global_feature_importance_bar.png", use_container_width=True)  # Placeholder
 
 
