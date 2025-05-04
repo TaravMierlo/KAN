@@ -70,7 +70,7 @@ with col1:
 
 with col2:
     selected_label = st.selectbox(
-        "Select a feature to inspect spline activation",
+        "Selecteer een kenmerk om de invloed op het advies te bekijken",
         df_sorted['Feature'].tolist()
     )
     feature_idx = feature_names.index(selected_label)
