@@ -59,7 +59,7 @@ with col1:
     st.write("**Ranglijst van Kenmerkbelang**")
     st.markdown(
         "Hieronder zie je hoe belangrijk elk kenmerk gemiddeld genomen is in het hele model. "
-        "Deze ranglijst geeft een algemeen beeld van welke gegevens het meest bijdragen aan de voorspelling."
+        "Deze ranglijst geeft een algemeen beeld van welke gegevens het meest bijdragen aan het advies."
     )
     fig, ax = plt.subplots(figsize=(6, 10))
     ax.barh(df_sorted['Feature'], df_sorted['Importance'])
@@ -70,9 +70,9 @@ with col1:
 
 with col2:
     st.write("**Invloed per kenmerk**")
-    st.markdown(
+    st.info(
         "Hier zie je hoe het model een kenmerk omzet via een activatiefunctie." \
-        "Deze functie is geleerd tijdens het trainen en bepaalt welk signaal een bepaalde invoerwaarde bijdraagt aan de uiteindelijke voorspelling."
+        "Deze functie is geleerd tijdens het trainen en bepaalt welk signaal een bepaalde invoerwaarde bijdraagt aan het uiteindelijke advies."
     )
     
     selected_label = st.selectbox(
@@ -87,7 +87,7 @@ with col2:
 
     # Show two additional images side-by-side (layer 1)
     st.write("**Layer 1 Output Splines**")
-    st.markdown("De outputs van alle activatiefuncties worden bij elkaar opgeteld tot één totaalscore. " \
+    st.info("De outputs van alle activatiefuncties worden bij elkaar opgeteld tot één totaalscore. " \
     "Dit is de basis voor de eindbeslissing van het model.")
     
     col2a, col2b = st.columns(2)
@@ -97,7 +97,7 @@ with col2:
     with col2b:
         img_path2 = "static/splines/layer1_input0_to_output1.png"
         st.image(img_path2, use_container_width=True)
-    st.markdown("Op basis van de totaalscore kiest het model tussen twee uitkomsten: SAD of Geen SAD. De lijnen laten zien hoe de uiteindelijke beslissing verandert afhankelijk van de som van alle activatiefunctie-uitkomsten.")
+    st.info("Op basis van de totaalscore kiest het model tussen twee uitkomsten: SAD of Geen SAD. De lijnen laten zien hoe de uiteindelijke beslissing verandert afhankelijk van de som van alle activatiefunctie-uitkomsten.")
 
 # ========== Local Explanation ==========
 st.markdown("---")
