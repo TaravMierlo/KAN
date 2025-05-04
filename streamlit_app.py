@@ -70,6 +70,7 @@ with col1:
 with col2:
     with st.expander("ℹ️ **Invloed per kenmerk**"):
         st.write( "Hier zie je hoe het model een kenmerk omzet via een activatiefunctie." \
+                 "Voor ieder kenmerk is er een activatie functie."\
         "Deze functie is geleerd tijdens het trainen en bepaalt welk signaal een bepaalde invoerwaarde bijdraagt aan het uiteindelijke advies.")
     
     selected_label = st.selectbox(
@@ -84,7 +85,7 @@ with col2:
 
     # Show two additional images side-by-side (layer 1)
     with st.expander("ℹ️ **Uitkomst Advies**"):
-        st.write( "De outputs van alle activatiefuncties worden bij elkaar opgeteld tot één totaalscore. " \
+        st.write( "De uitkomsten van alle activatiefuncties worden bij elkaar opgeteld tot één totaalscore. " \
     "Dit is de basis voor de eindbeslissing van het model."
     
     "Op basis van de totaalscore kiest het model tussen twee uitkomsten: SAD of Geen SAD. De lijnen laten zien hoe de uiteindelijke beslissing verandert afhankelijk van de som van alle activatiefunctie-uitkomsten.")
@@ -99,5 +100,21 @@ with col2:
 
 # ========== Local Explanation ==========
 st.markdown("---")
+
 st.subheader("📊 Local Feature Importance")
-st.image("static/local_feature_importance_waterfall.png", caption="Feature contributions for the prediction", use_container_width=True)
+col1, col2 = st.columns([1, 1])
+
+with col1:
+    with st.expander("ℹ️ **Belang van kenmerken voor specifiek advies**"):
+        st.write("Hieronder zie je hoe belangrijk elk kenmerk was voor het advies voor deze specifieke patient. "
+        "Hoe hoger het belang, hoe meer dat kenmerk heeft beijgedragen aan het uiteindelijke advies van het model")
+
+    st.image("static/local_feature_importance_waterfall.png", use_container_width=True)
+
+with col2:
+    with st.expander("ℹ️ **Ranglijst van Kenmerkbelang**"):
+        st.write("Hieronder zie je hoe belangrijk elk kenmerk gemiddeld genomen is in het hele model. "
+        "Deze ranglijst geeft een algemeen beeld van welke gegevens het meest bijdragen aan het advies.")
+
+
+
