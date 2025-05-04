@@ -51,12 +51,12 @@ st.write("**Probability - SAD**: 0.69")
 
 # ========== Global Explanation ==========
 st.markdown("---")
-st.subheader("🌍 Global Feature Importance")
+st.subheader("Hoe werkt het model?")
 
 col1, col2 = st.columns([1, 1])
 
 with col1:
-    st.write("**Feature Importance Ranking**")
+    st.write("**Ranglijst van Kenmerkbelang**")
     st.markdown(
         "Hieronder zie je hoe belangrijk elk kenmerk gemiddeld genomen is in het hele model. "
         "Deze ranglijst geeft een algemeen beeld van welke gegevens het meest bijdragen aan de voorspelling."
