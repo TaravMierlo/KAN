@@ -5,7 +5,6 @@ import torch
 import pickle
 import matplotlib.pyplot as plt
 from pykan.kan import KAN
-from pykan.kan.spline import coef2curve
 
 # ========== Utility Functions ==========
 
@@ -33,12 +32,6 @@ def compute_spline_outputs(x, grid, coef, k):
 def compute_combined_output(base_out, spline_out, scale_base, scale_sp):
     return scale_base * base_out + scale_sp * spline_out
 
-def compute_output_second_layer(x, layer, base_fun, k):
-    base_out = base_fun(x)
-    grid, coef, scale_base, scale_sp = get_layer_components(layer)
-    spline_out = compute_spline_outputs(x, grid, coef, k)
-    return compute_combined_output(base_out, spline_out, scale_base, scale_sp)
-
 def plot_local_feature_importance(contributions, feature_names):
     sorted_indices = np.argsort(np.abs(contributions))[::-1]
     sorted_contributions = contributions[sorted_indices]
@@ -52,12 +45,9 @@ def plot_local_feature_importance(contributions, feature_names):
     gs = fig.add_gridspec(2, 1, height_ratios=[1, 6])
 
     ax1 = fig.add_subplot(gs[0])
-    bars_top = ax1.barh(["Bewijs SAD", "Bewijs geen SAD"], [total_for, total_against], color=["blue", "orange"])
+    ax1.barh(["Bewijs SAD", "Bewijs geen SAD"], [total_for, total_against], color=["blue", "orange"])
     ax1.set_xlim(0, max(total_for, total_against) * 1.2)
     ax1.set_title("Totaal Bewijs Voor en Tegen SAD")
-    for bar in bars_top:
-        x_val = bar.get_width()
-        ax1.text(x_val + 0.01, bar.get_y() + bar.get_height() / 2, f"{x_val:.2f}", va='center', fontsize=8)
     ax1.spines['top'].set_visible(False)
     ax1.spines['right'].set_visible(False)
 
@@ -134,8 +124,6 @@ def explain_spline_minmax(model, l, i, j, feature_min, feature_max, x_norm_val=N
         if np.min(x_real_vals) <= x_real <= np.max(x_real_vals):
             y_at_x_real = np.interp(x_real, x_real_vals, y_vals)
             plt.plot(x_real, y_at_x_real, 'ro')
-        else:
-            print(f"x = {x_real:.2f} is outside the spline range.")
 
     plt.legend()
     plt.grid(True)
@@ -155,7 +143,7 @@ model.load_state_dict(checkpoint['model_state_dict'])
 model.feature_scores = checkpoint['feature_scores']
 model.eval()
 
-# Load data artifacts
+# Load data
 with open("models/feature_config.pkl", "rb") as f:
     feature_config = pickle.load(f)
 with open("models/original_df.pkl", "rb") as f:
@@ -169,7 +157,6 @@ feature_bounds = get_feature_min_max(
     feature_config["original_ordinal_indices"]
 )
 
-# Standard patient tensor
 standard_tensor = torch.tensor([
     0.4941, 0.1310, 0.5806, 0.6543, 0.4667, 0.7600, 0.1872, 0.1105, 0.1205,
     0.1879, 0.4000, 0.2505, 0.0385, 0.0101, 0.1212, 0.5000, 0.4146, 0.2192,
@@ -179,13 +166,12 @@ standard_tensor = torch.tensor([
     0.0000, 0.0000, 1.0000, 0.0000, 0.0000, 0.0000, 1.0000, 0.0667
 ])
 
-# Run prediction
+# Predict
 with torch.no_grad():
     output = model(standard_tensor.unsqueeze(0))
     pred = torch.argmax(output, dim=1).item()
-    prob = torch.softmax(output, dim=1).numpy()[0]
 
-# Show prediction result
+# Show result
 st.subheader("🔍 Prediction Result")
 if pred == 1:
     st.error("⚠️ SAD Detected")
@@ -194,7 +180,7 @@ else:
 st.write(f"**Probability - No SAD**: {output[0][0]}")
 st.write(f"**Probability - SAD**: {output[0][1]}")
 
-# Show global explanation
+# Global Explanation (Side by Side)
 st.markdown("---")
 st.subheader("🌍 Global Feature Importance")
 
@@ -202,31 +188,31 @@ df_importances = pd.DataFrame({
     'Feature': feature_names,
     'Importance': model.feature_scores.detach().numpy()
 })
-df = df_importances.sort_values(by='Importance', ascending=False)
+df_sorted = df_importances.sort_values(by='Importance', ascending=False)
 
-# Feature selector + explanation
-selected_feature = st.selectbox("Click on a feature to view its spline contribution plot", df['Feature'].tolist())
+col1, col2 = st.columns([1, 1])
+with col1:
+    st.write("**Feature Importance Ranking**")
+    fig, ax = plt.subplots(figsize=(6, 10))
+    ax.barh(df_sorted['Feature'], df_sorted['Importance'])
+    ax.invert_yaxis()
+    ax.set_xlabel("Importance Score")
+    ax.set_ylabel("Feature")
+    st.pyplot(fig)
 
-# Show bar chart
-fig, ax = plt.subplots(figsize=(8, 12))
-ax.barh(df['Feature'], df['Importance'])
-ax.invert_yaxis()
-ax.set_xlabel("Importance Score")
-ax.set_ylabel("Feature")
-ax.set_title("Feature Importance Ranking")
-st.pyplot(fig)
+with col2:
+    selected_feature = st.selectbox("Select a feature to inspect spline activation", df_sorted['Feature'].tolist())
+    feature_idx = feature_names.index(selected_feature)
+    x_val = standard_tensor[feature_idx].item()
+    feature_min, feature_max = feature_bounds[feature_idx]
 
-# Show spline plot for selected feature
-feature_idx = feature_names.index(selected_feature)
-x_val = standard_tensor[feature_idx].item()
-feature_min, feature_max = feature_bounds[feature_idx]
-explain_spline_minmax(
-    model, l=0, i=feature_idx, j=0,
-    feature_min=feature_min, feature_max=feature_max,
-    x_norm_val=x_val, feature_names=feature_names
-)
+    explain_spline_minmax(
+        model, l=0, i=feature_idx, j=0,
+        feature_min=feature_min, feature_max=feature_max,
+        x_norm_val=x_val, feature_names=feature_names
+    )
 
-# Show local explanation
+# Local Explanation
 st.markdown("---")
 st.subheader("📊 Local Feature Importance")
 layer1 = model.act_fun[0]
