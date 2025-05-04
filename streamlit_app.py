@@ -56,11 +56,10 @@ st.subheader("Hoe werkt het model?")
 col1, col2 = st.columns([1, 1])
 
 with col1:
-    st.write("**Ranglijst van Kenmerkbelang**")
-    st.markdown(
-        "Hieronder zie je hoe belangrijk elk kenmerk gemiddeld genomen is in het hele model. "
-        "Deze ranglijst geeft een algemeen beeld van welke gegevens het meest bijdragen aan het advies."
-    )
+    with st.expander("ℹ️ **Ranglijst van Kenmerkbelang**"):
+        st.write("Hieronder zie je hoe belangrijk elk kenmerk gemiddeld genomen is in het hele model. "
+        "Deze ranglijst geeft een algemeen beeld van welke gegevens het meest bijdragen aan het advies.")
+        
     fig, ax = plt.subplots(figsize=(6, 10))
     ax.barh(df_sorted['Feature'], df_sorted['Importance'])
     ax.invert_yaxis()
