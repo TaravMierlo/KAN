@@ -209,7 +209,7 @@ st.title("Feature Importances")
 
 st.write("The following bar chart shows the feature importances ranked from most to least contribution.")
 
-fig, ax = plt.subplots(figsize=(6, 8))
+fig, ax = plt.subplots(figsize=(3, 6))
 ax.barh(df['Feature'], df['Importance'])
 ax.invert_yaxis()  # Highest importance at the top
 ax.set_xlabel("Importance Score")
