@@ -57,7 +57,10 @@ col1, col2 = st.columns([1, 1])
 
 with col1:
     st.write("**Feature Importance Ranking**")
-    st.write("Hieronder zie je hoe belangrijk elk kenmerk gemiddeld genomen is in het hele model. Deze ranglijst geeft een algemeen beeld van welke gegevens het meest bijdragen aan de voorspelling")
+    st.markdown(
+        "Hieronder zie je hoe belangrijk elk kenmerk gemiddeld genomen is in het hele model. "
+        "Deze ranglijst geeft een algemeen beeld van welke gegevens het meest bijdragen aan de voorspelling."
+    )
     fig, ax = plt.subplots(figsize=(6, 10))
     ax.barh(df_sorted['Feature'], df_sorted['Importance'])
     ax.invert_yaxis()
