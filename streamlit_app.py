@@ -80,10 +80,10 @@ with col2:
     col2a, col2b = st.columns(2)
     with col2a:
         img_path1 = "static/splines/layer1_input0_to_output0.png"
-        st.image(img_path1, caption="Layer 1: Input 0 → Output 0", use_container_width=True)
+        st.image(img_path1, use_container_width=True)
     with col2b:
         img_path2 = "static/splines/layer1_input0_to_output1.png"
-        st.image(img_path2, caption="Layer 1: Input 0 → Output 1", use_container_width=True)
+        st.image(img_path2, use_container_width=True)
 
 # ========== Local Explanation ==========
 st.markdown("---")
