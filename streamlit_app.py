@@ -59,7 +59,7 @@ with col1:
     with st.expander("ℹ️ **Ranglijst van Kenmerkbelang**"):
         st.write("Hieronder zie je hoe belangrijk elk kenmerk gemiddeld genomen is in het hele model. "
         "Deze ranglijst geeft een algemeen beeld van welke gegevens het meest bijdragen aan het advies.")
-        
+
     fig, ax = plt.subplots(figsize=(6, 10))
     ax.barh(df_sorted['Feature'], df_sorted['Importance'])
     ax.invert_yaxis()
@@ -68,11 +68,9 @@ with col1:
     st.pyplot(fig)
 
 with col2:
-    st.write("**Invloed per kenmerk**")
-    st.info(
-        "Hier zie je hoe het model een kenmerk omzet via een activatiefunctie." \
-        "Deze functie is geleerd tijdens het trainen en bepaalt welk signaal een bepaalde invoerwaarde bijdraagt aan het uiteindelijke advies."
-    )
+    with st.expander("ℹ️ **Invloed per kenmerk**"):
+        st.write( "Hier zie je hoe het model een kenmerk omzet via een activatiefunctie." \
+        "Deze functie is geleerd tijdens het trainen en bepaalt welk signaal een bepaalde invoerwaarde bijdraagt aan het uiteindelijke advies.")
     
     selected_label = st.selectbox(
         "Selecteer een kenmerk om de invloed op het advies te bekijken",
