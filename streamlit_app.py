@@ -69,6 +69,12 @@ with col1:
     st.pyplot(fig)
 
 with col2:
+    st.write("**Invloed per kenmerk**")
+    st.markdown(
+        "Hier zie je hoe het model een kenmerk omzet via een activatiefunctie." \
+        "Deze functie is geleerd tijdens het trainen en bepaalt welk signaal een bepaalde invoerwaarde bijdraagt aan de uiteindelijke voorspelling."
+    )
+    
     selected_label = st.selectbox(
         "Selecteer een kenmerk om de invloed op het advies te bekijken",
         df_sorted['Feature'].tolist()
@@ -81,6 +87,9 @@ with col2:
 
     # Show two additional images side-by-side (layer 1)
     st.write("**Layer 1 Output Splines**")
+    st.markdown("De outputs van alle activatiefuncties worden bij elkaar opgeteld tot één totaalscore. " \
+    "Dit is de basis voor de eindbeslissing van het model.")
+    
     col2a, col2b = st.columns(2)
     with col2a:
         img_path1 = "static/splines/layer1_input0_to_output0.png"
@@ -88,6 +97,7 @@ with col2:
     with col2b:
         img_path2 = "static/splines/layer1_input0_to_output1.png"
         st.image(img_path2, use_container_width=True)
+    st.markdown("Op basis van de totaalscore kiest het model tussen twee uitkomsten: SAD of Geen SAD. De lijnen laten zien hoe de uiteindelijke beslissing verandert afhankelijk van de som van alle activatiefunctie-uitkomsten.")
 
 # ========== Local Explanation ==========
 st.markdown("---")
