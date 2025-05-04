@@ -1,7 +1,23 @@
 import streamlit as st
+import torch
 import pandas as pd
 import pickle
 import matplotlib.pyplot as plt
+from pykan.kan import KAN
+
+
+# Load model
+model = KAN(width=[53, 1, 2], grid=5, k=3, seed=42)
+checkpoint = torch.load('model_with_scores.pt')
+model.load_state_dict(checkpoint['model_state_dict'])
+model.feature_scores = checkpoint['feature_scores']
+model.spline_preacts = checkpoint['model_spline_preacts']
+model.spline_postacts = checkpoint['model_spline_postacts']
+model.eval()
+
+# Load data
+with open("models/original_df.pkl", "rb") as f:
+    original_df = pickle.load(f)
 
 # ========== Streamlit Config ==========
 st.set_page_config(layout="wide")
@@ -17,11 +33,13 @@ feature_names = feature_config["continuous_labels"] + feature_config["binary_lab
 # Ensure correct number of features
 assert len(feature_names) == 53, f"Expected 53 features, found {len(feature_names)}."
 
-# Dummy importance scores for display purposes
-importance_scores = list(range(len(feature_names), 0, -1))
+# Global Explanation (Side by Side)
+st.markdown("---")
+st.subheader("🌍 Global Feature Importance")
+
 df_importances = pd.DataFrame({
     'Feature': feature_names,
-    'Importance': importance_scores
+    'Importance': model.feature_scores.detach().numpy()
 })
 df_sorted = df_importances.sort_values(by='Importance', ascending=False)
 
@@ -53,9 +71,9 @@ with col2:
     )
     feature_idx = feature_names.index(selected_label)
     img_path = f"static/splines/layer0_input{feature_idx}_to_output0.png"
-    st.image(img_path, caption=f"Spline activation for {selected_label}", use_column_width=True)
+    st.image(img_path, caption=f"Spline activation for {selected_label}", use_container_width=True)
 
 # ========== Local Explanation ==========
 st.markdown("---")
 st.subheader("📊 Local Feature Importance")
-st.image("static/local_feature_importance_waterfall.png", caption="Feature contributions for the prediction", use_column_width=True)
+st.image("static/local_feature_importance_waterfall.png", caption="Feature contributions for the prediction", use_container_width=True)
