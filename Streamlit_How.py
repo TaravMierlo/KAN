@@ -44,23 +44,37 @@ df_importances = pd.DataFrame({
 df_sorted = df_importances.sort_values(by='Importance', ascending=False)
 
 # ========== Top Metrics Section ==========
-st.markdown("""
-<div style="border:1px solid #ccc; padding: 1em; border-radius: 10px; margin-bottom: 1em;">
-<h4>🔎 Nauwkeurigheid</h4>
-<p><strong>Model Performance:</strong> 91.2%</p>
-</div>
+# ========== Top Metrics Section ==========
+st.markdown("## 📊 Overzicht")
 
-<div style="border:1px solid #ccc; padding: 1em; border-radius: 10px; margin-bottom: 1em;">
-<h4>📤 Output</h4>
-<p><strong>Voorspelling:</strong> SAD Gedetecteerd</p>
-<p><em>Delta:</em> -0.31 vs Geen SAD</p>
-</div>
+col1, col2, col3 = st.columns(3)
 
-<div style="border:1px solid #ccc; padding: 1em; border-radius: 10px;">
-<h4>🗃️ Data</h4>
-<p><strong>Kenmerken gebruikt:</strong> 53</p>
-</div>
-""", unsafe_allow_html=True)
+with col1:
+    st.markdown("""
+    <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9; text-align: center;">
+        <h4>🔎 Nauwkeurigheid</h4>
+        <p style="font-size: 24px; font-weight: bold;">91.2%</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col2:
+    st.markdown("""
+    <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9; text-align: center;">
+        <h4>📤 Output</h4>
+        <p style="font-size: 20px; font-weight: bold; color: red;">SAD Gedetecteerd</p>
+        <p style="font-size: 14px;">Delta: -0.31 vs Geen SAD</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col3:
+    st.markdown("""
+    <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9; text-align: center;">
+        <h4>🗃️ Data</h4>
+        <p style="font-size: 24px; font-weight: bold;">53</p>
+        <p style="font-size: 14px;">Kenmerken gebruikt in voorspelling</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
 # ========== Global Explanation ==========
 st.markdown("---")
 st.subheader("Hoe werkt het model?")
