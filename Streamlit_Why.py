@@ -111,3 +111,11 @@ with column2:
     # Show spline activation for selected feature (layer 0)
     img_path = f"static/local_splines/layer0_input{feature_idx}_to_output0.png"
     st.image(img_path, use_container_width=True)
+
+    col2a, col2b = st.columns(2)
+    with col2a:
+        img_path1 = "static/local_splines/layer1_input0_to_output0.png"
+        st.image(img_path1, use_container_width=True)
+    with col2b:
+        img_path2 = "static/local_splines/layer1_input0_to_output1.png"
+        st.image(img_path2, use_container_width=True)
