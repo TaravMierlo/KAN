@@ -109,5 +109,5 @@ with column2:
     feature_idx = feature_names.index(selected_label)
     
     # Show spline activation for selected feature (layer 0)
-    img_path = f"static/splines/layer0_input{feature_idx}_to_output0.png"
+    img_path = f"static/local_splines/layer0_input{feature_idx}_to_output0.png"
     st.image(img_path, use_container_width=True)
