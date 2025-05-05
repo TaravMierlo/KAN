@@ -92,8 +92,8 @@ with col2:
         st.write("Deze grafieken tonen hoe verschillende klinische variabelen bijdragen aan het voorspelde risico op sepsis-geassocieerde delier.")
         st.markdown("- X-as: Waarden van een specifieke variabele.")
         st.markdown("- Y-as: De invloed van deze waarde op de voorspelling van het model. Hoe verder een punt van nul ligt (positief of negatief), hoe groter de impact op het advies.")
-        st.markdown("- <span style="color:orange; font-weight:bold">Oranje punten duiden op waarden die het voorspelde risico op SAD **verhogen**.")
-        st.markdown("- <span style="color:blue; font-weight:bold">Blauwe punten duiden op waarden die het voorspelde risico **verlagen**.")
+        st.markdown('- <span style="color:orange; font-weight:bold">Oranje punten duiden op waarden die het voorspelde risico op SAD **verhogen**.')
+        st.markdown('- <span style="color:blue; font-weight:bold">Blauwe punten duiden op waarden die het voorspelde risico **verlagen**.')
 
         st.markdown('''
         <style>
