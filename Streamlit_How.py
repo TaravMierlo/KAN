@@ -40,8 +40,6 @@ df_importances = pd.DataFrame({
 df_sorted = df_importances.sort_values(by='Importance', ascending=False)
 
 # ========== Top Metrics Section ==========
-# ========== Top Metrics Section ==========
-st.markdown("## 📊 Overzicht")
 
 col1, col2, col3 = st.columns(3)
 
