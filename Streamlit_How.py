@@ -44,16 +44,22 @@ df_importances = pd.DataFrame({
 df_sorted = df_importances.sort_values(by='Importance', ascending=False)
 
 # ========== Top Metrics Section ==========
-col1, col2, col3 = st.columns(3)
+st.markdown("## 📊 Overzicht")
 
-with col1:
-    st.metric(label="🔎 Nauwkeurigheid", value="91.2%")  # Replace with dynamic value if available
+with st.container():
+    st.markdown("### 🔎 Nauwkeurigheid")
+    st.metric(label="Model Performance", value="91.2%")  # Replace with dynamic value if needed
+    st.markdown("---")
 
-with col2:
-    st.metric(label="📤 Output", value="SAD Gedetecteerd", delta="-0.31 vs Geen SAD")
+with st.container():
+    st.markdown("### 📤 Output")
+    st.metric(label="Voorspelling", value="SAD Gedetecteerd", delta="-0.31 vs Geen SAD")
+    st.markdown("---")
 
-with col3:
-    st.metric(label="🗃️ Data", value="53 kenmerken", help="Aantal kenmerken gebruikt in voorspelling")
+with st.container():
+    st.markdown("### 🗃️ Data")
+    st.metric(label="Aantal Kenmerken", value="53", help="Aantal kenmerken gebruikt in voorspelling")
+    st.markdown("---")
 
 # ========== Global Explanation ==========
 st.markdown("---")
