@@ -89,14 +89,20 @@ with col1:
 
 with col2:
     with st.expander("ℹ️ **Invloed per kenmerk**"):
-        st.write(
-            "Deze grafieken tonen hoe verschillende klinische variabelen bijdragen aan het voorspelde risico op sepsis-geassocieerde delier. "
-            "- X-as: Waarden van een specifieke variabele. "
-            "- Y-as: De invloed van deze waarde op de voorspelling van het model. Hoe verder een punt van nul ligt (positief of negatief), hoe groter de impact op het advies. "
-            "- Oranje punten duiden op waarden die het voorspelde risico op SAD verhogen. "
-            "- Blauwe punten duiden op waarden die het voorspelde risico verlagen. "
-            "Deze functie is geleerd tijdens het trainen en bepaalt welk signaal een bepaalde invoerwaarde bijdraagt aan het uiteindelijke advies."
-        )
+        st.write("Deze grafieken tonen hoe verschillende klinische variabelen bijdragen aan het voorspelde risico op sepsis-geassocieerde delier.")
+        st.markdown("- X-as: Waarden van een specifieke variabele.")
+        st.markdown("- Y-as: De invloed van deze waarde op de voorspelling van het model. Hoe verder een punt van nul ligt (positief of negatief), hoe groter de impact op het advies.")
+        st.markdown("- Oranje punten duiden op waarden die het voorspelde risico op SAD verhogen.")
+        st.markdown("- Blauwe punten duiden op waarden die het voorspelde risico verlagen.")
+
+        st.markdown('''
+        <style>
+        [data-testid="stMarkdownContainer"] ul{
+            list-style-position: inside;
+        }
+        </style>
+        ''', unsafe_allow_html=True)
+
     
     selected_label = st.selectbox(
         "Selecteer een kenmerk om de invloed op het advies te bekijken",
