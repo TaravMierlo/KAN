@@ -61,7 +61,7 @@ with col1:
         "Deze ranglijst geeft een algemeen beeld van welke gegevens het meest bijdragen aan het advies.")
 
     fig, ax = plt.subplots(figsize=(6, 10))
-    ax.barh(df_sorted['Feature'], df_sorted['Importance'])
+    ax.barh(df_sorted['Feature'], df_sorted['Importance'], color='#3685eb')
     ax.invert_yaxis()
     ax.set_xlabel("Importance Score")
     ax.set_ylabel("Feature")
