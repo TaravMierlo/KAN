@@ -44,23 +44,23 @@ df_importances = pd.DataFrame({
 df_sorted = df_importances.sort_values(by='Importance', ascending=False)
 
 # ========== Top Metrics Section ==========
-st.markdown("## 📊 Overzicht")
+st.markdown("""
+<div style="border:1px solid #ccc; padding: 1em; border-radius: 10px; margin-bottom: 1em;">
+<h4>🔎 Nauwkeurigheid</h4>
+<p><strong>Model Performance:</strong> 91.2%</p>
+</div>
 
-with st.container():
-    st.markdown("### 🔎 Nauwkeurigheid")
-    st.metric(label="Model Performance", value="91.2%")  # Replace with dynamic value if needed
-    st.markdown("---")
+<div style="border:1px solid #ccc; padding: 1em; border-radius: 10px; margin-bottom: 1em;">
+<h4>📤 Output</h4>
+<p><strong>Voorspelling:</strong> SAD Gedetecteerd</p>
+<p><em>Delta:</em> -0.31 vs Geen SAD</p>
+</div>
 
-with st.container():
-    st.markdown("### 📤 Output")
-    st.metric(label="Voorspelling", value="SAD Gedetecteerd", delta="-0.31 vs Geen SAD")
-    st.markdown("---")
-
-with st.container():
-    st.markdown("### 🗃️ Data")
-    st.metric(label="Aantal Kenmerken", value="53", help="Aantal kenmerken gebruikt in voorspelling")
-    st.markdown("---")
-
+<div style="border:1px solid #ccc; padding: 1em; border-radius: 10px;">
+<h4>🗃️ Data</h4>
+<p><strong>Kenmerken gebruikt:</strong> 53</p>
+</div>
+""", unsafe_allow_html=True)
 # ========== Global Explanation ==========
 st.markdown("---")
 st.subheader("Hoe werkt het model?")
