@@ -33,10 +33,6 @@ feature_names = feature_config["continuous_labels"] + feature_config["binary_lab
 # Ensure correct number of features
 assert len(feature_names) == 53, f"Expected 53 features, found {len(feature_names)}."
 
-# Global Explanation (Side by Side)
-st.markdown("---")
-st.subheader("🌍 Global Feature Importance")
-
 df_importances = pd.DataFrame({
     'Feature': feature_names,
     'Importance': model.feature_scores.detach().numpy()
@@ -74,7 +70,7 @@ with col3:
         <p style="font-size: 14px;">Kenmerken gebruikt in voorspelling</p>
     </div>
     """, unsafe_allow_html=True)
-    
+
 # ========== Global Explanation ==========
 st.markdown("---")
 st.subheader("Hoe werkt het model?")
