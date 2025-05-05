@@ -45,7 +45,6 @@ with column1:
 
 with column2:
     st.write("ℹ️ **Ranglijst van Kenmerkbelang**")
-    st.image("static/global_feature_importance_bar.png", use_container_width=True)  # Placeholder
 
     feature_list = [
     "Protrombinetijd (s)",
