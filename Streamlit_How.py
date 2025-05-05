@@ -20,7 +20,7 @@ with open("models/original_df.pkl", "rb") as f:
     original_df = pickle.load(f)
 
 # ========== Streamlit Config ==========
-st.set_page_config(layout="wide")
+st.set_page_config(layout="centered")
 st.title("🧠 Predict SAD from MIMIC-IV")
 st.markdown("This app predicts SAD and explains spline activations for a standard patient. (Prototype Version)")
 
