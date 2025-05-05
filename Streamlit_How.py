@@ -53,7 +53,7 @@ with col1:
 
 with col2:
     st.markdown("""
-    <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9; text-align: center;">
+    <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9; text-align: left;">
         <h4>📤 Output</h4>
         <p style="font-size: 20px; font-weight: bold; color: red;">SAD Gedetecteerd</p>
         <p style="font-size: 14px;">Delta: -0.31 vs Geen SAD</p>
@@ -62,7 +62,7 @@ with col2:
 
 with col3:
     st.markdown("""
-    <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9; text-align: center;">
+    <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9; text-align: left;">
         <h4>🗃️ Data</h4>
         <p style="font-size: 24px; font-weight: bold;">53</p>
         <p style="font-size: 14px;">Kenmerken gebruikt in voorspelling</p>
@@ -89,8 +89,11 @@ with col1:
 
 with col2:
     with st.expander("ℹ️ **Invloed per kenmerk**"):
-        st.write( "Hier zie je hoe het model een kenmerk omzet via een activatiefunctie." \
-                 "Voor ieder kenmerk is er een activatie functie."\
+        st.write( "Deze grafieken tonen hoe verschillende klinische variabelen bijdragen aan het voorspelde risico op sepsis-geassocieerde delier."\
+                 "- X-as: Waarden van een specifieke variabele. " \
+                 "- Y-as: De invloed van deze waarde op de voorspelling van het model. Hoe verder een punt van nul ligt (positief of negatief), hoe groter de impact op het advies."
+                 "- Oranje punten duiden op waarden die het voorspelde risico op SAD verhogen."\
+                 "- Blauwe punten duiden op waardien die het voorspelde risico verlagen."\
         "Deze functie is geleerd tijdens het trainen en bepaalt welk signaal een bepaalde invoerwaarde bijdraagt aan het uiteindelijke advies.")
     
     selected_label = st.selectbox(
