@@ -20,7 +20,7 @@ with open("models/original_df.pkl", "rb") as f:
     original_df = pickle.load(f)
 
 # ========== Streamlit Config ==========
-st.set_page_config(layout="centered")
+st.set_page_config(layout="wide")
 st.title("DelierAlert")
 st.markdown("Vroegtijdige waarschuwing voor sepsis-gassocieerd delier")
 
