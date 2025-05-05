@@ -53,7 +53,7 @@ st.write("**Probability - SAD**: 0.69")
 st.markdown("---")
 st.subheader("Hoe werkt het model?")
 
-col1, col2 = st.columns([1, 1])
+col1, col2 = st.columns([0.8, 0.8])
 
 with col1:
     with st.expander("ℹ️ **Ranglijst van Kenmerkbelang**"):
