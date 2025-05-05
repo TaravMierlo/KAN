@@ -117,10 +117,18 @@ with col2:
     # Show two additional images side-by-side (layer 1)
     with st.expander("ℹ️ **Uitkomst Advies**"):
         st.write("Deze grafieken tonen hoe de som van de activatiefunctie-uitkomsten van alle variabelen wordt leidt tot de ruwe modeluitkomst, die bepaalt of het advies **SAD** of **geen SAD** is.")
-        st.markdown("De **eerste grafiek** hoort bij het advies *Geen SAD*: de ruwe modeluitkomst stijgt naarmate de gecombineerde activatie toeneemt.")
-        st.markdown("De **tweede grafiek** hoort bij het advies *SAD*: de ruwe modeluitkomst daalt naarmate de gecombineerde activatie toeneemt.")
+        st.markdown("- De **eerste grafiek** hoort bij het advies *Geen SAD*: de ruwe modeluitkomst stijgt naarmate de gecombineerde activatie toeneemt.")
+        st.markdown("- De **tweede grafiek** hoort bij het advies *SAD*: de ruwe modeluitkomst daalt naarmate de gecombineerde activatie toeneemt.")
         st.markdown("- X-as: Som van activatiefuncties. De totale invloed van alle klinische variabelen.")
         st.markdown("- Y-as: Ruwe modeluitkomst voor de uiteindelijke classificatie.")
+
+        st.markdown('''
+        <style>
+        [data-testid="stMarkdownContainer"] ul{
+            list-style-position: inside;
+        }
+        </style>
+        ''', unsafe_allow_html=True)
     
     col2a, col2b = st.columns(2)
     with col2a:
