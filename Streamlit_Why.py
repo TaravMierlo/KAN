@@ -104,7 +104,7 @@ with column2:
 
     selected_label = st.selectbox(
         "Selecteer een kenmerk om de invloed op het advies te bekijken",
-        feature_list['Protrombinetijd (s)']
+        feature_list
     )
     feature_idx = feature_names.index(selected_label)
     
