@@ -45,7 +45,7 @@ col1, col2, col3 = st.columns(3)
 
 with col1:
     st.markdown("""
-    <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9; text-align: center;">
+    <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9; text-align: left-align;">
         <h4>🔎 Nauwkeurigheid</h4>
         <p style="font-size: 24px; font-weight: bold;">91.2%</p>
     </div>
