@@ -21,8 +21,8 @@ with open("models/original_df.pkl", "rb") as f:
 
 # ========== Streamlit Config ==========
 st.set_page_config(layout="centered")
-st.title("🧠 Predict SAD from MIMIC-IV")
-st.markdown("This app predicts SAD and explains spline activations for a standard patient. (Prototype Version)")
+st.title("DelierAlert")
+st.markdown("Vroegtijdige waarschuwing voor sepsis-gassocieerd delier")
 
 # ========== Load Feature Info ==========
 with open("models/feature_config.pkl", "rb") as f:
@@ -43,11 +43,17 @@ df_importances = pd.DataFrame({
 })
 df_sorted = df_importances.sort_values(by='Importance', ascending=False)
 
-# ========== Static Prediction Display ==========
-st.subheader("🔍 Prediction Result")
-st.error("⚠️ SAD Detected")
-st.write("**Probability - No SAD**: 0.31")
-st.write("**Probability - SAD**: 0.69")
+# ========== Top Metrics Section ==========
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.metric(label="🔎 Nauwkeurigheid", value="91.2%")  # Replace with dynamic value if available
+
+with col2:
+    st.metric(label="📤 Output", value="SAD Gedetecteerd", delta="-0.31 vs Geen SAD")
+
+with col3:
+    st.metric(label="🗃️ Data", value="53 kenmerken", help="Aantal kenmerken gebruikt in voorspelling")
 
 # ========== Global Explanation ==========
 st.markdown("---")
