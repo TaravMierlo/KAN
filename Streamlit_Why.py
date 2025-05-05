@@ -36,7 +36,7 @@ st.markdown("---")
 st.subheader("📊 Local Feature Importance")
 
 # Define columns outside the expanders
-column1, column2 = st.columns([1, 1])
+column1, column2 = st.columns([1.2, 1.2])
 
 # Then use each column
 with column1:
