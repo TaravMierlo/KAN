@@ -97,22 +97,3 @@ with col2:
     with col2b:
         img_path2 = "static/splines/layer1_input0_to_output1.png"
         st.image(img_path2, use_container_width=True)
-
-# ========== Local Explanation ==========
-st.markdown("---")
-
-st.subheader("📊 Local Feature Importance")
-
-# Define columns outside the expanders
-column1, column2 = st.columns([1, 1])
-
-# Then use each column
-with column1:
-    st.write("ℹ️ **Belang van kenmerken voor specifiek advies**")
-    st.image("static/local_feature_importance_waterfall.png", use_container_width=True)
-
-with column2:
-    st.write("ℹ️ **Ranglijst van Kenmerkbelang**")
-    st.image("static/global_feature_importance_bar.png", use_container_width=True)  # Placeholder
-
-
