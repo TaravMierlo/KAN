@@ -48,79 +48,70 @@ num_features = 53
 col1, col2, col3 = st.columns([1,1,2])
 
 with col1:
-    st.markdown(f"""
-    <style>
-    .tooltip {{
-        position: relative;
-        display: inline-block;
-        cursor: pointer;
-    }}
+    st.markdown("""
+<style>
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
 
-    .tooltip .tooltiptext {{
-        visibility: hidden;
-        max-width: 600px;
-        background-color: #fff;
-        color: #000;
-        text-align: left;
-        border: 1px solid #ccc;
-        border-radius: 6px;
-        padding: 5px;
-        position: absolute;
-        z-index: 1;
-        bottom: 125%;
-        left: 50%;
-        margin-left: -100px;
-        opacity: 0;
-        transition: opacity 0.3s;
-        font-size: 0.85em;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    }}
+.tooltip .tooltiptext {
+    visibility: hidden;
+    max-width: 400px;            /* Dynamic width with upper limit */
+    background-color: #fff;
+    color: #000;
+    text-align: left;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: 0.85em;
+    line-height: 1.4;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    white-space: normal;
+    word-wrap: break-word;
+}
 
-    .tooltip .tooltiptext::after {{
-        content: "";
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        margin-left: -5px;
-        border-width: 5px;
-        border-style: solid;
-        border-color: #fff transparent transparent transparent;
-    }}
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #fff transparent transparent transparent;
+}
 
-    .tooltip:hover .tooltiptext {{
-        visibility: visible;
-        opacity: 1;
-    }}
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
 
-    .icon-circle {{
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 18px;
-        height: 18px;
-        font-size: 12px;
-        font-weight: bold;
-        border: 1px solid #888;
-        border-radius: 50%;
-        background: #eee;
-        line-height: 1;
-        vertical-align: middle;
-        margin-left: 6px;
-    }}
-    </style>
-
-    <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9;">
-        <div style="display: flex; align-items: center;">
-            <div style="font-size: 1.1em; font-weight: 600;">
-                Advies: <span style="color: #faa63e;">Sepsis-geassocieerd delier gedetecteerd</span>
-            </div>
-            <span class="tooltip">
-                <span class="icon-circle">i</span>
-                <span class="tooltiptext">De mate waarin de beschikbare gegevens dit geval ondersteunen als een geval van sepsis-geassocieerd delirium (zeer laag, laag, gemiddeld, hoog, zeer hoog). Een hoge zekerheid betekent dat de informatie duidelijk wijst op het aanwezig zijn van delirium, in plaats van afwezigheid ervan.</span>
-            </span>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
+.icon-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    font-size: 12px;
+    font-weight: bold;
+    border: 1px solid #888;
+    border-radius: 50%;
+    background: #eee;
+    line-height: 1;
+    vertical-align: middle;
+    margin-left: 6px;
+}
+</style>
+""", unsafe_allow_html=True)
 
 with col2:
     st.markdown(f"""
