@@ -52,8 +52,6 @@ with col1:
     st.markdown(f"""
     <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9; text-align: left;">
         <h4>Advies: Geen SAD</h4>
-        <p style="font-size: 20px; font-weight: bold; color: {color};">{prediction}</p>
-        <p style="font-size: 14px;">Delta: {delta:.2f} vs Geen SAD</p>
     </div>
     """, unsafe_allow_html=True)
 
