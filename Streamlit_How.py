@@ -116,7 +116,18 @@ with col1:
             </div>
             <span class="tooltip">
                 <span class="icon-circle">i</span>
-                <span class="tooltiptext">TEST</span>
+                <span class="tooltiptext">
+                    <div style="text-align: left;">
+                        <strong>Reikwijdte van de output</strong><br>
+                        Dit model geeft een binaire output: het geeft aan of een patiënt wel of niet risico loopt op het ontwikkelen van sepsis-geassocieerd delirium (SAD).<br><br>
+                        De voorspelling weerspiegelt de inschatting van het systeem van de kans dat een patiënt SAD ontwikkelt tijdens de opname op de intensivecareafdeling. Het bevestigt niet de aanwezigheid van delirium, maar markeert patiënten die op basis van risico extra klinische aandacht nodig hebben.<br><br>
+                        
+                        <strong>Hoe de output gebruikt moet worden</strong><br>
+                        De voorspelling moet worden gebruikt ter ondersteuning van vroege klinische interventie. Als een patiënt als risicogeval wordt gemarkeerd, moet hij of zij nauwlettend worden gevolgd op tekenen van SAD en in aanmerking worden genomen voor passende preventieve maatregelen.<br><br>
+                        
+                        Deze tool is bedoeld om IC-personeel te ondersteunen bij het identificeren van patiënten die mogelijk extra observatie of proactief beheer nodig hebben. Het vervangt het klinisch oordeel niet, maar kan helpen bij het prioriteren van zorg.
+                    </div>
+                </span>
             </span>
         </div>
     </div>
