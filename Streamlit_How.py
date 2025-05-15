@@ -61,10 +61,10 @@ with col1:
         width: 600px !important;
         background-color: #fff;
         color: #000;
-        text-align: center;
+        text-align: left !important;
         border: 1px solid #ccc;
         border-radius: 6px;
-        padding: 15px;
+        padding: 50px !important;
         position: absolute;
         z-index: 1;
         bottom: 125%;
