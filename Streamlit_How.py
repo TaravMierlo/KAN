@@ -64,7 +64,7 @@ with col1:
         text-align: left !important;
         border: 1px solid #ccc;
         border-radius: 6px;
-        padding: 50px !important;
+        padding: 20px !important;
         position: absolute;
         z-index: 1;
         bottom: 125%;
