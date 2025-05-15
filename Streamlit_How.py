@@ -48,7 +48,7 @@ num_features = 53
 
 col1, col2, col3 = st.columns(3)
 
-with col1:
+with col2:
     st.markdown(f"""
     <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9; text-align: left;">
         <h4>Nauwkeurigheid</h4>
@@ -56,7 +56,7 @@ with col1:
     </div>
     """, unsafe_allow_html=True)
 
-with col2:
+with col1:
     color = "red" if "SAD" in prediction else "green"
     st.markdown(f"""
     <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9; text-align: left;">
