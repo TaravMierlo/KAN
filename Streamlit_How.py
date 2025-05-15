@@ -203,7 +203,7 @@ with col2:
     """, unsafe_allow_html=True)
 
     with st.expander("Wat betekent dit?"):
-        st.image("static/splines/layer1_input0_to_output1.png", use_column_width=True)
+        st.image("static/confusion-matrix.png", use_column_width=True)
         st.caption("Visualisatie van zekerheidsscore")
 
 # ========== Global Explanation ==========

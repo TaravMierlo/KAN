@@ -37,7 +37,7 @@ def compute_metrics(target, output, average='macro'):
         FPR = FP / (FP + TN)
         FNR = FN / (FN + TP)
 
-        return f1, precision, recall, FPR, FNR
+        return f1, precision, recall, FPR, FNR, TN, FP, FN, TP
     else:
         return f1, precision, recall, 0, 0
 
