@@ -61,7 +61,7 @@ with col1:
         width: 600px;
         background-color: #fff;
         color: #000;
-        text-align: center;
+        text-align: left;
         border: 1px solid #ccc;
         border-radius: 6px;
         padding: 5px;
