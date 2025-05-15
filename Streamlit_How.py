@@ -111,7 +111,7 @@ with col1:
 
     <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9;">
         <div style="display: flex; align-items: center;">
-            <div style="font-size: 1.1em; font-weight: 600;">Advies: Mogelijk sepsis-geassocieerd delier geconstateerd</div>
+            <div style="font-size: 1.1em; font-weight: 600;">Advies: Sepsis-geassocieerd delier gedetecteerd</div>
             <span class="tooltip">
                 <span class="icon-circle">i</span>
                 <span class="tooltiptext">this is a test</span>
