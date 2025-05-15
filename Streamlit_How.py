@@ -48,51 +48,52 @@ num_features = 53
 col1, col2, col3 = st.columns([1,1,2])
 
 with col1:
-    st.markdown(f"""
+    st.markdown("""
     <style>
-    .tooltip {{
+    .tooltip-container {
+        position: relative;  /* this keeps tooltip within bounds */
+    }
+
+    .tooltip {
         position: relative;
         display: inline-block;
         cursor: pointer;
-    }}
-
-    .tooltip .tooltiptext {{
+    }
+    .tooltip .tooltiptext {
         visibility: hidden;
-        width: 600px !important;
+        max-width: 280px;  /* prevent overflow */
         background-color: #fff;
         color: #000;
-        text-align: left !important;
+        text-align: left;
         border: 1px solid #ccc;
         border-radius: 6px;
-        padding: 20px !important;
+        padding: 10px;
         position: absolute;
         z-index: 1;
-        top: 125% !important;
+        top: 130%;
         left: 50%;
-        margin-left: -100px;
+        transform: translateX(-50%);
         opacity: 0;
         transition: opacity 0.3s;
-        font-size: 0.85em;
+        font-size: 0.9em;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    }}
-
-    .tooltip .tooltiptext::after {{
+        word-wrap: break-word;
+    }
+    .tooltip .tooltiptext::after {
         content: "";
         position: absolute;
-        top: 100%;
+        bottom: 100%;
         left: 50%;
-        margin-left: -5px;
-        border-width: 5px;
+        transform: translateX(-50%);
+        border-width: 6px;
         border-style: solid;
-        border-color: #fff transparent transparent transparent;
-    }}
-
-    .tooltip:hover .tooltiptext {{
+        border-color: transparent transparent #fff transparent;
+    }
+    .tooltip:hover .tooltiptext {
         visibility: visible;
         opacity: 1;
-    }}
-
-    .icon-circle {{
+    }
+    .icon-circle {
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -106,22 +107,27 @@ with col1:
         line-height: 1;
         vertical-align: middle;
         margin-left: 6px;
-    }}
+    }
     </style>
 
-    <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9;">
+    <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9;" class="tooltip-container">
         <div style="display: flex; align-items: center;">
             <div style="font-size: 1.1em; font-weight: 600;">
-                Advies: <span style="color: #faa63e;">Sepsis-geassocieerd delier gedetecteerd</span>
+                Zekerheid: <span style="color: #faa63e;">Laag</span>
             </div>
             <span class="tooltip">
                 <span class="icon-circle">i</span>
-                <span class="tooltiptext">oepsie</span>
+                <span class="tooltiptext">
+                    De mate waarin de beschikbare gegevens dit geval ondersteunen als een geval van sepsis-geassocieerd delirium
+                    (zeer laag, laag, gemiddeld, hoog, zeer hoog). Een hoge zekerheid betekent dat de informatie duidelijk wijst
+                    op het aanwezig zijn van delirium, in plaats van afwezigheid ervan.
+                </span>
             </span>
         </div>
     </div>
     """, unsafe_allow_html=True)
-
+        
+    
 with col2:
     st.markdown(f"""
     <style>
