@@ -123,12 +123,12 @@ with col1:
     """, unsafe_allow_html=True)
 
 with col2:
+    # Your existing styled tooltip content
     st.markdown("""
     <style>
     .tooltip-container {
-        position: relative;  /* this keeps tooltip within bounds */
+        position: relative;
     }
-
     .tooltip {
         position: relative;
         display: inline-block;
@@ -136,7 +136,7 @@ with col2:
     }
     .tooltip .tooltiptext {
         visibility: hidden;
-        max-width: 600x;  /* prevent overflow */
+        max-width: 600px;
         background-color: #fff;
         color: #000;
         text-align: left;
@@ -202,14 +202,12 @@ with col2:
     </div>
     """, unsafe_allow_html=True)
 
-with col3:
-    st.markdown(f"""
-    <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9; text-align: left;">
-        <h4>Data</h4>
-        <p style="font-size: 24px; font-weight: bold;">{num_features}</p>
-        <p style="font-size: 14px;">Kenmerken gebruikt in voorspelling</p>
-    </div>
-    """, unsafe_allow_html=True)
+    # Add a toggle switch to show/hide the image
+    show_image = st.toggle("Toon afbeelding", key="show_info_image")
+
+    if show_image:
+        st.image("static/splines/layer1_input0_to_output1.png", caption="Visualisatie van zekerheidsscore", use_column_width=True)
+
 
 # ========== Global Explanation ==========
 st.markdown("---")
