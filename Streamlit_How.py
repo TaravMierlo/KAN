@@ -136,7 +136,7 @@ with col2:
     }
     .tooltip .tooltiptext {
         visibility: hidden;
-        max-width: 280px;  /* prevent overflow */
+        max-width: 600x;  /* prevent overflow */
         background-color: #fff;
         color: #000;
         text-align: left;
