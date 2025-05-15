@@ -41,28 +41,27 @@ df_sorted = df_importances.sort_values(by='Importance', ascending=False)
 
 # ========== Top Metrics Section ==========
 
-accuracy = 91.2
 prediction = "SAD Gedetecteerd"
 delta = -0.31
 num_features = 53
 
-col1, col2, col3 = st.columns(3)
-
-with col2:
-    st.markdown(f"""
-    <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9; text-align: left;">
-        <h4>Nauwkeurigheid</h4>
-        <p style="font-size: 24px; font-weight: bold;">{accuracy}%</p>
-    </div>
-    """, unsafe_allow_html=True)
+col1, col2, col3 = st.columns([1,1,2])
 
 with col1:
     color = "red" if "SAD" in prediction else "green"
     st.markdown(f"""
     <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9; text-align: left;">
-        <h4>Output</h4>
+        <h4>Advies: Geen SAD</h4>
         <p style="font-size: 20px; font-weight: bold; color: {color};">{prediction}</p>
         <p style="font-size: 14px;">Delta: {delta:.2f} vs Geen SAD</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col2:
+    st.markdown(f"""
+    <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9; text-align: left;">
+        <h4></h4>
+        <p style="font-size: 24px; font-weight: bold;">{accuracy}%</p>
     </div>
     """, unsafe_allow_html=True)
 
