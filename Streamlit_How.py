@@ -202,12 +202,9 @@ with col2:
     </div>
     """, unsafe_allow_html=True)
 
-    # Add a toggle switch to show/hide the image
-    show_image = st.toggle("Toon afbeelding", key="show_info_image")
-
-    if show_image:
-        st.image("static/splines/layer1_input0_to_output1.png", caption="Visualisatie van zekerheidsscore", use_column_width=True)
-
+    with st.expander("Wat betekent dit?"):
+        st.image("static/splines/layer1_input0_to_output1.png", use_column_width=True)
+        st.caption("Visualisatie van zekerheidsscore")
 
 # ========== Global Explanation ==========
 st.markdown("---")
