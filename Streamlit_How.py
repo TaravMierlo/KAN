@@ -97,8 +97,8 @@ with col1:
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 20px;
-        height: 20px;
+        width: 18px;
+        height: 18px;
         font-size: 12px;
         font-weight: bold;
         border: 1px solid #888;
@@ -106,12 +106,13 @@ with col1:
         background: #eee;
         line-height: 1;
         vertical-align: middle;
+        margin-left: 6px;
     }}
     </style>
 
-    <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9; text-align: left;">
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <h4 style="margin: 0; display: inline;">Advies: {'SAD' if 'SAD' in prediction else 'Geen SAD'}</h4>
+    <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9;">
+        <div style="display: flex; align-items: center;">
+            <div style="font-size: 1.1em; font-weight: 600;">Advies: {'SAD' if 'SAD' in prediction else 'Geen SAD'}</div>
             <span class="tooltip">
                 <span class="icon-circle">i</span>
                 <span class="tooltiptext">this is a test</span>
