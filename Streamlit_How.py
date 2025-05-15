@@ -145,7 +145,7 @@ with col2:
         padding: 10px;
         position: absolute;
         z-index: 1;
-        top: 130%;
+        bottom: 125%;
         left: 50%;
         transform: translateX(-50%);
         opacity: 0;
