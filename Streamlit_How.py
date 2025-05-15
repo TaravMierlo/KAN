@@ -48,7 +48,6 @@ num_features = 53
 col1, col2, col3 = st.columns([1,1,2])
 
 with col1:
-    color = "red" if "SAD" in prediction else "green"
     st.markdown(f"""
     <style>
     .tooltip {{
@@ -112,7 +111,7 @@ with col1:
 
     <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9;">
         <div style="display: flex; align-items: center;">
-            <div style="font-size: 1.1em; font-weight: 600;">Advies: {'SAD' if 'SAD' in prediction else 'Geen SAD'}</div>
+            <div style="font-size: 1.1em; font-weight: 600;">Advies: Mogelijk sepsis-geassocieerd delier geconstateerd</div>
             <span class="tooltip">
                 <span class="icon-circle">i</span>
                 <span class="tooltiptext">this is a test</span>
