@@ -54,7 +54,6 @@ with col1:
     .tooltip {{
         position: relative;
         display: inline-block;
-        vertical-align: middle;
         cursor: pointer;
     }}
 
@@ -62,8 +61,9 @@ with col1:
         visibility: hidden;
         width: 200px;
         background-color: #fff;
-        color: #555;
-        text-align: left;
+        color: #000;
+        text-align: center;
+        border: 1px solid #ccc;
         border-radius: 6px;
         padding: 5px;
         position: absolute;
@@ -74,6 +74,7 @@ with col1:
         opacity: 0;
         transition: opacity 0.3s;
         font-size: 0.85em;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }}
 
     .tooltip .tooltiptext::after {{
@@ -84,26 +85,40 @@ with col1:
         margin-left: -5px;
         border-width: 5px;
         border-style: solid;
-        border-color: #555 transparent transparent transparent;
+        border-color: #fff transparent transparent transparent;
     }}
 
     .tooltip:hover .tooltiptext {{
         visibility: visible;
         opacity: 1;
     }}
+
+    .icon-circle {{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+        font-weight: bold;
+        border: 1px solid #888;
+        border-radius: 50%;
+        background: #eee;
+        line-height: 1;
+        vertical-align: middle;
+    }}
     </style>
 
     <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9; text-align: left;">
         <div style="display: flex; align-items: center; gap: 8px;">
-            <h4 style="margin: 0;">Advies: {'SAD' if 'SAD' in prediction else 'Geen SAD'}</h4>
+            <h4 style="margin: 0; display: inline;">Advies: {'SAD' if 'SAD' in prediction else 'Geen SAD'}</h4>
             <span class="tooltip">
-                <span style="font-weight: bold; border: 1px solid #888; border-radius: 50%; padding: 0 6px; background: #eee;">i</span>
+                <span class="icon-circle">i</span>
                 <span class="tooltiptext">this is a test</span>
             </span>
         </div>
     </div>
     """, unsafe_allow_html=True)
-
 
 with col2:
     st.markdown(f"""
