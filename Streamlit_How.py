@@ -50,8 +50,32 @@ col1, col2, col3 = st.columns([1,1,2])
 with col1:
     color = "red" if "SAD" in prediction else "green"
     st.markdown(f"""
-    <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9; text-align: left;">
-        <h4>Advies: Geen SAD</h4>
+    <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9; text-align: left; position: relative;">
+        <h4 style="display: inline-block;">Advies: {'SAD' if 'SAD' in prediction else 'Geen SAD'}</h4>
+        <span style="margin-left: 10px; cursor: pointer; position: relative; display: inline-block;">
+            <span style="font-weight: bold; border: 1px solid #888; border-radius: 50%; padding: 0 6px; background: #eee;">i</span>
+            <span style="visibility: hidden; width: 200px; background-color: #555; color: #fff;
+                         text-align: center; border-radius: 6px; padding: 5px;
+                         position: absolute; z-index: 1; bottom: 125%; left: 50%; margin-left: -100px;
+                         opacity: 0; transition: opacity 0.3s;">
+                this is a test
+                <div style="position: absolute; top: 100%; left: 50%; margin-left: -5px;
+                            border-width: 5px; border-style: solid;
+                            border-color: #555 transparent transparent transparent;"></div>
+            </span>
+        </span>
+        <script>
+            const tooltip = document.currentScript.parentElement.querySelector("span span:last-child");
+            const icon = document.currentScript.parentElement.querySelector("span span:first-child");
+            icon.parentElement.onmouseover = () => {{
+                tooltip.style.visibility = "visible";
+                tooltip.style.opacity = "1";
+            }};
+            icon.parentElement.onmouseout = () => {{
+                tooltip.style.visibility = "hidden";
+                tooltip.style.opacity = "0";
+            }};
+        </script>
     </div>
     """, unsafe_allow_html=True)
 
