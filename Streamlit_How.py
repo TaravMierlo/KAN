@@ -54,6 +54,7 @@ with col1:
     .tooltip {{
         position: relative;
         display: inline-block;
+        vertical-align: middle;
         cursor: pointer;
     }}
 
@@ -67,11 +68,12 @@ with col1:
         padding: 5px;
         position: absolute;
         z-index: 1;
-        bottom: 125%; /* Show above */
+        bottom: 125%;
         left: 50%;
         margin-left: -100px;
         opacity: 0;
         transition: opacity 0.3s;
+        font-size: 0.85em;
     }}
 
     .tooltip .tooltiptext::after {{
@@ -92,13 +94,16 @@ with col1:
     </style>
 
     <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9; text-align: left;">
-        <h4 style="display: inline-block;">Advies: {'SAD' if 'SAD' in prediction else 'Geen SAD'}</h4>
-        <span class="tooltip" style="margin-left: 10px;">
-            <span style="font-weight: bold; border: 1px solid #888; border-radius: 50%; padding: 0 6px; background: #eee;">i</span>
-            <span class="tooltiptext">this is a test</span>
-        </span>
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <h4 style="margin: 0;">Advies: {'SAD' if 'SAD' in prediction else 'Geen SAD'}</h4>
+            <span class="tooltip">
+                <span style="font-weight: bold; border: 1px solid #888; border-radius: 50%; padding: 0 6px; background: #eee;">i</span>
+                <span class="tooltiptext">this is a test</span>
+            </span>
+        </div>
     </div>
     """, unsafe_allow_html=True)
+
 
 with col2:
     st.markdown(f"""
