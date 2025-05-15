@@ -58,7 +58,8 @@ with col1:
 
     .tooltip .tooltiptext {{
         visibility: hidden;
-        width: 600px !important;
+        max-width: 90vw;
+        width: 600px;
         background-color: #fff;
         color: #000;
         text-align: left;
@@ -67,22 +68,22 @@ with col1:
         padding: 10px;
         position: absolute;
         z-index: 1;
-        bottom: 125% !important;
-        left: 50%;
-        margin-left: -300px;
+        top: -10px;
+        right: 20px;
         opacity: 0;
         transition: opacity 0.3s;
         font-size: 0.85em;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
         line-height: 1.4;
+        white-space: normal;
+        word-wrap: break-word;
     }}
 
     .tooltip .tooltiptext::after {{
         content: "";
         position: absolute;
-        top: 100%;
-        left: 50%;
-        margin-left: -5px;
+        bottom: -10px;
+        right: 30px;
         border-width: 5px;
         border-style: solid;
         border-color: #fff transparent transparent transparent;
