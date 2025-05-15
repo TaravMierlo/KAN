@@ -58,13 +58,13 @@ with col1:
 
     .tooltip .tooltiptext {{
         visibility: hidden;
-        width: 200px;
+        width: 600px;
         background-color: #fff;
         color: #000;
         text-align: center;
         border: 1px solid #ccc;
         border-radius: 6px;
-        padding: 5px;
+        padding: 15px;
         position: absolute;
         z-index: 1;
         bottom: 125%;
