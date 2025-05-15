@@ -76,6 +76,17 @@ with col1:
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }}
 
+    .tooltip .tooltiptext::after {{
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #fff transparent transparent transparent;
+    }}
+
     .tooltip:hover .tooltiptext {{
         visibility: visible;
         opacity: 1;
@@ -105,7 +116,7 @@ with col1:
             </div>
             <span class="tooltip">
                 <span class="icon-circle">i</span>
-                <span class="tooltiptext">De mate waarin de beschikbare gegevens dit geval ondersteunen als een geval van sepsis-geassocieerd delirium (zeer laag, laag, gemiddeld, hoog, zeer hoog). Een hoge zekerheid betekent dat de informatie duidelijk wijst op het aanwezig zijn van delirium, in plaats van afwezigheid ervan.</span>
+                <span class="tooltiptext">oepsie</span>
             </span>
         </div>
     </div>
@@ -180,7 +191,7 @@ with col2:
             </div>
             <span class="tooltip">
                 <span class="icon-circle">i</span>
-                <span class="tooltiptext">this is a test</span>
+                <span class="tooltiptext">De mate waarin de beschikbare gegevens dit geval ondersteunen als een geval van sepsis-geassocieerd delirium (zeer laag, laag, gemiddeld, hoog, zeer hoog). Een hoge zekerheid betekent dat de informatie duidelijk wijst op het aanwezig zijn van delirium, in plaats van afwezigheid ervan.</span>
             </span>
         </div>
     </div>
