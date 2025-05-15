@@ -58,7 +58,7 @@ with col1:
 
     .tooltip .tooltiptext {{
         visibility: hidden;
-        width: 600px;
+        max-width: 600px;
         background-color: #fff;
         color: #000;
         text-align: left;
