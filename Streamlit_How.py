@@ -58,7 +58,7 @@ with col1:
 
     .tooltip .tooltiptext {{
         visibility: hidden;
-        width: 200px;
+        width: 600px !important;
         background-color: #fff;
         color: #000;
         text-align: center;
@@ -67,7 +67,7 @@ with col1:
         padding: 5px;
         position: absolute;
         z-index: 1;
-        bottom: 125%;
+        bottom: 125% !important;
         left: 50%;
         margin-left: -100px;
         opacity: 0;
