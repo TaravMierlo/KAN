@@ -67,7 +67,7 @@ with col1:
         padding: 20px !important;
         position: absolute;
         z-index: 1;
-        bottom: 125%;
+        top: 125% !important;
         left: 50%;
         margin-left: -100px;
         opacity: 0;
