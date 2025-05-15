@@ -116,7 +116,7 @@ with col1:
             </div>
             <span class="tooltip">
                 <span class="icon-circle">i</span>
-                <span class="tooltiptext">De mate waarin de beschikbare gegevens dit geval ondersteunen als een geval van sepsis-geassocieerd delirium (zeer laag, laag, gemiddeld, hoog, zeer hoog). Een hoge zekerheid betekent dat de informatie duidelijk wijst op het aanwezig zijn van delirium, in plaats van afwezigheid ervan.</span>
+                <span class="tooltiptext">hihi</span>
             </span>
         </div>
     </div>
