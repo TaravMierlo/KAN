@@ -61,19 +61,20 @@ with col1:
         width: 600px !important;
         background-color: #fff;
         color: #000;
-        text-align: center;
+        text-align: left;
         border: 1px solid #ccc;
         border-radius: 6px;
-        padding: 5px;
+        padding: 10px;
         position: absolute;
         z-index: 1;
         bottom: 125% !important;
         left: 50%;
-        margin-left: -100px;
+        margin-left: -300px;
         opacity: 0;
         transition: opacity 0.3s;
         font-size: 0.85em;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        line-height: 1.4;
     }}
 
     .tooltip .tooltiptext::after {{
@@ -117,9 +118,23 @@ with col1:
             <span class="tooltip">
                 <span class="icon-circle">i</span>
                 <span class="tooltiptext">
-                    De mate waarin de beschikbare gegevens dit geval ondersteunen als een geval van sepsis-geassocieerd delirium
-                    (zeer laag, laag, gemiddeld, hoog, zeer hoog). Een hoge zekerheid betekent dat de informatie duidelijk wijst
-                    op het aanwezig zijn van delirium, in plaats van afwezigheid ervan.
+                    <div><strong>Scope of output</strong></div>
+                    <div>
+                        This model provides a binary output: it indicates whether a patient is at risk or not at risk of developing Sepsis-Associated Delirium (SAD).
+                    </div>
+                    <br />
+                    <div>
+                        The prediction reflects the system’s assessment of a patient’s likelihood of developing SAD during their ICU stay. It does not confirm the presence of delirium but flags patients who require increased clinical attention based on risk.
+                    </div>
+                    <br />
+                    <div><strong>How the output should be used</strong></div>
+                    <div>
+                        The prediction should be used to support early clinical intervention. If a patient is flagged as at risk, they should be closely monitored for signs of SAD and considered for appropriate preventive measures.
+                    </div>
+                    <br />
+                    <div>
+                        This tool is designed to assist ICU staff by identifying patients who may need additional observation or proactive management. It does not replace clinical judgment but can help prioritize care.
+                    </div>
                 </span>
             </span>
         </div>
