@@ -61,7 +61,6 @@ with col2:
     st.markdown(f"""
     <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9; text-align: left;">
         <h4></h4>
-        <p style="font-size: 24px; font-weight: bold;">{accuracy}%</p>
     </div>
     """, unsafe_allow_html=True)
 
