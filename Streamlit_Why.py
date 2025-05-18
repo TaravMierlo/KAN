@@ -5,14 +5,6 @@ import pickle
 import matplotlib.pyplot as plt
 from pykan.kan import KAN
 
-st.markdown('''
-<style>
-[data-testid="stMarkdownContainer"] ul{
-    list-style-position: inside;
-}
-</style>
-''', unsafe_allow_html=True)
-
 # Load model
 model = KAN(width=[53, 1, 2], grid=5, k=3, seed=42)
 checkpoint = torch.load('model_with_scores.pt')
@@ -36,6 +28,14 @@ with open("models/original_df.pkl", "rb") as f:
 st.set_page_config(layout="wide")
 st.title("🧠 Predict SAD from MIMIC-IV")
 st.markdown("This app predicts SAD and explains spline activations for a standard patient. (Prototype Version)")
+
+st.markdown('''
+<style>
+[data-testid="stMarkdownContainer"] ul{
+    list-style-position: inside;
+}
+</style>
+''', unsafe_allow_html=True)
 
 # ========== Local Explanation ==========
 st.markdown("---")
