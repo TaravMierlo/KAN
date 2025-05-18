@@ -40,7 +40,22 @@ column1, column2 = st.columns([1.2, 1.2])
 
 # Then use each column
 with column1:
-    st.write("ℹ️ **Belang van kenmerken voor specifiek advies**")
+    with st.expander("ℹ️ **Belang van kenmerken voor individuele voorspelling**"):
+        st.write("Deze grafiek laat zien hoe verschillende patiëntkenmerken bijdragen aan de individuele voorspelling van het risico op sepsis-geassocieerde delier (SAD).")
+        st.markdown("- **Bovenste grafiek**: Toont de optelsom van alle bijdragen van kenmerken. De balk geeft de som van bijdragen die het risico op SAD verhogen en de rode stippellijn duidt de drempelwaarde aan tussen wel of geen SAD.")
+        st.markdown("- **Onderste grafiek**: Visualiseert de individuele bijdragen van kenmerken aan de voorspelling.")
+        st.markdown("- Oranje balken duiden op kenmerken die de kans op SAD **verhogen**.")
+        st.markdown("- Blauwe balken duiden op kenmerken die de kans op SAD **verlagen**.")
+        st.markdown("- De lengte van de balk geeft de mate van invloed aan; langere balken wijzen op een sterkere bijdrage aan de voorspelling.")
+
+        st.markdown('''
+        <style>
+        [data-testid="stMarkdownContainer"] ul{
+            list-style-position: inside;
+        }
+        </style>
+        ''', unsafe_allow_html=True)
+
     st.image("static/local_feature_importance_waterfall.png", use_container_width=True)
 
 with column2:
