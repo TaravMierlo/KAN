@@ -112,4 +112,7 @@ with column2:
     img_path = f"static/local_splines/layer0_input{feature_idx}_to_output0.png"
     st.image(img_path, use_container_width=True)
 
+    img_path1 = "static/local_splines/layer1_input0_adviesuitkomst.png"
+    st.image(img_path1, use_container_width=True)
+
     
