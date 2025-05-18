@@ -59,7 +59,14 @@ with column1:
     st.image("static/local_feature_importance_waterfall.png", use_container_width=True)
 
 with column2:
-    st.write("ℹ️ **Ranglijst van Kenmerkbelang**")
+    with st.expander("ℹ️ **Effect van individuele variabele op het advies**"):
+        st.write("Deze grafieken tonen aan hoe de waarde van patiëntkenmerken (hier: Protrombinetijd) bijdragen aan het advies.")
+        st.markdown("- **X-as**: Waarden die het kenmerk kan aannemen.")
+        st.markdown("- **Y-as**: De bijdrage (‘activatie output’) van elke waarde aan het uiteindelijke advies.")
+        st.markdown("- De rode stippellijn markeert de waarde van het kenmerk voor de huidige patiënt.")
+        st.markdown("- Het bijbehorende punt toont hoe sterk deze specifieke waarde het advies beïnvloedt (positief of negatief).")
+        st.markdown("- **Blauwe punten** geven waarden die het risico op SAD **verlagen**.")
+        st.markdown("- **Oranje punten** geven waarden die het risico op SAD **verhogen**.")
 
     feature_list = [
     "Protrombinetijd (s)",
