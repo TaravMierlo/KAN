@@ -48,18 +48,19 @@ num_features = 53
 col1, col2, col3 = st.columns([1,1,2])
     
 with col1:
-    st.markdown(f"""
+    st.markdown("""
     <style>
-    .tooltip {{
+    .tooltip-container {
+        position: relative;
+    }
+    .tooltip {
         position: relative;
         display: inline-block;
         cursor: pointer;
-    }}
-
-    .tooltip .tooltiptext {{
+    }
+    .tooltip .tooltiptext {
         visibility: hidden;
-        max-width: 90vw;
-        width: 600px;
+        max-width: 600px;
         background-color: #fff;
         color: #000;
         text-align: left;
@@ -68,33 +69,30 @@ with col1:
         padding: 10px;
         position: absolute;
         z-index: 1;
-        top: -10px;
-        right: 20px;
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(-50%);
         opacity: 0;
         transition: opacity 0.3s;
-        font-size: 0.85em;
+        font-size: 0.9em;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-        line-height: 1.4;
-        white-space: normal;
         word-wrap: break-word;
-    }}
-
-    .tooltip .tooltiptext::after {{
+    }
+    .tooltip .tooltiptext::after {
         content: "";
         position: absolute;
-        bottom: -10px;
-        right: 30px;
-        border-width: 5px;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 6px;
         border-style: solid;
-        border-color: #fff transparent transparent transparent;
-    }}
-
-    .tooltip:hover .tooltiptext {{
+        border-color: transparent transparent #fff transparent;
+    }
+    .tooltip:hover .tooltiptext {
         visibility: visible;
         opacity: 1;
-    }}
-
-    .icon-circle {{
+    }
+    .icon-circle {
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -108,34 +106,20 @@ with col1:
         line-height: 1;
         vertical-align: middle;
         margin-left: 6px;
-    }}
+    }
     </style>
 
-    <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9;">
+    <div style="border: 1px solid #ccc; padding: 1em; border-radius: 10px; background-color: #f9f9f9;" class="tooltip-container">
         <div style="display: flex; align-items: center;">
             <div style="font-size: 1.1em; font-weight: 600;">
-                Advies: <span style="color: #faa63e;">Sepsis-geassocieerd delier gedetecteerd</span>
+                Zekerheid: <span style="color: #faa63e;">Laag</span>
             </div>
             <span class="tooltip">
                 <span class="icon-circle">i</span>
                 <span class="tooltiptext">
-                    <div><strong>Scope of output</strong></div>
-                    <div>
-                        This model provides a binary output: it indicates whether a patient is at risk or not at risk of developing Sepsis-Associated Delirium (SAD).
-                    </div>
-                    <br />
-                    <div>
-                        The prediction reflects the system’s assessment of a patient’s likelihood of developing SAD during their ICU stay. It does not confirm the presence of delirium but flags patients who require increased clinical attention based on risk.
-                    </div>
-                    <br />
-                    <div><strong>How the output should be used</strong></div>
-                    <div>
-                        The prediction should be used to support early clinical intervention. If a patient is flagged as at risk, they should be closely monitored for signs of SAD and considered for appropriate preventive measures.
-                    </div>
-                    <br />
-                    <div>
-                        This tool is designed to assist ICU staff by identifying patients who may need additional observation or proactive management. It does not replace clinical judgment but can help prioritize care.
-                    </div>
+                    De mate waarin de beschikbare gegevens dit geval ondersteunen als een geval van sepsis-geassocieerd delirium
+                    (zeer laag, laag, gemiddeld, hoog, zeer hoog). Een hoge zekerheid betekent dat de informatie duidelijk wijst
+                    op het aanwezig zijn van delirium, in plaats van afwezigheid ervan.
                 </span>
             </span>
         </div>
@@ -287,10 +271,5 @@ with col2:
         </style>
         ''', unsafe_allow_html=True)
     
-    col2a, col2b = st.columns(2)
-    with col2a:
-        img_path1 = "static/splines/layer1_input0_to_output0.png"
-        st.image(img_path1, use_container_width=True)
-    with col2b:
-        img_path2 = "static/splines/layer1_input0_to_output1.png"
-        st.image(img_path2, use_container_width=True)
+    img_path = "static/splines/advies_uitkomst_plot.png"
+    st.image(img_path, use_container_width=True)
