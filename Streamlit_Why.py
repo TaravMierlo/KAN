@@ -113,5 +113,3 @@ with column2:
     st.image(img_path, use_container_width=True)
 
     
-    img_path1 = "static/local_splines/layer1_input0_adviesuitkomst.png"
-    st.image(img_path1, use_container_width=True)
