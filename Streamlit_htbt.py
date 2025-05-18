@@ -84,7 +84,7 @@ with column2:
     )
 
     # Show corresponding spline image
-    img_path = f"static/cf_splines/layer0_input{selected_idx}_to_output0.png"
+    img_path = f"static/cf_splines_htbt/layer0_input{selected_idx}_to_output0.png"
     st.image(img_path, use_container_width=True)
 
     with st.expander("ℹ️ **Uitleg van het eindadvies van het model**"):
