@@ -134,6 +134,24 @@ with column2:
     img_path = f"static/local_splines/layer0_input{feature_idx}_to_output0.png"
     st.image(img_path, use_container_width=True)
 
+    with st.expander("ℹ️ **Uitleg van het eindadvies van het model**"):
+        st.write("Deze grafiek laat zien hoe het model tot een eindadvies komt op basis van de som van alle activatiefunctie-uitkomsten.")
+        st.markdown("- **X-as**: De som van bijdragen van alle patiëntkenmerken na verwerking door het model.")
+        st.markdown("- **Y-as**: De ruwe modeluitkomst voor beide mogelijke adviezen (SAD of Geen SAD).")
+        st.markdown("- De **blauwe lijn** toont de kanscurve voor het advies *Geen SAD*.")
+        st.markdown("- De **oranje lijn** toont de kanscurve voor het advies *SAD*.")
+        st.markdown("- De **paarse stippellijn** markeert de inputwaarde van deze specifieke patiënt.")
+        st.markdown("- De **rode stippellijn** toont de beslissingsgrens: ligt de paarse lijn rechts hiervan, dan is het advies *Geen SAD*; links betekent *SAD*.")
+        st.markdown("- De gemarkeerde waarden op de lijnen geven de ruwe modeloutput bij de inputwaarde.")
+
+        st.markdown('''
+        <style>
+        [data-testid="stMarkdownContainer"] ul{
+            list-style-position: inside;
+        }
+        </style>
+        ''', unsafe_allow_html=True)
+
     img_path1 = "static/local_splines/layer1_input0_adviesuitkomst.png"
     st.image(img_path1, use_container_width=True)
 
