@@ -78,7 +78,7 @@ with column2:
 
     # Dropdown with only valid features
     selected_idx, selected_label = st.selectbox(
-        "Selecteer een kenmerk om de invloed op het advies te bekijken",
+        "Selecteer een kenmerk om te zien in hoeverre het kan veranderen zonder dat het advies verandert",
         valid_features,
         format_func=lambda x: x[1]
     )
