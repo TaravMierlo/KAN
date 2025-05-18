@@ -113,10 +113,5 @@ with column2:
     st.image(img_path, use_container_width=True)
 
     
-    col2a, col2b = st.columns(2)
-    with col2a:
-        img_path1 = "static/local_splines/layer1_input0_to_output0.png"
-        st.image(img_path1, use_container_width=True)
-    with col2b:
-        img_path2 = "static/local_splines/layer1_input0_to_output1.png"
-        st.image(img_path2, use_container_width=True)
+    img_path1 = "static/local_splines/layer1_input0_adviesuitkomst.png"
+    st.image(img_path1, use_container_width=True)
