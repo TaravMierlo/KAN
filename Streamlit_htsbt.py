@@ -3,6 +3,7 @@ import torch
 import pandas as pd
 import pickle
 import matplotlib.pyplot as plt
+import os
 from pykan.kan import KAN
 
 # Load model
@@ -19,6 +20,13 @@ with open("models/feature_config.pkl", "rb") as f:
     feature_config = pickle.load(f)
 
 feature_names = feature_config["continuous_labels"] + feature_config["binary_labels"] + feature_config["ordinal_labels"]
+
+# Filter features based on available spline image
+valid_features = []
+for idx, name in enumerate(feature_names):
+    img_path = f"static/cf_splines/layer0_input{idx}_to_output0.png"
+    if os.path.exists(img_path):
+        valid_features.append((idx, name))
 
 # Load data
 with open("models/original_df.pkl", "rb") as f:
@@ -45,7 +53,7 @@ st.subheader("📊 Local Feature Importance")
 # Define columns outside the expanders
 column1, column2 = st.columns([1.2, 1.2])
 
-# Then use each column
+# Column 1 content
 with column1:
     with st.expander("ℹ️ **Belang van kenmerken voor individuele voorspelling**"):
         st.write("Deze grafiek laat zien hoe verschillende patiëntkenmerken bijdragen aan de individuele voorspelling van het risico op sepsis-geassocieerde delier (SAD).")
@@ -57,6 +65,7 @@ with column1:
 
     st.image("static/local_feature_importance_waterfall.png", use_container_width=True)
 
+# Column 2 content
 with column2:
     with st.expander("ℹ️ **Effect van individuele variabele op het advies**"):
         st.write("Deze grafieken tonen aan hoe de waarde van patiëntkenmerken (hier: Protrombinetijd) bijdragen aan het advies.")
@@ -67,70 +76,15 @@ with column2:
         st.markdown("- **Blauwe punten** geven waarden die het risico op SAD **verlagen**.")
         st.markdown("- **Oranje punten** geven waarden die het risico op SAD **verhogen**.")
 
-    feature_list = [
-    "Protrombinetijd (s)",
-    "INR",
-    "Temperatuur (Celcius)",
-    "Mechanische ventilatie n (%)",
-    "GCS",
-    "SOFA",
-    "ICU Type: NICU",
-    "Beroerte n (%)",
-    "Magnesium (mg/dL)",
-    "AKI n (%)",
-    "Natrium (mEq/L)",
-    "SpO2",
-    "Creatinine (mg/dL)",
-    "Sedatie n (%)",
-    "Vasopressor n (%)",
-    "CRRT n (%)",
-    "BUN (mg/dL)",
-    "Witte bloedcellen (k/uL)",
-    "Afkomst: Anders",
-    "ICU Type: CVICU",
-    "Hartslag (Slagen per Minuut)",
-    "PTT (s)",
-    "ICU Type: CCU",
-    "Ademhalingsfrequentie",
-    "COPD n (%)",
-    "ICU Type: MICU",
-    "Gewicht (Kg)",
-    "Leeftijd",
-    "Chloride (mEq/L)",
-    "ICU Type: SICU",
-    "Diastolische bloeddruk (mmHg)",
-    "Hemoglobine (g/dL)",
-    "Bicarbonaat (mEq/L)",
-    "Fosfaat (mg/dL)",
-    "Systolische bloeddruk (mmHg)",
-    "Afkomst: Aziatisch",
-    "Hypertensie n (%)",
-    "Gemiddelde arteriele druk (mmHg)",
-    "Afkomst: Onbekend",
-    "Afkomst: Afrikaans",
-    "Totale calcium (mg/dL)",
-    "Bloedplaatjes (k/uL)",
-    "Anion gap (mEq/L)",
-    "Afkomst: Latijns-amerikaans",
-    "Geslacht (Male)",
-    "Kalium (mEq/L)",
-    "ICU Type: MICU/SICU",
-    "ICU Type: TSICU",
-    "Afkomst: Europees/Westers",
-    "AMI n (%)",
-    "Diabetes n (%)",
-    "Glucose (mg/dL)",
-    "CKD n (%)"
-]
-
-    selected_label = st.selectbox(
+    # Dropdown with only valid features
+    selected_idx, selected_label = st.selectbox(
         "Selecteer een kenmerk om de invloed op het advies te bekijken",
-        feature_list
+        valid_features,
+        format_func=lambda x: x[1]
     )
-    feature_idx = feature_names.index(selected_label)
-    
-    # Show spline activation for selected feature (layer 0)
-    img_path = f"static/cf_splines/layer0_input{feature_idx}_to_output0.png"
+
+    # Show corresponding spline image
+    img_path = f"static/cf_splines/layer0_input{selected_idx}_to_output0.png"
     st.image(img_path, use_container_width=True)
 
     with st.expander("ℹ️ **Uitleg van het eindadvies van het model**"):
@@ -142,7 +96,3 @@ with column2:
         st.markdown("- De **paarse stippellijn** markeert de inputwaarde van deze specifieke patiënt.")
         st.markdown("- De **rode stippellijn** toont de beslissingsgrens: ligt de paarse lijn rechts hiervan, dan is het advies *Geen SAD*; links is het advies *SAD*.")
         st.markdown("- De gemarkeerde waarden op de lijnen geven de ruwe modeloutput bij de inputwaarde.")
-
-    
-
-    
