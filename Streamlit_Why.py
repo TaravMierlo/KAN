@@ -5,6 +5,13 @@ import pickle
 import matplotlib.pyplot as plt
 from pykan.kan import KAN
 
+st.markdown('''
+<style>
+[data-testid="stMarkdownContainer"] ul{
+    list-style-position: inside;
+}
+</style>
+''', unsafe_allow_html=True)
 
 # Load model
 model = KAN(width=[53, 1, 2], grid=5, k=3, seed=42)
@@ -48,14 +55,6 @@ with column1:
         st.markdown("- Blauwe balken duiden op kenmerken die de kans op SAD **verlagen**.")
         st.markdown("- De lengte van de balk geeft de mate van invloed aan; langere balken wijzen op een sterkere bijdrage aan de voorspelling.")
 
-        st.markdown('''
-        <style>
-        [data-testid="stMarkdownContainer"] ul{
-            list-style-position: inside;
-        }
-        </style>
-        ''', unsafe_allow_html=True)
-
     st.image("static/local_feature_importance_waterfall.png", use_container_width=True)
 
 with column2:
@@ -67,14 +66,6 @@ with column2:
         st.markdown("- Het bijbehorende punt toont hoe sterk deze specifieke waarde het advies beïnvloedt (positief of negatief).")
         st.markdown("- **Blauwe punten** geven waarden die het risico op SAD **verlagen**.")
         st.markdown("- **Oranje punten** geven waarden die het risico op SAD **verhogen**.")
-
-        st.markdown('''
-        <style>
-        [data-testid="stMarkdownContainer"] ul{
-            list-style-position: inside;
-        }
-        </style>
-        ''', unsafe_allow_html=True)
 
     feature_list = [
     "Protrombinetijd (s)",
@@ -151,14 +142,6 @@ with column2:
         st.markdown("- De **paarse stippellijn** markeert de inputwaarde van deze specifieke patiënt.")
         st.markdown("- De **rode stippellijn** toont de beslissingsgrens: ligt de paarse lijn rechts hiervan, dan is het advies *Geen SAD*; links betekent *SAD*.")
         st.markdown("- De gemarkeerde waarden op de lijnen geven de ruwe modeloutput bij de inputwaarde.")
-
-        st.markdown('''
-        <style>
-        [data-testid="stMarkdownContainer"] ul{
-            list-style-position: inside;
-        }
-        </style>
-        ''', unsafe_allow_html=True)
 
     img_path1 = "static/local_splines/layer1_input0_adviesuitkomst.png"
     st.image(img_path1, use_container_width=True)
