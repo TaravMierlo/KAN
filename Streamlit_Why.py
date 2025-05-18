@@ -68,6 +68,14 @@ with column2:
         st.markdown("- **Blauwe punten** geven waarden die het risico op SAD **verlagen**.")
         st.markdown("- **Oranje punten** geven waarden die het risico op SAD **verhogen**.")
 
+        st.markdown('''
+        <style>
+        [data-testid="stMarkdownContainer"] ul{
+            list-style-position: inside;
+        }
+        </style>
+        ''', unsafe_allow_html=True)
+
     feature_list = [
     "Protrombinetijd (s)",
     "INR",
