@@ -552,6 +552,73 @@ column1, column2 = st.columns([1.2, 1.2])
 
 # Column 1 content
 with column1:
+
+    feature_list = [
+    "Protrombinetijd (s)",
+    "INR",
+    "Temperatuur (Celcius)",
+    "Mechanische ventilatie n (%)",
+    "GCS",
+    "SOFA",
+    "ICU Type: NICU",
+    "Beroerte n (%)",
+    "Magnesium (mg/dL)",
+    "AKI n (%)",
+    "Natrium (mEq/L)",
+    "SpO2",
+    "Creatinine (mg/dL)",
+    "Sedatie n (%)",
+    "Vasopressor n (%)",
+    "CRRT n (%)",
+    "BUN (mg/dL)",
+    "Witte bloedcellen (k/uL)",
+    "Afkomst: Anders",
+    "ICU Type: CVICU",
+    "Hartslag (Slagen per Minuut)",
+    "PTT (s)",
+    "ICU Type: CCU",
+    "Ademhalingsfrequentie",
+    "COPD n (%)",
+    "ICU Type: MICU",
+    "Gewicht (Kg)",
+    "Leeftijd",
+    "Chloride (mEq/L)",
+    "ICU Type: SICU",
+    "Diastolische bloeddruk (mmHg)",
+    "Hemoglobine (g/dL)",
+    "Bicarbonaat (mEq/L)",
+    "Fosfaat (mg/dL)",
+    "Systolische bloeddruk (mmHg)",
+    "Afkomst: Aziatisch",
+    "Hypertensie n (%)",
+    "Gemiddelde arteriele druk (mmHg)",
+    "Afkomst: Onbekend",
+    "Afkomst: Afrikaans",
+    "Totale calcium (mg/dL)",
+    "Bloedplaatjes (k/uL)",
+    "Anion gap (mEq/L)",
+    "Afkomst: Latijns-amerikaans",
+    "Geslacht (Male)",
+    "Kalium (mEq/L)",
+    "ICU Type: MICU/SICU",
+    "ICU Type: TSICU",
+    "Afkomst: Europees/Westers",
+    "AMI n (%)",
+    "Diabetes n (%)",
+    "Glucose (mg/dL)",
+    "CKD n (%)"
+]
+
+    selected_label = st.selectbox(
+        "Selecteer een kenmerk om de invloed op het advies te bekijken",
+        feature_list
+    )
+    feature_idx = feature_names.index(selected_label)
+    
+    # Show spline activation for selected feature (layer 0)
+    img_path = f"static/local_splines/layer0_input{feature_idx}_to_output0.png"
+    st.image(img_path, use_container_width=True)
+
     with st.expander("ℹ️ **Belang van kenmerken voor individuele voorspelling**"):
         st.write("Deze grafiek laat zien hoe verschillende patiëntkenmerken bijdragen aan de individuele voorspelling van het risico op sepsis-geassocieerde delier (SAD).")
         st.markdown("- **Bovenste grafiek**: Toont de optelsom van alle bijdragen van kenmerken. De balk geeft de som van bijdragen die het risico op SAD verhogen en de rode stippellijn duidt de drempelwaarde aan tussen wel of geen SAD. In dit geval is de som **0.4507**, voorbij de drempelwaarde van **0.2361**, dus is het advies: *Geen SAD*")
