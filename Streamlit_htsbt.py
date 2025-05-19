@@ -24,7 +24,7 @@ feature_names = feature_config["continuous_labels"] + feature_config["binary_lab
 # Filter features based on available spline image
 valid_features = []
 for idx, name in enumerate(feature_names):
-    img_path = f"static/cf_splines/layer0_input{idx}_to_output0.png"
+    img_path = f"static/cf_splines_htsbt/layer0_input{idx}_to_output0.png"
     if os.path.exists(img_path):
         valid_features.append((idx, name))
 
@@ -77,16 +77,14 @@ with column2:
         st.markdown("- **Oranje punten** geven waarden die het risico op SAD **verhogen**.")
 
     # Dropdown with only valid features
-    selected_feature = st.selectbox(
+    selected_idx, selected_label = st.selectbox(
         "Selecteer een kenmerk om te zien in hoeverre het kan veranderen zonder dat het advies verandert",
         valid_features,
         format_func=lambda x: x[1]
     )
 
-    selected_idx, selected_label = selected_feature
-
     # Show corresponding spline image
-    img_path = f"static/cf_splines/layer0_input{selected_idx}_to_output0.png"
+    img_path = f"static/cf_splines_htsbt/layer0_input{selected_idx}_to_output0.png"
     st.image(img_path, use_container_width=True)
 
     with st.expander("ℹ️ **Uitleg van het eindadvies van het model**"):
