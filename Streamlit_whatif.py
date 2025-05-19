@@ -477,8 +477,9 @@ with column1:
         st.markdown("- Oranje balken duiden op kenmerken die de kans op SAD **verhogen**.")
         st.markdown("- Blauwe balken duiden op kenmerken die de kans op SAD **verlagen**.")
         st.markdown("- De lengte van de balk geeft de mate van invloed aan; langere balken wijzen op een sterkere bijdrage aan de voorspelling.")
-
-    
+        
+    # Simply call the function directly without capturing text output
+    out, pred_class = manual_forward_kan(model, patient2)
 
 # Column 2 content
 with column2:
@@ -524,9 +525,3 @@ with column2:
     - De huidige GCS-score is 15.00. Als de GCS tussen 5.14 en 13.90 zou liggen, dan verandert het advies naar SAD.
     - De huidige SOFA-score is 3.00. Als de SOFA-score hoger wordt dan 10.06, dan verandert het advies naar SAD.
         """)
-    
-# ========== Run Manual Forward on Patient2 ==========
-with st.expander("🧬 **Voorspelling en Visualisaties voor Voorbeeldpatiënt**", expanded=True):
-
-    # Simply call the function directly without capturing text output
-    out, pred_class = manual_forward_kan(model, patient2)
