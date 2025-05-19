@@ -571,7 +571,11 @@ column1, column2, column3 = st.columns([1.2, 1.2, 1.2])
 
 with column1:
     st.subheader("Oorspronkelijk Advies")
+
+    st.markdown('<div id="sticky-chart">', unsafe_allow_html=True)
     out, pred_class = manual_forward_kan(model, patient2)
+    st.markdown('</div>', unsafe_allow_html=True)
+
 
 # Column 1 content
 with column2:
