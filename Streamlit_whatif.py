@@ -679,16 +679,3 @@ with column3:
         st.markdown("- De **paarse stippellijn** markeert de inputwaarde van deze specifieke patiënt.")
         st.markdown("- De **rode stippellijn** toont de beslissingsgrens: ligt de paarse lijn rechts hiervan, dan is het advies *Geen SAD*; links is het advies *SAD*.")
         st.markdown("- De gemarkeerde waarden op de lijnen geven de ruwe modeloutput bij de inputwaarde.")
-
-    st.markdown("#### Counterfactual Uitleg per Kenmerk")
-    st.markdown("""
-    - De huidige temperatuur is 37.06 °C. Als de temperatuur lager wordt dan 33.85 °C, dan verandert het advies naar SAD.
-    - De huidige glucosewaarde is 119.00 mg/dL. Als de glucosewaarde hoger wordt dan 624.40 mg/dL, dan verandert het advies naar SAD.
-    - Het huidige natriumgehalte is 139.00 mEq/L. Als het natriumgehalte hoger wordt dan 145.70 mEq/L, dan verandert het advies naar SAD.
-    - De huidige INR is 1.00. Als de INR hoger wordt dan 1.19, dan verandert het advies naar SAD.
-    - De patiënt krijgt momenteel geen mechanische ventilatie. Als dit wel zo zou zijn zou het advies veranderen naar SAD.
-    - De patiënt heeft geen beroerte gehad. Als dit wel zo zou zijn zou het advies veranderen naar SAD.
-    - De patiënt is momenteel niet opgenomen op de NICU. Als dit wel zo zou zijn zou het advies veranderen naar SAD.
-    - De huidige GCS-score is 15.00. Als de GCS tussen 5.14 en 13.90 zou liggen, dan verandert het advies naar SAD.
-    - De huidige SOFA-score is 3.00. Als de SOFA-score hoger wordt dan 10.06, dan verandert het advies naar SAD.
-        """)
