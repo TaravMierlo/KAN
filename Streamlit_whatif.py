@@ -462,7 +462,7 @@ def manual_forward_kan(model, x_input, splineplots=False, detailed_computation=F
     if detailed_computation == True:
         print_local_contributions(combined1, base_out1, spline_out1, scale_base1, scale_sp1, feature_names)
     
-    plot_local_feature_importance(combined1[0].detach().numpy(), feature_names)
+    fig = plot_local_feature_importance(combined1[0].detach().numpy(), feature_names)
 
     # Second Layer
     explain_spline_output(model, 1, 0, combined=layer1_out.detach().numpy())
@@ -474,7 +474,7 @@ def manual_forward_kan(model, x_input, splineplots=False, detailed_computation=F
     pred_class = torch.argmax(out, dim=1).item()
     print(f"Prediction: {pred_class}")
 
-    return out, pred_class
+    return fig, out, pred_class
 
 def streamlit_what_if_widget(
     normalized_tensor,
@@ -573,7 +573,7 @@ with column1:
     st.subheader("Oorspronkelijk Advies")
 
     # Call forward to get the plot-ready figure
-    out, pred_class = manual_forward_kan(model, patient2)
+    fig, out, pred_class = manual_forward_kan(model, patient2)
     st.pyplot(out)
     st.markdown('</div>', unsafe_allow_html=True)
 
