@@ -26,8 +26,8 @@ with open("models/original_df.pkl", "rb") as f:
 
 # ========== Streamlit Config ==========
 st.set_page_config(layout="wide")
-st.title("🧠 Predict SAD from MIMIC-IV")
-st.markdown("This app predicts SAD and explains spline activations for a standard patient. (Prototype Version)")
+st.title("DelierAlert")
+st.markdown("Vroegtijdige waarschuwing voor sepsis-gassocieerd delier")
 
 st.markdown('''
 <style>
