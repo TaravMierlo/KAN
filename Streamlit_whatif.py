@@ -469,7 +469,7 @@ def streamlit_what_if_widget(
     binary_indices,
     feature_names
 ):
-    st.markdown("---")
+
     st.subheader("🔧 What-If Scenario: Pas kenmerken aan")
 
     # Step 1: Denormalize original input
@@ -495,7 +495,7 @@ def streamlit_what_if_widget(
     sorted_indices = sorted(editable_indices, key=lambda i: abs(contributions[i]), reverse=True)
 
     # Step 3: Build sliders
-    st.markdown("👈 Pas onderstaande kenmerken aan en bekijk het effect op het advies.")
+    st.markdown("Pas de waarden van de kenmerken aan en bekijk het effect op het advies.")
     modified_values = full_true_values.copy()
 
     for i in sorted_indices:
@@ -568,15 +568,6 @@ with column1:
 
 # Column 2 content
 with column2:
-    with st.expander("ℹ️ **Effect van individuele variabele op het advies**"):
-        st.write("Deze grafieken tonen aan hoe de waarde van patiëntkenmerken (hier: Protrombinetijd) bijdragen aan het advies.")
-        st.markdown("- **X-as**: Waarden die het kenmerk kan aannemen.")
-        st.markdown("- **Y-as**: De bijdrage (‘activatie output’) van elke waarde aan het uiteindelijke advies.")
-        st.markdown("- De rode stippellijn markeert de waarde voor de huidige patiënt.")
-        st.markdown("- Het bijbehorende punt toont hoe sterk deze specifieke waarde het advies beïnvloedt (positief of negatief).")
-        st.markdown("- **Blauwe punten** geven waarden die het risico op SAD **verlagen**.")
-        st.markdown("- **Oranje punten** geven waarden die het risico op SAD **verhogen**.")
-
     # ========== What-If Scenario ==========
 
     streamlit_what_if_widget(
