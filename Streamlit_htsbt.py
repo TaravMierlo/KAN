@@ -99,13 +99,13 @@ with column2:
 
     st.markdown("#### Counterfactual Uitleg per Kenmerk")
     st.markdown("""
-    - De huidige temperatuur is 37.06 °C. Als de temperatuur lager wordt dan 33.85 °C, dan verandert het advies naar SAD.
-    - De huidige glucosewaarde is 119.00 mg/dL. Als de glucosewaarde hoger wordt dan 624.40 mg/dL, dan verandert het advies naar SAD.
-    - Het huidige natriumgehalte is 139.00 mEq/L. Als het natriumgehalte hoger wordt dan 145.70 mEq/L, dan verandert het advies naar SAD.
-    - De huidige INR is 1.00. Als de INR hoger wordt dan 1.19, dan verandert het advies naar SAD.
-    - De patiënt krijgt momenteel geen mechanische ventilatie. Als dit wel zo zou zijn zou het advies veranderen naar SAD.
-    - De patiënt heeft geen beroerte gehad. Als dit wel zo zou zijn zou het advies veranderen naar SAD.
-    - De patiënt is momenteel niet opgenomen op de NICU. Als dit wel zo zou zijn zou het advies veranderen naar SAD.
-    - De huidige GCS-score is 15.00. Als de GCS tussen 5.14 en 13.90 zou liggen, dan verandert het advies naar SAD.
-    - De huidige SOFA-score is 3.00. Als de SOFA-score hoger wordt dan 10.06, dan verandert het advies naar SAD.
+    - De temperatuur mag niet lager worden dan 33.85 °C om hetzelfde advies te behouden.
+    - De glucosewaarde mag maximaal 624.40 mg/dL zijn om hetzelfde advies te behouden.
+    - Het natriumgehalte mag niet hoger zijn dan 145.70 mEq/L om hetzelfde advies te behouden.
+    - De INR mag maximaal 1.19 zijn om hetzelde advies te behouden.
+    - Zolang de patiënt geen mechanische ventilatie ontvangt, blijft het advies ongewijzigd; als dat wel het geval is, verandert het advies naar SAD.
+    - Zolang de patiënt geen beroerte heeft gehad, blijft het advies ongewijzigd; als dat wel het geval is, verandert het advies naar SAD.
+    - Zolang de patiënt niet is opgenomen op de NICU, blijft het advies ongewijzigd; als dat wel het geval is, verandert het advies naar SAD.
+    - De GCS-score moet buiten het bereik van 5.14 en 13.90 blijven om dezelfde voorspelling te behouden. Dus lager dan 5.14 of hoger dan 14.00. 
+    - De SOFA-score mag niet hoger zijn dan 10.06 om hetzelfde advies te behouden.
         """)
