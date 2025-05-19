@@ -470,7 +470,7 @@ def streamlit_what_if_widget(
     feature_names
 ):
 
-    st.subheader("🔧 What-If Scenario: Pas kenmerken aan")
+    st.subheader("What als Scenario: Pas kenmerken aan")
 
     # Step 1: Denormalize original input
     full_true_tensor = denormalize_instance(
