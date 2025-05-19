@@ -533,7 +533,7 @@ with st.expander("🧬 **Voorspelling en Visualisaties voor Voorbeeldpatiënt**"
 
     buffer = io.StringIO()
     with contextlib.redirect_stdout(buffer):
-        out, pred_class = manual_forward_kan(model, patient2, splineplots=True, detailed_computation=True)
+        out, pred_class = manual_forward_kan(model, patient2)
 
     explanation_text = buffer.getvalue()
     st.text_area("📋 Uitlegmodel", explanation_text, height=400)
