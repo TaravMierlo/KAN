@@ -230,8 +230,8 @@ with col1:
 
 with col2:
     with st.expander("ℹ️ **Invloed per kenmerk**"):
-        st.write("Deze grafieken tonen hoe verschillende klinische variabelen bijdragen aan het voorspelde risico op sepsis-geassocieerde delier.")
-        st.markdown("- X-as: Waarden van een specifieke variabele.")
+        st.write("Deze grafieken tonen voor iedere patiëntkenmerk hoe deze bijdraagt aan het voorspelde risico op sepsis-geassocieerde delier.")
+        st.markdown("- X-as: De waarden voor een patiëntkenmerk.")
         st.markdown("- Y-as: De invloed van deze waarde op de voorspelling van het model. Hoe verder een punt van nul ligt (positief of negatief), hoe groter de impact op het advies.")
         st.markdown("- Oranje punten duiden op waarden die het voorspelde risico op SAD **verhogen**.")
         st.markdown("- Blauwe punten duiden op waarden die het voorspelde risico **verlagen**.")

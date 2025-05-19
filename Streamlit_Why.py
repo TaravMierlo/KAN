@@ -37,6 +37,19 @@ st.markdown('''
 </style>
 ''', unsafe_allow_html=True)
 
+# ========== Performance, Output, Data ==========
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.subheader("🧠 Performance")
+
+with col2:
+    st.subheader("📊 Output")
+
+with col3:
+    st.subheader("📁 Data")
+
 # ========== Local Explanation ==========
 st.markdown("---")
 
@@ -133,10 +146,10 @@ with column2:
     img_path = f"static/local_splines/layer0_input{feature_idx}_to_output0.png"
     st.image(img_path, use_container_width=True)
 
-    with st.expander("ℹ️ **Uitleg van het eindadvies van het model**"):
-        st.write("Deze grafiek laat zien hoe het model tot een eindadvies komt op basis van de som van alle activatiefunctie-uitkomsten.")
-        st.markdown("- **X-as**: De som van bijdragen van alle patiëntkenmerken na verwerking door het model.")
-        st.markdown("- **Y-as**: De ruwe modeluitkomst voor beide mogelijke adviezen (SAD of Geen SAD).")
+    with st.expander("ℹ️ **Uitleg uitkomst van het model**"):
+        st.write("Deze grafiek laat zien hoe het model tot een advies komt op basis van de som van alle activatiefunctie-uitkomsten.")
+        st.markdown("- **X-as**: De som van bijdragen van alle individuele patiëntkenmerken.")
+        st.markdown("- **Y-as**: De ruwe modeluitkomst voordat het wordt omgezet naar een advies (SAD of Geen SAD).")
         st.markdown("- De **blauwe lijn** toont de kanscurve voor het advies *Geen SAD*.")
         st.markdown("- De **oranje lijn** toont de kanscurve voor het advies *SAD*.")
         st.markdown("- De **paarse stippellijn** markeert de inputwaarde van deze specifieke patiënt.")
