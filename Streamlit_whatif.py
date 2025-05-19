@@ -524,21 +524,21 @@ with column2:
         """)
     
     # ========== Run Manual Forward on Patient2 ==========
-with st.expander("🧬 **Voorspelling en Visualisaties voor Voorbeeldpatiënt**", expanded=True):
-    st.markdown("Onderstaande grafieken en uitleg zijn gebaseerd op een patiënt met de volgende (genormaliseerde) waarden:")
-    st.code(patient2.tolist(), language="python")
+    with st.expander("🧬 **Voorspelling en Visualisaties voor Voorbeeldpatiënt**", expanded=True):
+        st.markdown("Onderstaande grafieken en uitleg zijn gebaseerd op een patiënt met de volgende (genormaliseerde) waarden:")
+        st.code(patient2.tolist(), language="python")
 
-    st.write("De analyse wordt hieronder uitgevoerd:")
+        st.write("De analyse wordt hieronder uitgevoerd:")
 
-    # Capture the printed outputs and matplotlib figures
-    import io
-    import contextlib
+        # Capture the printed outputs and matplotlib figures
+        import io
+        import contextlib
 
-    buffer = io.StringIO()
-    with contextlib.redirect_stdout(buffer):
-        out, pred_class = manual_forward_kan(model, patient2)
+        buffer = io.StringIO()
+        with contextlib.redirect_stdout(buffer):
+            out, pred_class = manual_forward_kan(model, patient2)
 
-    explanation_text = buffer.getvalue()
-    st.text_area("📋 Uitlegmodel", explanation_text, height=400)
-    
-    st.success(f"Voorspelling voor deze patiënt: {'Geen SAD' if pred_class == 0 else 'SAD'}")
+        explanation_text = buffer.getvalue()
+        st.text_area("📋 Uitlegmodel", explanation_text, height=400)
+        
+        st.success(f"Voorspelling voor deze patiënt: {'Geen SAD' if pred_class == 0 else 'SAD'}")
