@@ -658,12 +658,3 @@ with column3:
 
         # Call forward to get the plot-ready figure
         fig, out, pred_class = manual_forward_kan(model, patient2)
-
-        st.write("Deze grafiek laat zien hoe het model tot een eindadvies komt op basis van de som van alle activatiefunctie-uitkomsten.")
-        st.markdown("- **X-as**: De som van bijdragen van alle patiëntkenmerken na verwerking door het model.")
-        st.markdown("- **Y-as**: De ruwe modeluitkomst voor beide mogelijke adviezen (SAD of Geen SAD).")
-        st.markdown("- De **blauwe lijn** toont de kanscurve voor het advies *Geen SAD*.")
-        st.markdown("- De **oranje lijn** toont de kanscurve voor het advies *SAD*.")
-        st.markdown("- De **paarse stippellijn** markeert de inputwaarde van deze specifieke patiënt.")
-        st.markdown("- De **rode stippellijn** toont de beslissingsgrens: ligt de paarse lijn rechts hiervan, dan is het advies *Geen SAD*; links is het advies *SAD*.")
-        st.markdown("- De gemarkeerde waarden op de lijnen geven de ruwe modeloutput bij de inputwaarde.")
