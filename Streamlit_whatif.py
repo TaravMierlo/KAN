@@ -586,6 +586,8 @@ with column1:
 
 # Column 2 content
 with column2:
+    st.subheader("")
+
     with st.expander("ℹ️ **Effect van individuele variabele op het advies**"):
         st.write("Deze grafieken tonen aan hoe de waarde van patiëntkenmerken (hier: Protrombinetijd) bijdragen aan het advies.")
         st.markdown("- **X-as**: Waarden die het kenmerk kan aannemen.")
