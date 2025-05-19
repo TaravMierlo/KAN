@@ -478,8 +478,8 @@ with column1:
         st.markdown("- Blauwe balken duiden op kenmerken die de kans op SAD **verlagen**.")
         st.markdown("- De lengte van de balk geeft de mate van invloed aan; langere balken wijzen op een sterkere bijdrage aan de voorspelling.")
         
-# Simply call the function directly without capturing text output
-out, pred_class = manual_forward_kan(model, patient2)
+        # Simply call the function directly without capturing text output
+        out, pred_class = manual_forward_kan(model, patient2)
 
 # Column 2 content
 with column2:
