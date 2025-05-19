@@ -42,18 +42,40 @@ st.markdown('''
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.subheader("🧠 Performance")
+    st.markdown(
+        """
+        <div style="background-color:#f9f9f9; padding:20px; border-radius:10px">
+            <h3>🧠 Performance</h3>
+            <p>This column has a light gray background.</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 with col2:
-    st.subheader("📊 Output")
+    st.markdown(
+        """
+        <div style="background-color:#e0f7fa; padding:20px; border-radius:10px">
+            <h3>📊 Output</h3>
+            <p>This column has a light blue background.</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 with col3:
-    st.subheader("📁 Data")
+    st.markdown(
+        """
+        <div style="background-color:#fff3e0; padding:20px; border-radius:10px">
+            <h3>📁 Data</h3>
+            <p>This column has a light orange background.</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 # ========== Local Explanation ==========
 st.markdown("---")
-
-st.subheader("📊 Local Feature Importance")
 
 # Define columns outside the expanders
 column1, column2 = st.columns([1.2, 1.2])
