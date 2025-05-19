@@ -46,6 +46,12 @@ for idx, name in enumerate(feature_names):
 with open("models/original_df.pkl", "rb") as f:
     original_df = pickle.load(f)
 
+with open("models/scaler_cont.pkl", "rb") as f:
+    scaler = pickle.load(f)
+
+with open("models/scaler_ord.pkl", "rb") as f:
+    ordinal_encoder = pickle.load(f)
+
 # ========== Streamlit Config ==========
 st.set_page_config(layout="wide")
 st.title("🧠 Predict SAD from MIMIC-IV")
@@ -452,6 +458,84 @@ def manual_forward_kan(model, x_input, splineplots=False, detailed_computation=F
 
     return out, pred_class
 
+def streamlit_what_if_widget(
+    normalized_tensor,
+    model,
+    manual_forward_kan,
+    scaler,
+    ordinal_encoder,
+    continuous_indices,
+    ordinal_indices,
+    binary_indices,
+    feature_names
+):
+    st.markdown("---")
+    st.subheader("🔧 What-If Scenario: Pas kenmerken aan")
+
+    # Step 1: Denormalize original input
+    full_true_tensor = denormalize_instance(
+        normalized_tensor,
+        scaler,
+        ordinal_encoder,
+        continuous_indices,
+        ordinal_indices,
+        binary_indices
+    )
+    full_true_values = full_true_tensor.numpy()
+    editable_indices = continuous_indices + ordinal_indices
+
+    # Step 2: Compute contributions to determine slider order
+    with torch.no_grad():
+        layer = model.act_fun[0]
+        grid, coef, scale_base, scale_sp = get_layer_components(layer)
+        spline_out = compute_spline_outputs(normalized_tensor.unsqueeze(0), grid, coef, model.k)
+        base_out = layer.base_fun(normalized_tensor.unsqueeze(0))
+        combined = compute_combined_output(base_out, spline_out, scale_base, scale_sp)
+        contributions = combined[0].detach().numpy()
+    sorted_indices = sorted(editable_indices, key=lambda i: abs(contributions[i]), reverse=True)
+
+    # Step 3: Build sliders
+    st.markdown("👈 Pas onderstaande kenmerken aan en bekijk het effect op het advies.")
+    modified_values = full_true_values.copy()
+
+    for i in sorted_indices:
+        fname = feature_names[i]
+        if i in continuous_indices:
+            min_val = scaler.data_min_[continuous_indices.index(i)]
+            max_val = scaler.data_max_[continuous_indices.index(i)]
+            modified_values[i] = st.slider(
+                label=fname,
+                min_value=float(min_val),
+                max_value=float(max_val),
+                value=float(full_true_values[i]),
+                step=0.1,
+                key=f"slider_{i}"
+            )
+        elif i in ordinal_indices:
+            min_val = ordinal_encoder.data_min_[ordinal_indices.index(i)]
+            max_val = ordinal_encoder.data_max_[ordinal_indices.index(i)]
+            modified_values[i] = st.slider(
+                label=fname,
+                min_value=int(round(min_val)),
+                max_value=int(round(max_val)),
+                value=int(round(full_true_values[i])),
+                step=1,
+                key=f"slider_{i}"
+            )
+
+    # Step 4: Run button
+    if st.button("🚀 Run What-If Analysis"):
+        cont_vals = np.array([modified_values[i] for i in continuous_indices]).reshape(1, -1)
+        ord_vals = np.array([modified_values[i] for i in ordinal_indices]).reshape(1, -1)
+        modified_norm = modified_values.copy()
+        modified_norm[continuous_indices] = scaler.transform(cont_vals).flatten()
+        modified_norm[ordinal_indices] = ordinal_encoder.transform(ord_vals).flatten()
+        modified_tensor = torch.tensor(modified_norm, dtype=torch.float32)
+
+        st.success("Voorspelling gestart met aangepaste waarden.")
+        out, pred_class = manual_forward_kan(model, modified_tensor.unsqueeze(0), detailed_computation=True)
+
+
 # ========== Local Explanation ==========
 patient2 = torch.tensor([0.4941, 0.1310, 0.5806, 0.6543, 0.4667, 0.7600, 0.1872, 0.1105, 0.1205,
         0.1879, 0.4000, 0.2505, 0.0385, 0.0101, 0.1212, 0.5000, 0.4146, 0.2192,
@@ -493,16 +577,19 @@ with column2:
         st.markdown("- **Blauwe punten** geven waarden die het risico op SAD **verlagen**.")
         st.markdown("- **Oranje punten** geven waarden die het risico op SAD **verhogen**.")
 
-    # Dropdown with only valid features
-    selected_idx, selected_label = st.selectbox(
-        "Selecteer een kenmerk om te zien in hoeverre het kan veranderen zonder dat het advies verandert",
-        valid_features,
-        format_func=lambda x: x[1]
-    )
+    # ========== What-If Scenario ==========
 
-    # Show corresponding spline image
-    img_path = f"static/cf_splines_htbt/layer0_input{selected_idx}_to_output0.png"
-    st.image(img_path, use_container_width=True)
+    streamlit_what_if_widget(
+        normalized_tensor=patient2,
+        model=model,
+        manual_forward_kan=manual_forward_kan,
+        scaler=feature_config["scaler"],
+        ordinal_encoder=feature_config["ordinal_encoder"],
+        continuous_indices=continuous_indices,
+        ordinal_indices=ordinal_indices,
+        binary_indices=binary_indices,
+        feature_names=feature_names
+    )
 
     with st.expander("ℹ️ **Uitleg van het eindadvies van het model**"):
         st.write("Deze grafiek laat zien hoe het model tot een eindadvies komt op basis van de som van alle activatiefunctie-uitkomsten.")
