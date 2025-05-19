@@ -7,7 +7,7 @@ import os
 import numpy as np
 from pykan.kan import KAN
 from pykan.kan.spline import *
-
+import sys
 
 # Load model
 model = KAN(width=[53, 1, 2], grid=5, k=3, seed=42)
@@ -63,6 +63,9 @@ orange = '#faa63e'
 blue = '#3685eb' 
 
 # ========== Load Manual Forward KAN ==========
+
+# Prevent Streamlit from inspecting torch.classes
+sys.modules['torch.classes'].__path__ = []
 
 def get_feature_min_max(original_df, continuous_indices, binary_indices, ordinal_indices):
     """
