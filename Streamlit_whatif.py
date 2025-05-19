@@ -525,22 +525,15 @@ with column2:
     - De huidige SOFA-score is 3.00. Als de SOFA-score hoger wordt dan 10.06, dan verandert het advies naar SAD.
         """)
     
-    # ========== Run Manual Forward on Patient2 ==========
-    with st.expander("🧬 **Voorspelling en Visualisaties voor Voorbeeldpatiënt**", expanded=True):
-        st.markdown("Onderstaande grafieken en uitleg zijn gebaseerd op een patiënt met de volgende (genormaliseerde) waarden:")
-        st.code(patient2.tolist(), language="python")
+# ========== Run Manual Forward on Patient2 ==========
+with st.expander("🧬 **Voorspelling en Visualisaties voor Voorbeeldpatiënt**", expanded=True):
+    st.markdown("Onderstaande grafieken en uitleg zijn gebaseerd op een patiënt met de volgende (genormaliseerde) waarden:")
+    st.code(patient2.tolist(), language="python")
 
-        st.write("De analyse wordt hieronder uitgevoerd:")
+    st.write("De analyse wordt hieronder uitgevoerd:")
 
-        # Capture the printed outputs and matplotlib figures
-        import io
-        import contextlib
+    # Simply call the function directly without capturing text output
+    out, pred_class = manual_forward_kan(model, patient2)
 
-        buffer = io.StringIO()
-        with contextlib.redirect_stdout(buffer):
-            out, pred_class = manual_forward_kan(model, patient2)
-
-        explanation_text = buffer.getvalue()
-        st.text_area("📋 Uitlegmodel", explanation_text, height=400)
-        
-        st.success(f"Voorspelling voor deze patiënt: {'Geen SAD' if pred_class == 0 else 'SAD'}")
+    # Display the prediction
+    st.success(f"Voorspelling voor deze patiënt: {'Geen SAD' if pred_class == 0 else 'SAD'}")
