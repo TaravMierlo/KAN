@@ -476,7 +476,7 @@ def manual_forward_kan(model, x_input, splineplots=False, detailed_computation=F
     pred_class = torch.argmax(out, dim=1).item()
     print(f"Prediction: {pred_class}")
 
-    return fig, out, pred_class
+    return out, pred_class
 
 def streamlit_what_if_widget(
     normalized_tensor,
@@ -553,7 +553,7 @@ def streamlit_what_if_widget(
         modified_tensor = torch.tensor(modified_norm, dtype=torch.float32)
 
         st.success("Voorspelling gestart met aangepaste waarden.")
-        fig, out, pred_class = manual_forward_kan(model, modified_tensor.unsqueeze(0), detailed_computation=True)
+        out, pred_class = manual_forward_kan(model, modified_tensor.unsqueeze(0), detailed_computation=True)
 
 
 # ========== Local Explanation ==========
@@ -574,7 +574,7 @@ with column1:
     st.subheader("Oorspronkelijke Advies")
 
     # Call forward to get the plot-ready figure
-    fig, out, pred_class = manual_forward_kan(model, patient2)
+    out, pred_class = manual_forward_kan(model, patient2)
 
 # Column 2 content
 with column2:
@@ -672,4 +672,4 @@ with column3:
     with st.expander("ℹ️ **Bekijk Oorspronkelijke Advies**"):
 
         # Call forward to get the plot-ready figure
-        fig, out, pred_class = manual_forward_kan(model, patient2)
+        out, pred_class = manual_forward_kan(model, patient2)
