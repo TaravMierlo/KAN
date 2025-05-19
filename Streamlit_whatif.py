@@ -654,7 +654,7 @@ with column3:
         feature_names=feature_names
     )
 
-    with st.expander("ℹ️ **Bekijk Originele Voorspelling**"):
+    with st.expander("ℹ️ **Bekijk Oorspronkelijke Advies**"):
 
         # Call forward to get the plot-ready figure
         fig, out, pred_class = manual_forward_kan(model, patient2)
