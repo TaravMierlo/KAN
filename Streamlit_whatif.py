@@ -548,10 +548,13 @@ patient2 = torch.tensor([0.4941, 0.1310, 0.5806, 0.6543, 0.4667, 0.7600, 0.1872,
 st.markdown("---")
 
 # Define columns outside the expanders
-column1, column2 = st.columns([1.2, 1.2])
+column1, column2, column3 = st.columns([1.2, 1.2, 1.2])
+
+with column1:
+    out, pred_class = manual_forward_kan(model, patient2)
 
 # Column 1 content
-with column1:
+with column2:
 
     feature_list = [
     "Protrombinetijd (s)",
@@ -627,10 +630,8 @@ with column1:
         st.markdown("- Blauwe balken duiden op kenmerken die de kans op SAD **verlagen**.")
         st.markdown("- De lengte van de balk geeft de mate van invloed aan; langere balken wijzen op een sterkere bijdrage aan de voorspelling.")
 
-    out, pred_class = manual_forward_kan(model, patient2)
-
-# Column 2 content
-with column2:
+# Column 3 content
+with column3:
     # ========== What-If Scenario ==========
 
     streamlit_what_if_widget(
