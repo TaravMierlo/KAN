@@ -547,8 +547,6 @@ patient2 = torch.tensor([0.4941, 0.1310, 0.5806, 0.6543, 0.4667, 0.7600, 0.1872,
 # ========== Local Explanation ==========
 st.markdown("---")
 
-st.subheader("📊 Local Feature Importance")
-
 # Define columns outside the expanders
 column1, column2 = st.columns([1.2, 1.2])
 
