@@ -572,10 +572,13 @@ column1, column2, column3 = st.columns([1.2, 1.2, 1.2])
 with column1:
     st.subheader("Oorspronkelijk Advies")
 
-    st.markdown('<div id="sticky-chart">', unsafe_allow_html=True)
+    # Call forward to get the plot-ready figure
     out, pred_class = manual_forward_kan(model, patient2)
-    st.markdown('</div>', unsafe_allow_html=True)
 
+    # Wrap just the figure output in the sticky div
+    st.markdown('<div id="sticky-chart">', unsafe_allow_html=True)
+    st.pyplot(plt.gcf())  # Re-render last fig manually if needed
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # Column 1 content
 with column2:
