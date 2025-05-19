@@ -86,7 +86,7 @@ with column2:
     img_path = f"static/cf_splines_htbt/layer0_input{selected_idx}_to_output0.png"
     st.image(img_path, use_container_width=True)
 
-    st.markdown("#### Counterfactual Uitleg per Kenmerk")
+    st.markdown("#### Uitleg per Kenmerk")
     st.markdown("""
     - Om het advies te veranderen van 'SAD' naar 'geen SAD', zou het magnesiumgehalte moeten stijgen tot minstens 5.59 mg/dL.
     - Om het advies te veranderen van 'SAD' naar 'geen SAD', zou de protrombinetijd moeten toenemen tot minstens 13.71 seconden.
