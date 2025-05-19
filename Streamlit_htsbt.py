@@ -48,8 +48,6 @@ st.markdown('''
 # ========== Local Explanation ==========
 st.markdown("---")
 
-st.subheader("📊 Local Feature Importance")
-
 # Define columns outside the expanders
 column1, column2 = st.columns([1.2, 1.2])
 
@@ -71,6 +69,7 @@ with column2:
         st.write("Deze grafieken tonen aan hoe de waarde van patiëntkenmerken (hier: Protrombinetijd) bijdragen aan het advies.")
         st.markdown("- **X-as**: Waarden die het kenmerk kan aannemen.")
         st.markdown("- **Y-as**: De bijdrage (‘activatie output’) van elke waarde aan het uiteindelijke advies.")
+        st.markdown("- De paarse stippellijn markeert de maximale verandering van de waarde die mogelijk is om hetzelfde advies te behouden.")
         st.markdown("- De rode stippellijn markeert de waarde voor de huidige patiënt.")
         st.markdown("- Het bijbehorende punt toont hoe sterk deze specifieke waarde het advies beïnvloedt (positief of negatief).")
         st.markdown("- **Blauwe punten** geven waarden die het risico op SAD **verlagen**.")
@@ -87,7 +86,7 @@ with column2:
     img_path = f"static/cf_splines_htsbt/layer0_input{selected_idx}_to_output0.png"
     st.image(img_path, use_container_width=True)
 
-    st.markdown("#### Counterfactual Uitleg per Kenmerk")
+    st.markdown("#### Uitleg per Kenmerk")
     st.markdown("""
     - De temperatuur mag niet lager worden dan 33.85 °C om hetzelfde advies te behouden.
     - De glucosewaarde mag maximaal 624.40 mg/dL zijn om hetzelfde advies te behouden.
