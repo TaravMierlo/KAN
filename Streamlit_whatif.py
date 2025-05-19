@@ -241,14 +241,19 @@ def print_local_contributions(combined, base_out, spline_out, scale_base, scale_
         print(f"{name} = {sb:.4f} * {base_val:.4f} + {ss:.4f} * {spline_val:.4f} = {combined_val:.4f}")
 
 
-def plot_local_feature_importance(contributions, feature_names, activation_flip_point=0.2361, sum_range=(-1.5, 1.7)):
+def plot_local_feature_importance(contributions, feature_names, real_values=None, activation_flip_point=0.2361, sum_range=(-1.5, 1.7)):
     sad_color = orange
     geen_sad_color = blue
 
     # Sort features by absolute importance
     sorted_indices = np.argsort(np.abs(contributions))[::-1]
     sorted_contributions = contributions[sorted_indices]
-    sorted_feature_names = [feature_names[i] for i in sorted_indices]
+
+    if real_values is not None:
+        sorted_feature_names = [f"{feature_names[i]}: {real_values[i]:.2f}" for i in sorted_indices]
+    else:
+        sorted_feature_names = [feature_names[i] for i in sorted_indices]
+
     colors = [geen_sad_color if val >= 0 else sad_color for val in sorted_contributions]
 
     # Total sum of contributions
@@ -317,9 +322,8 @@ def plot_local_feature_importance(contributions, feature_names, activation_flip_
         ax2.text(x_val + 0.005, i, f"{sign}{x_val:.2f}", va='center', fontsize=8)
 
     plt.tight_layout()
-    #plt.show()
     st.pyplot(plt.gcf())
-    
+
 def compute_output_second_layer(layer_input, layer, base_fun, k):
     grid, coef, scale_base, scale_sp = get_layer_components(layer)
     spline_out = coef2curve(layer_input, grid, coef, k)[:, 0, :]
@@ -448,11 +452,22 @@ def manual_forward_kan(model, x_input, splineplots=False, detailed_computation=F
 
     if detailed_computation == True:
         print_local_contributions(combined1, base_out1, spline_out1, scale_base1, scale_sp1, feature_names)
+
+    real_values_tensor = denormalize_instance(
+    x_input[0],
+    scaler,
+    ordinal_encoder,
+    continuous_indices,
+    ordinal_indices,
+    binary_indices
+    )
     
-    fig = plot_local_feature_importance(combined1[0].detach().numpy(), feature_names)
+    real_values = real_values_tensor.numpy()
+    
+    plot_local_feature_importance(combined1[0].detach().numpy(), feature_names, real_values=real_values)
 
     # Second Layer
-    explain_spline_output(model, 1, 0, combined=layer1_out.detach().numpy())
+    #explain_spline_output(model, 1, 0, combined=layer1_out.detach().numpy())
     
     layer2 = model.act_fun[1]
     out = compute_output_second_layer(layer1_out, layer2, layer2.base_fun, model.k)
@@ -556,7 +571,7 @@ st.markdown("---")
 column1, column2, column3 = st.columns([1.2, 1.2, 1.2])
 
 with column1:
-    st.subheader("Oorspronkelijk Advies")
+    st.subheader("Oorspronkelijke Advies")
 
     # Call forward to get the plot-ready figure
     fig, out, pred_class = manual_forward_kan(model, patient2)
