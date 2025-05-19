@@ -480,12 +480,7 @@ with column1:
 
 # Show patient input and run explanation directly after expander in column1
 with column1:
-    st.markdown("## 🧬 Voorspelling en Visualisaties voor Voorbeeldpatiënt")
-    st.markdown("Onderstaande grafieken en uitleg zijn gebaseerd op een patiënt met de volgende (genormaliseerde) waarden:")
-    st.code(patient2.tolist(), language="python")
-
     out, pred_class = manual_forward_kan(model, patient2)
-    st.success(f"Voorspelling voor deze patiënt: {'Geen SAD' if pred_class == 0 else 'SAD'}")
 
 # Column 2 content
 with column2:
