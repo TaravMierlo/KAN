@@ -530,6 +530,3 @@ with st.expander("🧬 **Voorspelling en Visualisaties voor Voorbeeldpatiënt**"
 
     # Simply call the function directly without capturing text output
     out, pred_class = manual_forward_kan(model, patient2)
-
-    # Display the prediction
-    st.success(f"Voorspelling voor deze patiënt: {'Geen SAD' if pred_class == 0 else 'SAD'}")
