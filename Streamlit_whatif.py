@@ -538,7 +538,7 @@ def streamlit_what_if_widget(
         modified_tensor = torch.tensor(modified_norm, dtype=torch.float32)
 
         st.success("Voorspelling gestart met aangepaste waarden.")
-        out, pred_class = manual_forward_kan(model, modified_tensor.unsqueeze(0), detailed_computation=True)
+        fig, out, pred_class = manual_forward_kan(model, modified_tensor.unsqueeze(0), detailed_computation=True)
 
 
 # ========== Local Explanation ==========
@@ -654,7 +654,7 @@ with column3:
         feature_names=feature_names
     )
 
-    with st.expander("ℹ️ **Uitleg van het eindadvies van het model**"):
+    with st.expander("ℹ️ **Bekijk Originele Voorspelling**"):
 
         # Call forward to get the plot-ready figure
         fig, out, pred_class = manual_forward_kan(model, patient2)
