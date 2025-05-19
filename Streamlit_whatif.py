@@ -571,8 +571,6 @@ column1, column2, column3 = st.columns([1.2, 1.2, 1.2])
 
 with column1:
 
-    st.subheader("Orgineel Advies o.b.v. echte waarden")
-
     out, pred_class = manual_forward_kan(model, patient2)
 
 # Column 1 content
