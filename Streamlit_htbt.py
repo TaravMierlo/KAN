@@ -48,8 +48,6 @@ st.markdown('''
 # ========== Local Explanation ==========
 st.markdown("---")
 
-st.subheader("📊 Local Feature Importance")
-
 # Define columns outside the expanders
 column1, column2 = st.columns([1.2, 1.2])
 
@@ -57,7 +55,7 @@ column1, column2 = st.columns([1.2, 1.2])
 with column1:
     with st.expander("ℹ️ **Belang van kenmerken voor individuele voorspelling**"):
         st.write("Deze grafiek laat zien hoe verschillende patiëntkenmerken bijdragen aan de individuele voorspelling van het risico op sepsis-geassocieerde delier (SAD).")
-        st.markdown("- **Bovenste grafiek**: Toont de optelsom van alle bijdragen van kenmerken. De balk geeft de som van bijdragen die het risico op SAD verhogen en de rode stippellijn duidt de drempelwaarde aan tussen wel of geen SAD. In dit geval is de som **0.4507**, voorbij de drempelwaarde van **0.2361**, dus is het advies: *Geen SAD*")
+        st.markdown("- **Bovenste grafiek**: Toont de optelsom van alle bijdragen van kenmerken. De balk geeft de som van bijdragen die het risico op SAD verhogen en de rode stippellijn duidt de drempelwaarde aan tussen wel of geen SAD. In dit geval is de som **-0.1493**, onder de drempelwaarde van **0.2361**, dus is het advies: *SAD*")
         st.markdown("- **Onderste grafiek**: Visualiseert de individuele bijdragen van kenmerken aan de voorspelling.")
         st.markdown("- Oranje balken duiden op kenmerken die de kans op SAD **verhogen**.")
         st.markdown("- Blauwe balken duiden op kenmerken die de kans op SAD **verlagen**.")
