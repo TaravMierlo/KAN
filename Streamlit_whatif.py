@@ -183,7 +183,8 @@ def explain_spline_minmax(
         plt.savefig(filepath, bbox_inches='tight')
         print(f"Saved plot to {filepath}")
 
-    plt.show()
+    #plt.show()
+    st.pyplot(plt.gcf())
 
 def get_layer_components(layer):
     return layer.grid, layer.coef, layer.scale_base, layer.scale_sp
@@ -305,7 +306,8 @@ def plot_local_feature_importance(contributions, feature_names, activation_flip_
         ax2.text(x_val + 0.005, i, f"{sign}{x_val:.2f}", va='center', fontsize=8)
 
     plt.tight_layout()
-    plt.show()
+    #plt.show()
+    st.pyplot(plt.gcf())
     
 def compute_output_second_layer(layer_input, layer, base_fun, k):
     grid, coef, scale_base, scale_sp = get_layer_components(layer)
