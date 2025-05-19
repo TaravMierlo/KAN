@@ -99,13 +99,13 @@ with column2:
 
     st.markdown("#### Counterfactual Uitleg per Kenmerk")
     st.markdown("""
-    - De huidige temperatuur is 37.06 °C. Als de temperatuur lager is dan 33.85 °C, dan verandert het advies naar SAD.
-    - De huidige glucosewaarde is 119.00 mg/dL. Als de glucosewaarde hoger is dan 624.40 mg/dL, dan verandert het advies naar SAD.
-    - Het huidige natriumgehalte is 139.00 mEq/L. Als het natriumgehalte hoger is dan 145.70 mEq/L, dan verandert het advies naar SAD.
-    - De huidige INR is 1.00. Als de INR hoger is dan 1.19, dan verandert het advies naar SAD.
+    - De huidige temperatuur is 37.06 °C. Als de temperatuur lager wordt dan 33.85 °C, dan verandert het advies naar SAD.
+    - De huidige glucosewaarde is 119.00 mg/dL. Als de glucosewaarde hoger wordt dan 624.40 mg/dL, dan verandert het advies naar SAD.
+    - Het huidige natriumgehalte is 139.00 mEq/L. Als het natriumgehalte hoger wordt dan 145.70 mEq/L, dan verandert het advies naar SAD.
+    - De huidige INR is 1.00. Als de INR hoger wordt dan 1.19, dan verandert het advies naar SAD.
     - De patiënt krijgt momenteel geen mechanische ventilatie. Als dit wel zo zou zijn zou het advies veranderen naar SAD.
     - De patiënt heeft geen beroerte gehad. Als dit wel zo zou zijn zou het advies veranderen naar SAD.
     - De patiënt is momenteel niet opgenomen op de NICU. Als dit wel zo zou zijn zou het advies veranderen naar SAD.
-    - De huidige GCS-score is 15.00. Als de GCS tussen 5.14 en 13.90 ligt, dan verandert het advies naar SAD.
-    - De huidige SOFA-score is 3.00. Als de SOFA-score hoger is dan 10.06, dan verandert het advies naar SAD.
+    - De huidige GCS-score is 15.00. Als de GCS tussen 5.14 en 13.90 zou liggen, dan verandert het advies naar SAD.
+    - De huidige SOFA-score is 3.00. Als de SOFA-score hoger wordt dan 10.06, dan verandert het advies naar SAD.
         """)
