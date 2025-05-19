@@ -63,7 +63,7 @@ with column1:
         st.markdown("- Blauwe balken duiden op kenmerken die de kans op SAD **verlagen**.")
         st.markdown("- De lengte van de balk geeft de mate van invloed aan; langere balken wijzen op een sterkere bijdrage aan de voorspelling.")
 
-    st.image("static/local_feature_importance_waterfall.png", use_container_width=True)
+    st.image("static/local_feature_importance_waterfall_SAD.png", use_container_width=True)
 
 # Column 2 content
 with column2:
