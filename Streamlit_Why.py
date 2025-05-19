@@ -39,7 +39,7 @@ st.markdown('''
 
 # ========== Performance, Output, Data ==========
 
-col1, col2, col3 = st.columns(3)
+col1, col2, col3 = st.columns([1,1,2])
 
 with col1:
     st.markdown(
