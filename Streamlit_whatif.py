@@ -573,11 +573,27 @@ column1, column2, column3 = st.columns([1.2, 1.2, 1.2])
 with column1:
     st.subheader("Oorspronkelijke Advies")
 
+    with st.expander("ℹ️ **Belang van kenmerken voor individuele voorspelling**"):
+        st.write("Deze grafiek laat zien hoe verschillende patiëntkenmerken bijdragen aan de individuele voorspelling van het risico op sepsis-geassocieerde delier (SAD).")
+        st.markdown("- **Bovenste grafiek**: Toont de optelsom van alle bijdragen van kenmerken. De balk geeft de som van bijdragen die het risico op SAD verhogen en de rode stippellijn duidt de drempelwaarde aan tussen wel of geen SAD. In dit geval is de som **0.4507**, voorbij de drempelwaarde van **0.2361**, dus is het advies: *Geen SAD*")
+        st.markdown("- **Onderste grafiek**: Visualiseert de individuele bijdragen van kenmerken aan de voorspelling.")
+        st.markdown("- Oranje balken duiden op kenmerken die de kans op SAD **verhogen**.")
+        st.markdown("- Blauwe balken duiden op kenmerken die de kans op SAD **verlagen**.")
+        st.markdown("- De lengte van de balk geeft de mate van invloed aan; langere balken wijzen op een sterkere bijdrage aan de voorspelling.")
+
     # Call forward to get the plot-ready figure
     out, pred_class = manual_forward_kan(model, patient2)
 
 # Column 2 content
 with column2:
+    with st.expander("ℹ️ **Effect van individuele variabele op het advies**"):
+        st.write("Deze grafieken tonen aan hoe de waarde van patiëntkenmerken (hier: Protrombinetijd) bijdragen aan het advies.")
+        st.markdown("- **X-as**: Waarden die het kenmerk kan aannemen.")
+        st.markdown("- **Y-as**: De bijdrage (‘activatie output’) van elke waarde aan het uiteindelijke advies.")
+        st.markdown("- De rode stippellijn markeert de waarde voor de huidige patiënt.")
+        st.markdown("- Het bijbehorende punt toont hoe sterk deze specifieke waarde het advies beïnvloedt (positief of negatief).")
+        st.markdown("- **Blauwe punten** geven waarden die het risico op SAD **verlagen**.")
+        st.markdown("- **Oranje punten** geven waarden die het risico op SAD **verhogen**.")
 
     feature_list = [
     "Protrombinetijd (s)",
@@ -644,14 +660,6 @@ with column2:
     # Show spline activation for selected feature (layer 0)
     img_path = f"static/local_splines/layer0_input{feature_idx}_to_output0.png"
     st.image(img_path, use_container_width=True)
-
-    with st.expander("ℹ️ **Belang van kenmerken voor individuele voorspelling**"):
-        st.write("Deze grafiek laat zien hoe verschillende patiëntkenmerken bijdragen aan de individuele voorspelling van het risico op sepsis-geassocieerde delier (SAD).")
-        st.markdown("- **Bovenste grafiek**: Toont de optelsom van alle bijdragen van kenmerken. De balk geeft de som van bijdragen die het risico op SAD verhogen en de rode stippellijn duidt de drempelwaarde aan tussen wel of geen SAD. In dit geval is de som **0.4507**, voorbij de drempelwaarde van **0.2361**, dus is het advies: *Geen SAD*")
-        st.markdown("- **Onderste grafiek**: Visualiseert de individuele bijdragen van kenmerken aan de voorspelling.")
-        st.markdown("- Oranje balken duiden op kenmerken die de kans op SAD **verhogen**.")
-        st.markdown("- Blauwe balken duiden op kenmerken die de kans op SAD **verlagen**.")
-        st.markdown("- De lengte van de balk geeft de mate van invloed aan; langere balken wijzen op een sterkere bijdrage aan de voorspelling.")
 
 # Column 3 content
 with column3:
