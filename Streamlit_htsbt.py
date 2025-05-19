@@ -77,11 +77,13 @@ with column2:
         st.markdown("- **Oranje punten** geven waarden die het risico op SAD **verhogen**.")
 
     # Dropdown with only valid features
-    selected_idx, selected_label = st.selectbox(
+    selected_feature = st.selectbox(
         "Selecteer een kenmerk om te zien in hoeverre het kan veranderen zonder dat het advies verandert",
         valid_features,
         format_func=lambda x: x[1]
     )
+
+    selected_idx, selected_label = selected_feature
 
     # Show corresponding spline image
     img_path = f"static/cf_splines/layer0_input{selected_idx}_to_output0.png"
