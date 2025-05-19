@@ -627,8 +627,6 @@ with column1:
         st.markdown("- Blauwe balken duiden op kenmerken die de kans op SAD **verlagen**.")
         st.markdown("- De lengte van de balk geeft de mate van invloed aan; langere balken wijzen op een sterkere bijdrage aan de voorspelling.")
 
-# Show patient input and run explanation directly after expander in column1
-with column1:
     out, pred_class = manual_forward_kan(model, patient2)
 
 # Column 2 content
