@@ -654,10 +654,11 @@ with column3:
         feature_names=feature_names
     )
 
-    # Call forward to get the plot-ready figure
-    fig, out, pred_class = manual_forward_kan(model, patient2)
-
     with st.expander("ℹ️ **Uitleg van het eindadvies van het model**"):
+
+        # Call forward to get the plot-ready figure
+        fig, out, pred_class = manual_forward_kan(model, patient2)
+
         st.write("Deze grafiek laat zien hoe het model tot een eindadvies komt op basis van de som van alle activatiefunctie-uitkomsten.")
         st.markdown("- **X-as**: De som van bijdragen van alle patiëntkenmerken na verwerking door het model.")
         st.markdown("- **Y-as**: De ruwe modeluitkomst voor beide mogelijke adviezen (SAD of Geen SAD).")
