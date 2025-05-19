@@ -574,7 +574,7 @@ with column1:
 
     # Call forward to get the plot-ready figure
     fig, out, pred_class = manual_forward_kan(model, patient2)
-    st.pyplot(out)
+    st.pyplot(fig)
     st.markdown('</div>', unsafe_allow_html=True)
 
 # Column 1 content
