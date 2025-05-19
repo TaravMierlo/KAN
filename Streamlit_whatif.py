@@ -1,4 +1,6 @@
 import streamlit as st
+st.set_page_config(layout="wide")
+
 import torch
 import pandas as pd
 import pickle
@@ -53,7 +55,6 @@ with open("models/scaler_ord.pkl", "rb") as f:
     ordinal_encoder = pickle.load(f)
 
 # ========== Streamlit Config ==========
-st.set_page_config(layout="wide")
 
 st.title("🧠 Predict SAD from MIMIC-IV")
 st.markdown("This app predicts SAD and explains spline activations for a standard patient. (Prototype Version)")
@@ -71,8 +72,6 @@ st.markdown('''
 
 orange = '#faa63e'
 blue = '#3685eb' 
-
-
 
 # ========== Load Manual Forward KAN ==========
 
