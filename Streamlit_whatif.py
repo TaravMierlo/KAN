@@ -478,11 +478,14 @@ with column1:
         st.markdown("- Blauwe balken duiden op kenmerken die de kans op SAD **verlagen**.")
         st.markdown("- De lengte van de balk geeft de mate van invloed aan; langere balken wijzen op een sterkere bijdrage aan de voorspelling.")
 
-    # Show patient input and run explanation inside the column after the expander
+# Show patient input and run explanation directly after expander in column1
+with column1:
     st.markdown("## 🧬 Voorspelling en Visualisaties voor Voorbeeldpatiënt")
-        
-    # Simply call the function directly without capturing text output
+    st.markdown("Onderstaande grafieken en uitleg zijn gebaseerd op een patiënt met de volgende (genormaliseerde) waarden:")
+    st.code(patient2.tolist(), language="python")
+
     out, pred_class = manual_forward_kan(model, patient2)
+    st.success(f"Voorspelling voor deze patiënt: {'Geen SAD' if pred_class == 0 else 'SAD'}")
 
 # Column 2 content
 with column2:
