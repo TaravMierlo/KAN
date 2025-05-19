@@ -53,13 +53,13 @@ column1, column2 = st.columns([1.2, 1.2])
 
 # Column 1 content
 with column1:
-    with st.expander("ℹ️ **Belang van kenmerken voor individuele voorspelling**"):
-        st.write("Deze grafiek laat zien hoe verschillende patiëntkenmerken bijdragen aan de individuele voorspelling van het risico op sepsis-geassocieerde delier (SAD).")
+    with st.expander("ℹ️ **Bijdrage van kenmerken aan patiëntspecifiek advies**"):
+        st.write("Deze grafiek laat zien hoe verschillende patiëntkenmerken bijdragen aan het patiëntspecifieke advies van het risico op sepsis-geassocieerde delier (SAD).")
         st.markdown("- **Bovenste grafiek**: Toont de optelsom van alle bijdragen van kenmerken. De balk geeft de som van bijdragen die het risico op SAD verhogen en de rode stippellijn duidt de drempelwaarde aan tussen wel of geen SAD. In dit geval is de som **-0.1493**, onder de drempelwaarde van **0.2361**, dus is het advies: *SAD*")
-        st.markdown("- **Onderste grafiek**: Visualiseert de individuele bijdragen van kenmerken aan de voorspelling.")
+        st.markdown("- **Onderste grafiek**: Visualiseert de individuele bijdragen van kenmerken aan het advies.")
         st.markdown("- Oranje balken duiden op kenmerken die de kans op SAD **verhogen**.")
         st.markdown("- Blauwe balken duiden op kenmerken die de kans op SAD **verlagen**.")
-        st.markdown("- De lengte van de balk geeft de mate van invloed aan; langere balken wijzen op een sterkere bijdrage aan de voorspelling.")
+        st.markdown("- De lengte van de balk geeft de mate van invloed aan; langere balken wijzen op een sterkere bijdrage aan het advies.")
 
     st.image("static/local_feature_importance_waterfall_SAD.png", use_container_width=True)
 
@@ -69,6 +69,7 @@ with column2:
         st.write("Deze grafieken tonen aan hoe de waarde van patiëntkenmerken (hier: Protrombinetijd) bijdragen aan het advies.")
         st.markdown("- **X-as**: Waarden die het kenmerk kan aannemen.")
         st.markdown("- **Y-as**: De bijdrage (‘activatie output’) van elke waarde aan het uiteindelijke advies.")
+        st.markdown("- De paarse stippellijn markeert de minimale verandering van de waarde die nodig is om een ander advies te krijgen.")
         st.markdown("- De rode stippellijn markeert de waarde voor de huidige patiënt.")
         st.markdown("- Het bijbehorende punt toont hoe sterk deze specifieke waarde het advies beïnvloedt (positief of negatief).")
         st.markdown("- **Blauwe punten** geven waarden die het risico op SAD **verlagen**.")
@@ -76,7 +77,7 @@ with column2:
 
     # Dropdown with only valid features
     selected_idx, selected_label = st.selectbox(
-        "Selecteer een kenmerk om te zien in hoeverre het kan veranderen zonder dat het advies verandert",
+        "Selecteer een kenmerk om te zien in hoeverre een specifiek kenmerk minimaal moet veranderen om een ander advies te krijgen",
         valid_features,
         format_func=lambda x: x[1]
     )
