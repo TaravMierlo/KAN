@@ -54,6 +54,7 @@ with open("models/scaler_ord.pkl", "rb") as f:
 
 # ========== Streamlit Config ==========
 st.set_page_config(layout="wide")
+
 st.title("🧠 Predict SAD from MIMIC-IV")
 st.markdown("This app predicts SAD and explains spline activations for a standard patient. (Prototype Version)")
 
@@ -67,7 +68,6 @@ st.markdown('''
 
 # Inject CSS to make a sticky sidebar-style box
 # Use raw HTML + CSS for sticky layout
-st.set_page_config(layout="wide")
 
 orange = '#faa63e'
 blue = '#3685eb' 
