@@ -527,10 +527,6 @@ with column2:
     
 # ========== Run Manual Forward on Patient2 ==========
 with st.expander("🧬 **Voorspelling en Visualisaties voor Voorbeeldpatiënt**", expanded=True):
-    st.markdown("Onderstaande grafieken en uitleg zijn gebaseerd op een patiënt met de volgende (genormaliseerde) waarden:")
-    st.code(patient2.tolist(), language="python")
-
-    st.write("De analyse wordt hieronder uitgevoerd:")
 
     # Simply call the function directly without capturing text output
     out, pred_class = manual_forward_kan(model, patient2)
