@@ -65,8 +65,27 @@ st.markdown('''
 </style>
 ''', unsafe_allow_html=True)
 
+st.markdown(
+    """
+    <style>
+    #sticky-chart {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 80px;  /* adjust this depending on your header height */
+        background-color: white;
+        padding: 10px;
+        z-index: 999;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 orange = '#faa63e'
 blue = '#3685eb' 
+
+
 
 # ========== Load Manual Forward KAN ==========
 
@@ -470,7 +489,7 @@ def streamlit_what_if_widget(
     feature_names
 ):
 
-    st.subheader("What als Scenario: Pas kenmerken aan")
+    st.subheader("Wat als Scenario: Pas waarden aan")
 
     # Step 1: Denormalize original input
     full_true_tensor = denormalize_instance(
@@ -551,6 +570,9 @@ st.markdown("---")
 column1, column2, column3 = st.columns([1.2, 1.2, 1.2])
 
 with column1:
+
+    st.subheader("Orgineel Advies o.b.v. echte waarden")
+
     out, pred_class = manual_forward_kan(model, patient2)
 
 # Column 1 content
