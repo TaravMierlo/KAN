@@ -190,7 +190,6 @@ with col3:
     )
 
 # ========== Local Explanation ==========
-st.markdown("---")
 
 # Define columns outside the expanders
 column1, column2 = st.columns([1.2, 1.2])

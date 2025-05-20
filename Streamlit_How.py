@@ -41,10 +41,6 @@ df_sorted = df_importances.sort_values(by='Importance', ascending=False)
 
 # ========== Top Metrics Section ==========
 
-prediction = "SAD Gedetecteerd"
-delta = -0.31
-num_features = 53
-
 col1, col2, col3 = st.columns([1,1,2])
     
 with col1:
@@ -211,7 +207,6 @@ with col2:
         st.caption("Visualisatie van zekerheidsscore")
 
 # ========== Global Explanation ==========
-st.markdown("---")
 st.subheader("Hoe werkt het model?")
 
 col1, col2 = st.columns([1, 0.8])
