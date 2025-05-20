@@ -74,7 +74,11 @@ with col2:
     st.markdown(
         """
         <div style="background-color:#F0F2F6; padding:20px; border-radius:10px">
-            <h3>Zekerheid: <span style="color:#faa63e;">Laag</span></h3>
+            <h3>
+                Zekerheid: <span style="color:#faa63e;">erg laag</span>
+                <span title="De mate waarin de beschikbare gegevens dit geval ondersteunen als een geval van sepsis-geassocieerd delirium  (zeer laag, laag, gemiddeld, hoog, zeer hoog). Een hoge zekerheid betekent dat de informatie duidelijk wijst op het aanwezig zijn van delirium, in plaats van afwezigheid ervan."
+                      style="cursor: help; margin-left: 8px;">ℹ️</span>
+            </h3>
             <p>This column has a light blue background.</p>
         </div>
         """,
