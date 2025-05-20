@@ -74,15 +74,12 @@ with col1:
     if st.toggle("Toon uitleg output", key="toggle_output"):
         st.markdown(
             """
-            **Reikwijdte van de output**  
-            Dit model geeft een binaire output: het geeft aan of een patiënt wel of geen risico loopt op het ontwikkelen van Sepsis-geassocieerd delier (SAD).
+            **Scope van de output**
+            Dit model voorspelt of een IC-patiënt wél of géén risico loopt op het ontwikkelen van Sepsis-geassocieerd delier (SAD). De output is binair: risico of geen risico. Het model detecteert geen delier, maar signaleert patiënten die mogelijk extra aandacht nodig hebben.
 
-            De voorspelling weerspiegelt de inschatting van het systeem over de kans dat een patiënt tijdens de IC-opname SAD ontwikkelt. Het bevestigt niet de aanwezigheid van delier, maar signaleert patiënten die verhoogde klinische aandacht nodig hebben op basis van risico.
-
-            **Hoe de output gebruikt moet worden**  
-            De voorspelling is bedoeld ter ondersteuning van vroegtijdig klinisch ingrijpen. Als een patiënt als risicogeval wordt aangeduid, moet deze nauwlettend worden gemonitord op tekenen van SAD en in aanmerking worden genomen voor passende preventieve maatregelen.
-
-            Deze tool is ontwikkeld om IC-personeel te ondersteunen bij het identificeren van patiënten die baat kunnen hebben bij extra observatie of proactief beheer. Het vervangt het klinisch oordeel niet, maar helpt wel bij het stellen van prioriteiten in de zorg.
+            **Gebruik van de output**
+            De voorspelling is bedoeld als hulpmiddel voor vroegtijdig ingrijpen. Wordt een patiënt als risicogeval gemarkeerd, dan moet hij of zij actief worden gemonitord en overwogen voor preventieve maatregelen.
+            Deze tool ondersteunt IC-personeel bij het vroegtijdig herkennen van risicopatiënten. Het neemt het klinisch oordeel niet over, maar helpt om prioriteiten te stellen in de zorg.
             """
         )
 
