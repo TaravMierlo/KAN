@@ -124,8 +124,8 @@ with col3:
         
         st.markdown("**Labelverdeling trainingsset:**")
         st.table({
-        "Label": ["Geen SAD", "SAD"],
-        "Aantal": [4705, 3231]
+        "Geen SAD": [4705],
+        "SAD": [3231]
         })
         
         st.markdown(
