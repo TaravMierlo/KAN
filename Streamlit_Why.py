@@ -142,6 +142,12 @@ with col3:
                 vrouw       57.8%         
                 man         42.2%   
             **Afkomst**
+
+                Europees/Westers    65.7%
+                Afrikaans           8.4%
+                Latijn-Amerikaans   4.0%
+                Aziatisch           2.9%
+                Anders of onbekend  19.0%
             **ICU Type**
             """
     )
