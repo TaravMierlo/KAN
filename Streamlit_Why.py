@@ -57,7 +57,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-col1, col2, col3 = st.columns([1,1,2])
+col1, col2, col3 = st.columns([1,2,2])
 
 with col1:
     st.markdown(
@@ -79,7 +79,6 @@ with col2:
                 <span title="De mate waarin de beschikbare gegevens dit geval ondersteunen als een geval van sepsis-geassocieerd delirium  (zeer laag, laag, gemiddeld, hoog, zeer hoog). Een hoge zekerheid betekent dat de informatie duidelijk wijst op het aanwezig zijn van delirium, in plaats van afwezigheid ervan."
                       style="cursor: help; margin-left: 8px;">ℹ️</span>
             </h3>
-            <p>This column has a light blue background.</p>
         </div>
         """,
         unsafe_allow_html=True
