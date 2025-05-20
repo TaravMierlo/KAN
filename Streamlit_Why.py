@@ -103,14 +103,17 @@ with col2:
             st.image("static/confusion-matrix.png", use_container_width=True)
 
 with col3:
-    st.markdown(
-        """
-        <div style="background-color:#F0F2F6; padding:20px; border-radius:10px">
-            <h3>Data</h3>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    with st.container():
+        st.markdown(
+            """
+            <div style="background-color:#F0F2F6; padding:20px; border-radius:10px">
+                <div style="font-size:20px; font-weight:600;">
+                    Data
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
     if st.toggle("Toon training data bron", key="toggle_data"):
         st.markdown(
