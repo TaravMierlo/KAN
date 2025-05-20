@@ -105,12 +105,11 @@ with col2:
 with col3:
     with st.container():
         st.markdown(
-            """
-            <div style="background-color:#F0F2F6; padding:20px; border-radius:10px">
-                <div style="font-size:20px; font-weight:600;">
-                    Data
-                </div>
-            </div>
+             """
+            <table style="text-align: left;">
+                <tr><th>Leeftijd</th><th>Geslacht</th></tr>
+                <tr><td>60</td><td>Man</td></tr>
+            </table>
             """,
             unsafe_allow_html=True
         )
