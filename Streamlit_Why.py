@@ -119,20 +119,23 @@ with col3:
         st.markdown(
             """
             **Data bron:** MIMIC-IV (2024)
-            **Hoeveel instances:** 7837
-            **Verdeling labels:** 4705 geen SAD, 3231 SAD
 
-            **Demografische variabelen patienten:**
-
-
-            Dit model voorspelt of een IC-patiënt wél of géén risico loopt op het ontwikkelen van Sepsis-geassocieerd delier (SAD). De output is binair: risico of geen risico. Het model detecteert geen delier, maar signaleert patiënten die mogelijk extra aandacht nodig hebben.
-
-            **Gebruik van de output**
-            De voorspelling is bedoeld als hulpmiddel voor vroegtijdig ingrijpen. Wordt een patiënt als risicogeval gemarkeerd, dan moet hij of zij actief worden gemonitord en overwogen voor preventieve maatregelen.
-            Deze tool ondersteunt IC-personeel bij het vroegtijdig herkennen van risicopatiënten. Het neemt het klinisch oordeel niet over, maar helpt om prioriteiten te stellen in de zorg.
+            Kenmerken (zoals labwaarden) van **7837** patiënten die zijn opgenomen op de intensivecareafdeling van het Beth Israel Deaconess Medical Center in Boston, Massachusetts.""")
+        
+        st.markdown("**Labelverdeling trainingsset:**")
+        st.table({
+        "Label": ["Geen SAD", "SAD"],
+        "Aantal": [4705, 3231]
+        })
+        
+        st.markdown(
             """
-        )
-
+            **Leeftijd**  
+            **Geslacht**  
+            **Afkomst**
+            """
+    )
+        
 # ========== Local Explanation ==========
 st.subheader("")
 
