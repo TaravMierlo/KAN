@@ -63,8 +63,9 @@ with col1:
     st.markdown(
         """
         <div style="background-color:#F0F2F6; padding:20px; border-radius:10px">
-            <h3>Advies: <span style="color:#3685eb;">Geen SAD</span></h3>
-            <p>This column has a light gray background.</p>
+            <div style="font-size:20px; font-weight:600;">
+                Advies: <span style="color:#3685eb;">Geen SAD</span>
+            </div>
         </div>
         """,
         unsafe_allow_html=True
