@@ -107,8 +107,8 @@ with col3:
         st.markdown(
              """
             <table style="text-align: left;">
-                <tr><th>Leeftijd</th><th>Geslacht</th></tr>
-                <tr><td>60</td><td>Man</td></tr>
+                <tr><th>Leeftijd</th><th>Geslacht</th><th>ICU Type</th></tr>
+                <tr><td>60</td><td>Man</td><td>MICU/SICU</td></tr>
             </table>
             """,
             unsafe_allow_html=True
