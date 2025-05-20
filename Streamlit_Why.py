@@ -71,6 +71,9 @@ with col1:
         unsafe_allow_html=True
     )
 
+    with st.expander("Uitleg Output"):
+            st.markdown("Grootte test set: **3359**")
+
 with col2:
     with st.container():
         st.markdown(
