@@ -105,14 +105,31 @@ with col2:
 with col3:
     with st.container():
         st.markdown(
-             """
-            <table style="text-align: left;">
-                <tr><th>Leeftijd</th><th>Geslacht</th><th>ICU Type</th></tr>
-                <tr><td>60</td><td>Man</td><td>MICU/SICU</td></tr>
+        """
+        <div style="
+            background-color: #f5f7fa;
+            padding: 16px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            font-family: 'sans-serif';
+        ">
+            <table style="border-collapse: collapse; width: 100%;">
+                <tr>
+                    <th style="text-align: left; padding: 4px 8px; font-weight: 600;">Leeftijd</th>
+                    <th style="text-align: left; padding: 4px 8px; font-weight: 600;">Geslacht</th>
+                    <th style="text-align: left; padding: 4px 8px; font-weight: 600;">ICU Type</th>
+                </tr>
+                <tr>
+                    <td style="padding: 4px 8px;">60</td>
+                    <td style="padding: 4px 8px;">Man</td>
+                    <td style="padding: 4px 8px;">MICU/SICU</td>
+                </tr>
             </table>
-            """,
-            unsafe_allow_html=True
-        )
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     if st.toggle("Toon training data bron", key="toggle_data"):
         st.markdown(
