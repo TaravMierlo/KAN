@@ -112,6 +112,45 @@ with col3:
         """,
         unsafe_allow_html=True
     )
+
+    if st.toggle("Bekijk data bron", key="toggle_data_source"):
+        st.markdown(
+            """
+            ### 🚻 Gender Distribution
+            - **Female**: 57.8%  
+            - **Male**: 42.2%
+
+            ### 🧬 Afkomst (Race) Distribution
+            - **Aziatisch**: 2.9%  
+            - **Afrikaans**: 8.4%  
+            - **Latijns-amerikaans**: 4.0%  
+            - **Anders**: 4.3%  
+            - **Europees / Westers**: 65.7%  
+            - **Onbekend**: 14.7%
+
+            ### 🏥 ICU Type Distribution
+            - **CCU**: 11.1%  
+            - **CVICU**: 18.5%  
+            - **MICU**: 22.8%  
+            - **MICU / SICU**: 19.1%  
+            - **NICU**: 3.7%  
+            - **SICU**: 13.6%  
+            - **TSICU**: 11.2%
+
+            ### 🩺 Clinical Conditions
+            - **Mechanische ventilatie**: 46.2%  
+            - **CRRT**: 2.1%  
+            - **Vasopressor**: 48.3%  
+            - **Sedatie**: 43.1%  
+            - **AMI**: 12.4%  
+            - **CKD**: 20.4%  
+            - **COPD**: 3.6%  
+            - **Hypertensie**: 41.3%  
+            - **Diabetes**: 17.8%  
+            - **AKI**: 57.8%  
+            - **Beroerte**: 8.2%
+            """
+        )
 # ========== Local Explanation ==========
 st.subheader("")
 
