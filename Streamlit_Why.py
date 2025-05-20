@@ -39,6 +39,24 @@ st.markdown('''
 
 # ========== Performance, Output, Data ==========
 
+st.markdown(
+    """
+    <style>
+        .non-link-text {
+            color: #3685eb;
+            text-decoration: none;
+            pointer-events: none;
+        }
+        .highlight-orange {
+            color: #faa63e;
+            text-decoration: none;
+            pointer-events: none;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 col1, col2, col3 = st.columns([1,1,2])
 
 with col1:
