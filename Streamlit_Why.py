@@ -107,7 +107,6 @@ with col3:
         """
         <div style="background-color:#F0F2F6; padding:20px; border-radius:10px">
             <h3>Data</h3>
-            <p>This column has a light orange background.</p>
         </div>
         """,
         unsafe_allow_html=True
