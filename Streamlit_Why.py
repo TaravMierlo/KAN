@@ -45,13 +45,13 @@ with col1:
     st.markdown(
         """
         <div style="background-color:#f9f9f9; padding:20px; border-radius:10px">
-            <h3 style="color:#3685eb;">Advies: Geen SAD</h3>
+            <h3>Advies: <span style="color:#3685eb;">Geen SAD</span></h3>
             <p>This column has a light gray background.</p>
         </div>
         """,
         unsafe_allow_html=True
     )
-    
+
 with col2:
     st.markdown(
         """
