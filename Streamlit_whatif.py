@@ -1,6 +1,4 @@
 import streamlit as st
-st.set_page_config(layout="wide")
-
 import torch
 import pandas as pd
 import pickle
@@ -55,9 +53,9 @@ with open("models/scaler_ord.pkl", "rb") as f:
     ordinal_encoder = pickle.load(f)
 
 # ========== Streamlit Config ==========
-
-st.title("🧠 Predict SAD from MIMIC-IV")
-st.markdown("This app predicts SAD and explains spline activations for a standard patient. (Prototype Version)")
+st.set_page_config(layout="wide")
+st.title("DelierAlert")
+st.markdown("Vroegtijdige waarschuwing voor sepsis-gassocieerd delier")
 
 st.markdown('''
 <style>
@@ -66,6 +64,150 @@ st.markdown('''
 }
 </style>
 ''', unsafe_allow_html=True)
+
+# ========== Performance, Output, Data ==========
+
+st.markdown(
+    """
+    <style>
+        .non-link-text {
+            color: #3685eb;
+            text-decoration: none;
+            pointer-events: none;
+        }
+        .highlight-orange {
+            color: #faa63e;
+            text-decoration: none;
+            pointer-events: none;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+col1, col2, col3 = st.columns([2, 3, 3])
+
+with col1:
+    st.markdown(
+        """
+        <div style="background-color:#F0F2F6; padding:20px; border-radius:10px">
+            <div style="font-size:20px; font-weight:600;">
+                Advies: <span style="color:#3685eb;">Geen SAD</span>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    if st.toggle("Toon uitleg output", key="toggle_output"):
+        st.markdown(
+            """
+            **Scope van de output**
+            Dit model voorspelt of een IC-patiënt wél of géén risico loopt op het ontwikkelen van Sepsis-geassocieerd delier (SAD). De output is binair: risico of geen risico. Het model detecteert geen delier, maar signaleert patiënten die mogelijk extra aandacht nodig hebben.
+
+            **Gebruik van de output**
+            De voorspelling is bedoeld als hulpmiddel voor vroegtijdig ingrijpen. Wordt een patiënt als risicogeval gemarkeerd, dan moet hij of zij actief worden gemonitord en overwogen voor preventieve maatregelen.
+            Deze tool ondersteunt IC-personeel bij het vroegtijdig herkennen van risicopatiënten. Het neemt het klinisch oordeel niet over, maar helpt om prioriteiten te stellen in de zorg.
+            """
+        )
+
+with col2:
+    with st.container():
+        st.markdown(
+            """
+            <div style="background-color:#F0F2F6; padding:20px; border-radius:10px">
+                <div style="font-size:20px; font-weight:600;">
+                    Zekerheid: <span style="color:#faa63e;">erg laag</span>
+                    <span title="De mate waarin de beschikbare gegevens dit geval ondersteunen als een geval van sepsis-geassocieerd delirium (zeer laag, laag, gemiddeld, hoog, zeer hoog)."
+                        style="cursor: help; margin-left: 8px;">ℹ️</span>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+        if st.toggle("Toon modelprestatie", key="toggle_perf"):
+            st.markdown("Grootte test set: **3359**")
+            st.image("static/confusion-matrix.png", use_container_width=True)
+
+with col3:
+    with st.container():
+        st.markdown(
+        """
+        <div style="
+            background-color: #F0F2F6;
+            padding: 16px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        ">
+            <table style="border-collapse: collapse; width: 100%; border: none; table-layout: fixed;">
+                <tr>
+                    <th style="text-align: left; padding: 4px 8px; font-weight: 600; border: none;">Patient ID</th>
+                    <th style="text-align: left; padding: 4px 8px; font-weight: 600; border: none;">Leeftijd</th>
+                    <th style="text-align: left; padding: 4px 8px; font-weight: 600; border: none;">Geslacht</th>
+                    <th style="text-align: left; padding: 4px 8px; font-weight: 600; border: none;">ICU Type</th>
+                </tr>
+                <tr>
+                    <td style="padding: 4px 8px; border: none;">2</td>               
+                    <td style="padding: 4px 8px; border: none;">60</td>
+                    <td style="padding: 4px 8px; border: none;">Man</td>
+                    <td style="padding: 4px 8px; border: none;">MICU/SICU</td>
+                </tr>
+            </table>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    if st.toggle("Toon training data bron", key="toggle_data"):
+        st.markdown(
+            """
+            **Data bron:** MIMIC-IV (2024)
+
+            Kenmerken (zoals labwaarden) van **7837** patiënten die zijn opgenomen op de intensivecareafdeling van het Beth Israel Deaconess Medical Center in Boston, Massachusetts.""")
+        
+        st.markdown("**Labelverdeling trainingsset:**")
+
+        st.markdown(
+        """
+        <table style="text-align: left;">
+            <tr><th>SAD</th><th>Geen SAD</th></tr>
+            <tr><td>4705</td><td>3231</td></tr>
+        </table>
+        """,
+        unsafe_allow_html=True
+    )
+        st.markdown(
+            """
+            **Leeftijd**
+
+                <45                 772
+                45-59               1574
+                60-74               2727
+                75+                 2764
+            **Geslacht**
+                
+                Vrouw               57.8%         
+                Man                 42.2%   
+            **Afkomst**
+
+                Europees/Westers    65.7%
+                Afrikaans           8.4%
+                Latijn-Amerikaans   4.0%
+                Aziatisch           2.9%
+                Anders of onbekend  19.0%
+            **ICU Type**
+
+                MICU                22.8%
+                MICU/SICU           19.1%
+                CVICU               18.5%
+                SICU                13.6%
+                TSICU               11.2%
+                CCU                 11.1%
+                NICU                3.7%
+            """
+    )
 
 # Inject CSS to make a sticky sidebar-style box
 # Use raw HTML + CSS for sticky layout
