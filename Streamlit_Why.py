@@ -191,7 +191,7 @@ with col3:
 st.subheader("")
 
 # Define columns outside the expanders
-column1, column2 = st.columns([1.4, 1])
+column1, column2 = st.columns([2, 1])
 
 # Then use each column
 with column1:
