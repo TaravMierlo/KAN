@@ -71,8 +71,7 @@ with col1:
         unsafe_allow_html=True
     )
 
-    show_output_info = st.checkbox("Toon uitleg output", key="output_info")
-    if show_output_info:
+    if st.toggle("Toon uitleg output", key="toggle_output"):
         st.markdown("Grootte test set: **3359**")
 
 with col2:
@@ -90,8 +89,7 @@ with col2:
             unsafe_allow_html=True
         )
 
-        show_model_perf = st.checkbox("Toon modelprestatie", key="model_perf")
-        if show_model_perf:
+        if st.toggle("Toon modelprestatie", key="toggle_perf"):
             st.markdown("Grootte test set: **3359**")
             st.image("static/confusion-matrix.png", use_container_width=True)
 
@@ -105,7 +103,6 @@ with col3:
         """,
         unsafe_allow_html=True
     )
-
 # ========== Local Explanation ==========
 st.subheader("")
 
