@@ -135,9 +135,13 @@ with col3:
     )
         st.markdown(
             """
-            **Leeftijd**  
-            **Geslacht**  
+            **Leeftijd**
+                 
+            **Geslacht**
+                vrouw       57.8%         
+                man         42.2%   
             **Afkomst**
+            **ICU Type**
             """
     )
         
