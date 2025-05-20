@@ -116,11 +116,11 @@ with col3:
     if st.toggle("Bekijk data bron", key="toggle_data_source"):
         st.markdown(
             """
-            ### 🚻 Gender Distribution
+            # Geslacht
             - **Female**: 57.8%  
             - **Male**: 42.2%
 
-            ### 🧬 Afkomst (Race) Distribution
+            # Afkomst
             - **Aziatisch**: 2.9%  
             - **Afrikaans**: 8.4%  
             - **Latijns-amerikaans**: 4.0%  
@@ -128,7 +128,7 @@ with col3:
             - **Europees / Westers**: 65.7%  
             - **Onbekend**: 14.7%
 
-            ### 🏥 ICU Type Distribution
+            # ICU Type
             - **CCU**: 11.1%  
             - **CVICU**: 18.5%  
             - **MICU**: 22.8%  
@@ -137,7 +137,7 @@ with col3:
             - **SICU**: 13.6%  
             - **TSICU**: 11.2%
 
-            ### 🩺 Clinical Conditions
+            # Clinical Conditions
             - **Mechanische ventilatie**: 46.2%  
             - **CRRT**: 2.1%  
             - **Vasopressor**: 48.3%  
