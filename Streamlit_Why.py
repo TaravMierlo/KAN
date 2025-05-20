@@ -44,7 +44,7 @@ col1, col2, col3 = st.columns([1,1,2])
 with col1:
     st.markdown(
         """
-        <div style="background-color:#f9f9f9; padding:20px; border-radius:10px">
+        <div style="background-color:#F0F2F6; padding:20px; border-radius:10px">
             <h3>Advies: <span style="color:#3685eb;">Geen SAD</span></h3>
             <p>This column has a light gray background.</p>
         </div>
@@ -55,7 +55,7 @@ with col1:
 with col2:
     st.markdown(
         """
-        <div style="background-color:#f9f9f9; padding:20px; border-radius:10px">
+        <div style="background-color:#F0F2F6; padding:20px; border-radius:10px">
             <h3>Zekerheid</h3>
             <p>This column has a light blue background.</p>
         </div>
@@ -66,7 +66,7 @@ with col2:
 with col3:
     st.markdown(
         """
-        <div style="background-color:#f9f9f9; padding:20px; border-radius:10px">
+        <div style="background-color:#F0F2F6; padding:20px; border-radius:10px">
             <h3>Data</h3>
             <p>This column has a light orange background.</p>
         </div>
