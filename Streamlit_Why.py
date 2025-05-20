@@ -138,6 +138,7 @@ with col3:
             **Leeftijd**
                  
             **Geslacht**
+                
                 vrouw       57.8%         
                 man         42.2%   
             **Afkomst**
