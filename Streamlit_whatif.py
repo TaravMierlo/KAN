@@ -707,7 +707,6 @@ patient2 = torch.tensor([0.4941, 0.1310, 0.5806, 0.6543, 0.4667, 0.7600, 0.1872,
         0.0000, 0.0000, 1.0000, 0.0000, 0.0000, 0.0000, 1.0000, 0.0667])
 
 # ========== Local Explanation ==========
-st.markdown("---")
 
 # Define columns outside the expanders
 column1, column2, column3 = st.columns([1.2, 1.2, 1.2])
