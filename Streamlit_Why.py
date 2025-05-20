@@ -86,7 +86,7 @@ with col2:
         )
 
         with st.expander("Bekijk Modelprestatie"):
-            st.markdown("Grootte test set: 3359")
+            st.markdown("Grootte test set: **3359**")
             st.image("static/confusion-matrix.png", use_container_width=True)
 
 
