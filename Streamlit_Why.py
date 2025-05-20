@@ -56,7 +56,7 @@ with col2:
     st.markdown(
         """
         <div style="background-color:#F0F2F6; padding:20px; border-radius:10px">
-            <h3>Zekerheid</h3>
+            <h3>Zekerheid: <span style="color:#faa63e;">Laag</span></h3>
             <p>This column has a light blue background.</p>
         </div>
         """,
