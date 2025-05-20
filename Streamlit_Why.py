@@ -113,22 +113,23 @@ with col3:
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             display: inline-block;
         ">
-            <table style="border-collapse: collapse; width: 100%;">
+            <table style="border-collapse: collapse; width: 100%; border: none;">
                 <tr>
-                    <th style="text-align: left; padding: 4px 8px; font-weight: 600;">Leeftijd</th>
-                    <th style="text-align: left; padding: 4px 8px; font-weight: 600;">Geslacht</th>
-                    <th style="text-align: left; padding: 4px 8px; font-weight: 600;">ICU Type</th>
+                    <th style="text-align: left; padding: 4px 8px; font-weight: 600; border: none;">Leeftijd</th>
+                    <th style="text-align: left; padding: 4px 8px; font-weight: 600; border: none;">Geslacht</th>
+                    <th style="text-align: left; padding: 4px 8px; font-weight: 600; border: none;">ICU Type</th>
                 </tr>
                 <tr>
-                    <td style="padding: 4px 8px;">60</td>
-                    <td style="padding: 4px 8px;">Man</td>
-                    <td style="padding: 4px 8px;">MICU/SICU</td>
+                    <td style="padding: 4px 8px; border: none;">60</td>
+                    <td style="padding: 4px 8px; border: none;">Man</td>
+                    <td style="padding: 4px 8px; border: none;">MICU/SICU</td>
                 </tr>
             </table>
         </div>
         """,
         unsafe_allow_html=True
     )
+
 
     if st.toggle("Toon training data bron", key="toggle_data"):
         st.markdown(
