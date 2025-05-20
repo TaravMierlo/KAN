@@ -111,9 +111,9 @@ with col3:
             padding: 16px;
             border-radius: 12px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            display: inline-block;
+            width: 100%;
         ">
-            <table style="border-collapse: collapse; width: 100%; border: none;">
+            <table style="border-collapse: collapse; width: 100%; border: none; table-layout: fixed;">
                 <tr>
                     <th style="text-align: left; padding: 4px 8px; font-weight: 600; border: none;">Patient ID</th>
                     <th style="text-align: left; padding: 4px 8px; font-weight: 600; border: none;">Leeftijd</th>
@@ -131,7 +131,6 @@ with col3:
         """,
         unsafe_allow_html=True
     )
-
 
     if st.toggle("Toon training data bron", key="toggle_data"):
         st.markdown(
