@@ -75,17 +75,21 @@ with col2:
         st.markdown(
             """
             <div style="background-color:#F0F2F6; padding:20px; border-radius:10px">
-                <h3>
+                <div style="font-size:20px; font-weight:600;">
                     Zekerheid: <span style="color:#faa63e;">erg laag</span>
                     <span title="De mate waarin de beschikbare gegevens dit geval ondersteunen als een geval van sepsis-geassocieerd delirium (zeer laag, laag, gemiddeld, hoog, zeer hoog)."
-                          style="cursor: help; margin-left: 8px;">ℹ️</span>
-                </h3>
+                        style="cursor: help; margin-left: 8px;">ℹ️</span>
+                </div>
             </div>
             """,
             unsafe_allow_html=True
         )
+
         with st.expander("Bekijk Modelprestatie"):
             st.image("static/confusion-matrix.png", use_column_width=True)
+
+
+            
 
 with col3:
     st.markdown(
