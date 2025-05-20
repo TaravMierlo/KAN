@@ -60,6 +60,38 @@ st.markdown(
 col1, col2, col3 = st.columns([2,3,3])
 
 with col1:
+    st.markdown("""
+<div style="position: relative; display: inline-block;">
+  <span style="text-decoration: underline; cursor: help;">Hover over me</span>
+  <div style="
+    visibility: hidden;
+    width: 200px;
+    background-color: #f9f9f9;
+    color: #000;
+    text-align: left;
+    border-radius: 6px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+    box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.2);
+  " class="tooltiptext">
+    This is some additional info shown on hover.
+  </div>
+</div>
+
+<script>
+const container = document.querySelector("div[style*='position: relative']");
+const tooltip = container.querySelector("div");
+const trigger = container.querySelector("span");
+
+trigger.onmouseover = () => tooltip.style.visibility = 'visible';
+trigger.onmouseout = () => tooltip.style.visibility = 'hidden';
+</script>
+""", unsafe_allow_html=True)
+
     st.markdown(
         """
         <div style="background-color:#F0F2F6; padding:20px; border-radius:10px">
