@@ -113,65 +113,6 @@ with col3:
         unsafe_allow_html=True
     )
 
-    if st.toggle("Bekijk data bron", key="toggle_data_source"):
-        st.markdown(
-            """
-            <style>
-                .invisible-table {
-                    width: 100%;
-                    border-collapse: collapse;
-                    font-size: 15px;
-                }
-                .invisible-table td {
-                    border: none;
-                    padding: 4px 12px;
-                    vertical-align: top;
-                }
-                .invisible-table th {
-                    text-align: left;
-                    font-size: 16px;
-                    padding-top: 12px;
-                }
-            </style>
-
-            <table class="invisible-table">
-                <tr><th colspan="2">🚻 Gender Distribution</th></tr>
-                <tr><td>Female</td><td>57.8%</td></tr>
-                <tr><td>Male</td><td>42.2%</td></tr>
-
-                <tr><th colspan="2">🧬 Afkomst (Race) Distribution</th></tr>
-                <tr><td>Aziatisch</td><td>2.9%</td></tr>
-                <tr><td>Afrikaans</td><td>8.4%</td></tr>
-                <tr><td>Latijns-amerikaans</td><td>4.0%</td></tr>
-                <tr><td>Anders</td><td>4.3%</td></tr>
-                <tr><td>Europees / Westers</td><td>65.7%</td></tr>
-                <tr><td>Onbekend</td><td>14.7%</td></tr>
-
-                <tr><th colspan="2">🏥 ICU Type Distribution</th></tr>
-                <tr><td>CCU</td><td>11.1%</td></tr>
-                <tr><td>CVICU</td><td>18.5%</td></tr>
-                <tr><td>MICU</td><td>22.8%</td></tr>
-                <tr><td>MICU / SICU</td><td>19.1%</td></tr>
-                <tr><td>NICU</td><td>3.7%</td></tr>
-                <tr><td>SICU</td><td>13.6%</td></tr>
-                <tr><td>TSICU</td><td>11.2%</td></tr>
-
-                <tr><th colspan="2">🩺 Clinical Conditions</th></tr>
-                <tr><td>Mechanische ventilatie</td><td>46.2%</td></tr>
-                <tr><td>CRRT</td><td>2.1%</td></tr>
-                <tr><td>Vasopressor</td><td>48.3%</td></tr>
-                <tr><td>Sedatie</td><td>43.1%</td></tr>
-                <tr><td>AMI</td><td>12.4%</td></tr>
-                <tr><td>CKD</td><td>20.4%</td></tr>
-                <tr><td>COPD</td><td>3.6%</td></tr>
-                <tr><td>Hypertensie</td><td>41.3%</td></tr>
-                <tr><td>Diabetes</td><td>17.8%</td></tr>
-                <tr><td>AKI</td><td>57.8%</td></tr>
-                <tr><td>Beroerte</td><td>8.2%</td></tr>
-            </table>
-            """,
-            unsafe_allow_html=True
-        )
 # ========== Local Explanation ==========
 st.subheader("")
 
