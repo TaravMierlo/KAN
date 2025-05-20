@@ -83,9 +83,8 @@ with col2:
         """,
         unsafe_allow_html=True
     )
-
     with st.expander("Bekijk Modelprestatie"):
-        st.image("static/confusion-matrix.png", use_column_width=True)
+        st.image("static/confusion-matrix.png", use_container_width=True)
 
 with col3:
     st.markdown(
