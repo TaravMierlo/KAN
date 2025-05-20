@@ -57,41 +57,9 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-col1, col2, col3 = st.columns([2,3,3])
+col1, col2, col3 = st.columns([2, 3, 3])
 
 with col1:
-    st.markdown("""
-<div style="position: relative; display: inline-block;">
-  <span style="text-decoration: underline; cursor: help;">Hover over me</span>
-  <div style="
-    visibility: hidden;
-    width: 200px;
-    background-color: #f9f9f9;
-    color: #000;
-    text-align: left;
-    border-radius: 6px;
-    padding: 10px;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -100px;
-    box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.2);
-  " class="tooltiptext">
-    This is some additional info shown on hover.
-  </div>
-</div>
-
-<script>
-const container = document.querySelector("div[style*='position: relative']");
-const tooltip = container.querySelector("div");
-const trigger = container.querySelector("span");
-
-trigger.onmouseover = () => tooltip.style.visibility = 'visible';
-trigger.onmouseout = () => tooltip.style.visibility = 'hidden';
-</script>
-""", unsafe_allow_html=True)
-
     st.markdown(
         """
         <div style="background-color:#F0F2F6; padding:20px; border-radius:10px">
@@ -103,8 +71,9 @@ trigger.onmouseout = () => tooltip.style.visibility = 'hidden';
         unsafe_allow_html=True
     )
 
-    with st.expander("Uitleg Output"):
-            st.markdown("Grootte test set: **3359**")
+    show_output_info = st.checkbox("Toon uitleg output", key="output_info")
+    if show_output_info:
+        st.markdown("Grootte test set: **3359**")
 
 with col2:
     with st.container():
@@ -121,12 +90,10 @@ with col2:
             unsafe_allow_html=True
         )
 
-        with st.expander("Bekijk Modelprestatie"):
+        show_model_perf = st.checkbox("Toon modelprestatie", key="model_perf")
+        if show_model_perf:
             st.markdown("Grootte test set: **3359**")
             st.image("static/confusion-matrix.png", use_container_width=True)
-
-
-            
 
 with col3:
     st.markdown(
