@@ -139,8 +139,8 @@ with col3:
                  
             **Geslacht**
                 
-                vrouw       57.8%         
-                man         42.2%   
+                vrouw               57.8%         
+                man                 42.2%   
             **Afkomst**
 
                 Europees/Westers    65.7%
@@ -149,6 +149,19 @@ with col3:
                 Aziatisch           2.9%
                 Anders of onbekend  19.0%
             **ICU Type**
+
+                MICU                22.8%
+                MICU/SICU           19.1%
+                CVICU               18.5%
+                SICU                13.6%
+                TSICU               11.2%
+                CCU                 11.1%
+                NICU                3.7%
+                  
+
+
+
+
             """
     )
         
