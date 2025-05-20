@@ -136,11 +136,15 @@ with col3:
         st.markdown(
             """
             **Leeftijd**
-                 
+
+                <45                 772
+                45-59               1574
+                60-74               2727
+                75+                 2764
             **Geslacht**
                 
-                vrouw               57.8%         
-                man                 42.2%   
+                Vrouw               57.8%         
+                Man                 42.2%   
             **Afkomst**
 
                 Europees/Westers    65.7%
