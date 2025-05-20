@@ -115,11 +115,13 @@ with col3:
         ">
             <table style="border-collapse: collapse; width: 100%; border: none;">
                 <tr>
+                    <th style="text-align: left; padding: 4px 8px; font-weight: 600; border: none;">Patient ID</th>
                     <th style="text-align: left; padding: 4px 8px; font-weight: 600; border: none;">Leeftijd</th>
                     <th style="text-align: left; padding: 4px 8px; font-weight: 600; border: none;">Geslacht</th>
                     <th style="text-align: left; padding: 4px 8px; font-weight: 600; border: none;">ICU Type</th>
                 </tr>
                 <tr>
+                    <td style="padding: 4px 8px; border: none;">2</td>               
                     <td style="padding: 4px 8px; border: none;">60</td>
                     <td style="padding: 4px 8px; border: none;">Man</td>
                     <td style="padding: 4px 8px; border: none;">MICU/SICU</td>
