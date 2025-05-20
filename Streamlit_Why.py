@@ -123,6 +123,18 @@ with col3:
             Kenmerken (zoals labwaarden) van **7837** patiënten die zijn opgenomen op de intensivecareafdeling van het Beth Israel Deaconess Medical Center in Boston, Massachusetts.""")
         
         st.markdown("**Labelverdeling trainingsset:**")
+
+        st.markdown(
+        """
+        <table style="text-align: left;">
+            <tr><th>Label</th><th>Aantal</th></tr>
+            <tr><td>Geen SAD</td><td>4705</td></tr>
+            <tr><td>SAD</td><td>3231</td></tr>
+        </table>
+        """,
+        unsafe_allow_html=True
+    )
+
         st.table({
         "Geen SAD": [4705],
         "SAD": [3231]
