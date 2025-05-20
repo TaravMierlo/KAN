@@ -107,12 +107,11 @@ with col3:
         st.markdown(
         """
         <div style="
-            background-color: #f5f7fa;
+            background-color: #F0F2F6;
             padding: 16px;
             border-radius: 12px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             display: inline-block;
-            font-family: 'sans-serif';
         ">
             <table style="border-collapse: collapse; width: 100%;">
                 <tr>
