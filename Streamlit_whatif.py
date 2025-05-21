@@ -94,6 +94,7 @@ with col1:
             <div style="font-size:20px; font-weight:600;">
                 Advies: <span style="color:#3685eb;">Geen SAD</span>
             </div>
+            <br>
         </div>
         """,
         unsafe_allow_html=True
