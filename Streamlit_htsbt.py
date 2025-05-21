@@ -106,10 +106,6 @@ with col2:
             unsafe_allow_html=True
         )
 
-        if st.toggle("Toon modelprestatie", key="toggle_perf"):
-            st.markdown("Grootte test set: **3359**")
-            st.image("static/confusion-matrix.png", use_container_width=True)
-
 with col3:
     with st.container():
         st.markdown(
