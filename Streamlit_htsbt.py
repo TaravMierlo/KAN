@@ -227,13 +227,13 @@ with column2:
 
     st.markdown("#### Uitleg per Kenmerk")
     st.markdown("""
-    - De temperatuur mag niet lager worden dan 33.85 °C om hetzelfde advies te behouden.
-    - De glucosewaarde mag maximaal 624.40 mg/dL zijn om hetzelfde advies te behouden.
-    - Het natriumgehalte mag niet hoger zijn dan 145.70 mEq/L om hetzelfde advies te behouden.
-    - De INR mag maximaal 1.19 zijn om hetzelde advies te behouden.
-    - Zolang de patiënt geen mechanische ventilatie ontvangt, blijft het advies ongewijzigd; als dat wel het geval is, verandert het advies naar SAD.
+    - De temperatuur moet tussen 33.85 °C en 42.00 °C blijven om dezelfde uitkomst te behouden.
+    - De glucosewaarde moet tussen 624.40 mg/dL en 8.00 mg/dL blijven om dezelfde uitkomst te behouden.
+    - Het natriumgehalte moet tussen 95.00 mEq/L en 145.70 blijven om dezelfde uitkomst te behouden.
+    - De INR moet tussen 0.80 en 1.19 blijven om dezelfde uitkomst te behouden.
+    - Zolang de patiënt geen mechanische ventilatie ontvangt, blijft de uitkomst ongewijzigd; als dat wel het geval is, verandert het advies naar SAD.
     - Zolang de patiënt geen beroerte heeft gehad, blijft het advies ongewijzigd; als dat wel het geval is, verandert het advies naar SAD.
     - Zolang de patiënt niet is opgenomen op de NICU, blijft het advies ongewijzigd; als dat wel het geval is, verandert het advies naar SAD.
-    - De GCS-score moet buiten het bereik van 5.14 en 13.90 blijven om dezelfde voorspelling te behouden. Dus lager dan 5.14 of hoger dan 14.00. 
-    - De SOFA-score mag niet hoger zijn dan 10.06 om hetzelfde advies te behouden.
+    - De GCS-score moet 1 t/m 5 of 14 of 15 zijn om dezelfde uitkomst te behouden. 
+    - De SOFA-score moet 1 t/m 10 zijn om dezelfde uitkomst te behouden.
         """)
