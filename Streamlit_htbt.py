@@ -227,7 +227,7 @@ with column2:
 
     st.markdown("#### Uitleg per Kenmerk")
     st.markdown("""
-    - Om het advies te veranderen van 'SAD' naar 'geen SAD', zou het magnesiumgehalte moeten stijgen tot minstens 5.59 mg/dL.
-    - Om het advies te veranderen van 'SAD' naar 'geen SAD', zou de protrombinetijd moeten toenemen tot minstens 13.71 seconden.
-    - Het ontvangen van mechanische ventilatie leidt in dit model tot een hogere kans op het advies 'SAD'. Zonder mechanische ventilatie zou het advies kunnen veranderen naar 'geen SAD'.
+    - Om het advies te veranderen van *SAD* naar *geen SAD*, zou het magnesiumgehalte moeten toenemen tot minstens 5.59 mg/dL.
+    - Om het advies te veranderen van *SAD* naar *geen SAD*, zou de protrombinetijd moeten toenemen tot minstens 13.71 seconden.
+    - Het ontvangen van mechanische ventilatie leidt in dit model tot een hogere kans op het advies *SAD*. Zonder mechanische ventilatie zou het advies veranderen naar *geen SAD*.
         """)
