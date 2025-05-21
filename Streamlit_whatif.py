@@ -653,7 +653,7 @@ def streamlit_what_if_widget(
     sorted_indices = sorted(editable_indices, key=lambda i: abs(contributions[i]), reverse=True)
 
     # Step 3: Build sliders
-    st.markdown('Pas de waarden van de kenmerken aan en klik op "Start Wat Als Analys" om het effect te zien op het advies en de bijdrage van de kenmerken.')
+    st.markdown('Pas de waarden van de kenmerken aan en klik op "Start Wat Als Analyse" om het effect te zien op het advies en de bijdrage van de kenmerken.')
     modified_values = full_true_values.copy()
 
     # User control to show top-5 only or all
@@ -714,7 +714,7 @@ patient2 = torch.tensor([0.4941, 0.1310, 0.5806, 0.6543, 0.4667, 0.7600, 0.1872,
 # ========== Local Explanation ==========
 
 # Define columns outside the expanders
-column1, column2, column3 = st.columns([1.2, 1.2, 1.2])
+column1, column2, column3 = st.columns([1.2, 1.2, 1.44])
 
 with column1:
     st.subheader("Oorspronkelijke Advies")
