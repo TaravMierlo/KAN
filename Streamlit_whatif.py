@@ -657,7 +657,7 @@ def streamlit_what_if_widget(
     modified_values = full_true_values.copy()
 
     # User control to show top-5 only or all
-    show_all = st.toggle("🔍 Toon alle kenmerken", value=False)
+    show_all = st.toggle("Toon alle kenmerken", value=False)
 
     # Determine which indices to show
     if show_all:
@@ -691,7 +691,7 @@ def streamlit_what_if_widget(
             )
 
     # Step 4: Run button
-    if st.button("🚀 Run What-If Analysis"):
+    if st.button("Start Wat-Als Analyse"):
         cont_vals = np.array([modified_values[i] for i in continuous_indices]).reshape(1, -1)
         ord_vals = np.array([modified_values[i] for i in ordinal_indices]).reshape(1, -1)
         modified_norm = modified_values.copy()
