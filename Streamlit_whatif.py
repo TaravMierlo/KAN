@@ -655,7 +655,7 @@ def streamlit_what_if_widget(
     sorted_indices = sorted(editable_indices, key=lambda i: abs(contributions[i]), reverse=True)
 
     # Step 3: Build sliders
-    st.markdown('Pas de waarden van de kenmerken aan en klik op "Start Wat Als Analyse" om het effect te zien op het advies en de bijdrage van de kenmerken.')
+    st.markdown('Pas de waarden van de kenmerken aan en klik op "Start Wat Als Analyse" om het effect te zien op het advies en de bijdrage van de kenmerken. Om te vergelijken met het oorspronkelijke advies klik op "Bekijk Oorspronkelijke Advies".')
     modified_values = full_true_values.copy()
 
     # User control to show top-5 only or all
