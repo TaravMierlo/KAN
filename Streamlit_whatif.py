@@ -656,7 +656,16 @@ def streamlit_what_if_widget(
     st.markdown("Pas de waarden van de kenmerken aan en bekijk het effect op het advies.")
     modified_values = full_true_values.copy()
 
-    for i in sorted_indices:
+    # User control to show top-5 only or all
+    show_all = st.toggle("🔍 Toon alle kenmerken", value=False)
+
+    # Determine which indices to show
+    if show_all:
+        display_indices = sorted_indices
+    else:
+        display_indices = sorted_indices[:5]  # Only top 5
+
+    for i in display_indices:
         fname = feature_names[i]
         if i in continuous_indices:
             min_val = scaler.data_min_[continuous_indices.index(i)]
