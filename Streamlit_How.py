@@ -83,6 +83,12 @@ with col2:
     img_path = f"static/splines/layer0_input{feature_idx}_to_output0.png"
     st.image(img_path, use_container_width=True)
 
+    st.markdown ("""
+    Elke variabele, zoals Protrombinetijd, draagt bij aan het model door een activatie-output te genereren die wordt bepaald op basis van de echte waarde van de patient (zie bovenste grafiek). 
+    De outputs van alle 53 variabelen worden vervolgens bij elkaar opgeteld. 
+    Deze som bepaalt waar we op de X-as van de onderste grafiek terechtkomen, en dus welk advies het model geeft: SAD of geen SAD.
+                 """)
+
     # Show two additional images side-by-side (layer 1)
     with st.expander("ℹ️ **Uitkomst Advies**"):
         st.write("Deze grafiek toont hoe de som van de activatiefunctie-uitkomsten van alle variabelen leidt tot de ruwe modeluitkomst, die bepaalt of het advies **SAD** of **geen SAD** is.")
