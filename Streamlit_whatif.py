@@ -122,6 +122,7 @@ with col2:
                     <span title="De mate waarin de beschikbare gegevens dit geval ondersteunen als een geval van sepsis-geassocieerd delirium (zeer laag, laag, gemiddeld, hoog, zeer hoog)."
                         style="cursor: help; margin-left: 8px;">ℹ️</span>
                 </div>
+                <br>
             </div>
             """,
             unsafe_allow_html=True
