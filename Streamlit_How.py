@@ -96,7 +96,7 @@ with col2:
         st.markdown("- De **oranje lijn** (*SAD*): de ruwe modeluitkomst daalt naarmate de gecombineerde activatie toeneemt.")
         st.markdown("- X-as: Som van activatiefuncties. De totale invloed van alle klinische variabelen.")
         st.markdown("- Y-as: Ruwe modeluitkomst voor de uiteindelijke classificatie.")
-        st.markdown("- Rode gestippelde lijn (*Beslissingsgrens: 0.2361*): Als de som van de activatie outputs groter is dan deze waarde (ongeveer 0.2361), kiest het model voor ""Geen SAD"", anders voor ""SAD"".")
+        st.markdown("- Groene gestippelde lijn (*Beslissingsgrens: 0.2361*): Als de som van de activatie outputs groter is dan deze waarde (ongeveer 0.2361), kiest het model voor ""Geen SAD"", anders voor ""SAD"".")
 
         st.markdown('''
         <style>
