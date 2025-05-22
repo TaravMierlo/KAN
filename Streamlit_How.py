@@ -84,7 +84,7 @@ with col2:
     st.image(img_path, use_container_width=True)
 
     st.markdown ("""
-        Voor elk van de 53 kenmerken wordt de bijdrage aan de uitkomst bepaald via een zogenoemde spline-functie. De eerste grafiek toont dit voor Protrombinetijd. Al deze bijdragen worden opgeteld om een wwrde te krijgen per patiënt. Deze som wordt ingevoerd in twee nieuwe functies (voor iedere categorie een) die bepaalt of de ruwe model uitkomst boven of onder de drempel ligt. Op basis daarvan geeft het model zijn advies (*SAD* of *geen SAD*).
+        Voor elk van de 53 kenmerken wordt de bijdrage aan de uitkomst bepaald via een zogenoemde spline-functie. De eerste grafiek toont dit voor Protrombinetijd. Al deze bijdragen worden opgeteld om de totale bijdrage van alle kenmerken te berekenen voor een patiënt. Deze som wordt ingevoerd in twee nieuwe functies (voor iedere categorie een) die bepaalt of de ruwe model uitkomst boven of onder de drempel ligt. Op basis daarvan geeft het model zijn advies (*SAD* of *geen SAD*).
                  """)
 
     # Show two additional images side-by-side (layer 1)
