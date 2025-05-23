@@ -64,22 +64,22 @@ with col1:
         """
         <div style="background-color:#F0F2F6; padding:20px; border-radius:10px">
             <div style="font-size:20px; font-weight:600;">
-                Advice: <span style="color:#3685eb;">No SAD</span>
+                Advies: <span style="color:#3685eb;">Geen SAD</span>
             </div>
         </div>
         """,
         unsafe_allow_html=True
     )
 
-    if st.toggle("Show explanation output", key="toggle_output"):
+    if st.toggle("Toon uitleg output", key="toggle_output"):
         st.markdown(
             """
-            **Scope of the output**
-            This model predicts whether or not an ICU patient is at risk of developing Sepsis-Associated Delirium (SAD). The output is binary: risk or no risk. The model does not detect delirium but flags patients who may require extra attention.
+            **Scope van de output**
+            Dit model voorspelt of een IC-patiënt wél of géén risico loopt op het ontwikkelen van Sepsis-geassocieerd delier (SAD). De output is binair: risico of geen risico. Het model detecteert geen delier, maar signaleert patiënten die mogelijk extra aandacht nodig hebben.
 
-            **Use of the output**
-            The prediction is intended as a tool for early intervention. If a patient is flagged as at risk, they should be actively monitored and considered for preventive measures.
-            This tool supports ICU staff in the early identification of at-risk patients. It does not replace clinical judgment but helps prioritize care.
+            **Gebruik van de output**
+            De voorspelling is bedoeld als hulpmiddel voor vroegtijdig ingrijpen. Wordt een patiënt als risicogeval gemarkeerd, dan moet hij of zij actief worden gemonitord en overwogen voor preventieve maatregelen.
+            Deze tool ondersteunt IC-personeel bij het vroegtijdig herkennen van risicopatiënten. Het neemt het klinisch oordeel niet over, maar helpt om prioriteiten te stellen in de zorg.
             """
         )
 
