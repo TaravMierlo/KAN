@@ -71,7 +71,7 @@ with col1:
         unsafe_allow_html=True
     )
 
-    if st.toggle("Toon uitleg output", key="toggle_output"):
+    if st.toggle("Show explanation output", key="toggle_output"):
         st.markdown(
             """
             **Scope of the output**
