@@ -202,8 +202,8 @@ with column2:
         st.markdown("- **Y-as**: De bijdrage van elke waarde aan het uiteindelijke advies.")
         st.markdown("- De rode stippellijn markeert de waarde voor de huidige patiënt.")
         st.markdown("- Het bijbehorende punt toont hoe sterk deze specifieke waarde het advies beïnvloedt (positief of negatief).")
-        st.markdown("- **Blauwe punten** geven waarden die het kans op SAD **verlagen**.")
-        st.markdown("- **Oranje punten** geven waarden die het kans op SAD **verhogen**.")
+        st.markdown("- **Blauwe punten** geven waarden die de kans op SAD **verlagen**.")
+        st.markdown("- **Oranje punten** geven waarden die de kans op SAD **verhogen**.")
 
     feature_list = [
     "Protrombinetijd (s)",
