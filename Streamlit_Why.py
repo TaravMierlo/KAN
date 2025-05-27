@@ -187,7 +187,7 @@ column1, column2 = st.columns([1.5, 1])
 with column1:
     with st.expander("ℹ️ **Belang van kenmerken voor individuele voorspelling**"):
         st.write("Deze grafiek laat zien hoe verschillende patiëntkenmerken bijdragen aan de individuele voorspelling van het risico op sepsis-geassocieerde delier (SAD).")
-        st.markdown("- **Bovenste grafiek**: Toont de optelsom van alle bijdragen van kenmerken. De balk geeft de som van bijdragen die het risico op SAD verhogen en de rode stippellijn duidt de drempelwaarde aan tussen wel of geen SAD. In dit geval is de som **0.4507**, voorbij de drempelwaarde van **0.2361**, dus is het advies: *Geen SAD*")
+        st.markdown("- **Bovenste grafiek**: Toont de optelsom van alle bijdragen van kenmerken. De balk geeft de som van bijdragen die het risico op SAD verhogen en de rode stippellijn duidt de drempelwaarde aan tussen wel of geen SAD. In dit geval is de som **0.4507**, hoger dan de drempelwaarde **0.2361**, dus is het advies: *Geen SAD*")
         st.markdown("- **Onderste grafiek**: Visualiseert de individuele bijdragen van kenmerken aan de voorspelling.")
         st.markdown("- Oranje balken duiden op kenmerken die de kans op SAD **verhogen**.")
         st.markdown("- Blauwe balken duiden op kenmerken die de kans op SAD **verlagen**.")
@@ -199,11 +199,11 @@ with column2:
     with st.expander("ℹ️ **Effect van individuele variabele op het advies**"):
         st.write("Deze grafieken tonen aan hoe de waarde van patiëntkenmerken (hier: Protrombinetijd) bijdragen aan het advies.")
         st.markdown("- **X-as**: Waarden die het kenmerk kan aannemen.")
-        st.markdown("- **Y-as**: De bijdrage (‘activatie output’) van elke waarde aan het uiteindelijke advies.")
+        st.markdown("- **Y-as**: De bijdrage van elke waarde aan het uiteindelijke advies.")
         st.markdown("- De rode stippellijn markeert de waarde voor de huidige patiënt.")
         st.markdown("- Het bijbehorende punt toont hoe sterk deze specifieke waarde het advies beïnvloedt (positief of negatief).")
-        st.markdown("- **Blauwe punten** geven waarden die het risico op SAD **verlagen**.")
-        st.markdown("- **Oranje punten** geven waarden die het risico op SAD **verhogen**.")
+        st.markdown("- **Blauwe punten** geven waarden die het kans op SAD **verlagen**.")
+        st.markdown("- **Oranje punten** geven waarden die het kans op SAD **verhogen**.")
 
     feature_list = [
     "Protrombinetijd (s)",
@@ -272,13 +272,13 @@ with column2:
     st.image(img_path, use_container_width=True)
 
     with st.expander("ℹ️ **Uitleg uitkomst van het model**"):
-        st.write("Deze grafiek laat zien hoe het model tot een advies komt op basis van de som van alle activatiefunctie-uitkomsten.")
+        st.write("Deze grafiek laat zien hoe het model tot een advies komt op basis van de som van alle bijdragen.")
         st.markdown("- **X-as**: De som van bijdragen van alle individuele patiëntkenmerken.")
         st.markdown("- **Y-as**: De ruwe modeluitkomst voordat het wordt omgezet naar een advies (SAD of Geen SAD).")
-        st.markdown("- De **blauwe lijn** toont de kanscurve voor het advies *Geen SAD*.")
-        st.markdown("- De **oranje lijn** toont de kanscurve voor het advies *SAD*.")
-        st.markdown("- De **paarse stippellijn** markeert de inputwaarde van deze specifieke patiënt.")
-        st.markdown("- De **rode stippellijn** toont de beslissingsgrens: ligt de paarse lijn rechts hiervan, dan is het advies *Geen SAD*; links is het advies *SAD*.")
+        st.markdown("- De **blauwe lijn** toont de curve voor het advies *Geen SAD*.")
+        st.markdown("- De **oranje lijn** toont de curve voor het advies *SAD*.")
+        st.markdown("- De **rode stippellijn** markeert de inputwaarde van deze specifieke patiënt.")
+        st.markdown("- De **groene stippellijn** toont de beslissingsgrens: ligt de groene lijn rechts hiervan, dan is het advies *Geen SAD*; links is het advies *SAD*.")
         st.markdown("- De gemarkeerde waarden op de lijnen geven de ruwe modeloutput bij de inputwaarde.")
 
     img_path1 = "static/local_splines/layer1_input0_adviesuitkomst.png"
