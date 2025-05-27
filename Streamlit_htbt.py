@@ -72,7 +72,7 @@ with col1:
         """
         <div style="background-color:#F0F2F6; padding:20px; border-radius:10px">
             <div style="font-size:20px; font-weight:600;">
-                Advies: <span style="color:#faa63e;">SAD</span>
+                Advies: <span style="color:#3685eb;">Geen SAD</span>
             </div>
         </div>
         """,
@@ -125,10 +125,10 @@ with col3:
                     <th style="text-align: left; padding: 4px 8px; font-weight: 600; border: none;">ICU Type</th>
                 </tr>
                 <tr>
-                    <td style="padding: 4px 8px; border: none;">10</td>               
-                    <td style="padding: 4px 8px; border: none;">88</td>
+                    <td style="padding: 4px 8px; border: none;">2</td>               
+                    <td style="padding: 4px 8px; border: none;">60</td>
                     <td style="padding: 4px 8px; border: none;">Man</td>
-                    <td style="padding: 4px 8px; border: none;">TSICU</td>
+                    <td style="padding: 4px 8px; border: none;">MICU/SICU</td>
                 </tr>
             </table>
         </div>
@@ -200,7 +200,7 @@ with column1:
         st.markdown("- Blauwe balken duiden op kenmerken die de kans op SAD **verlagen**.")
         st.markdown("- De lengte van de balk geeft de mate van invloed aan; langere balken wijzen op een sterkere bijdrage aan het advies.")
 
-    st.image("static/local_feature_importance_waterfall_SAD.png", use_container_width=True)
+    st.image("static/local_feature_importance_waterfall.png", use_container_width=True)
 
 # Column 2 content
 with column2:
