@@ -208,11 +208,11 @@ with column2:
         st.write("Deze grafieken tonen aan hoe de waarde van patiëntkenmerken (hier: Protrombinetijd) bijdragen aan het advies.")
         st.markdown("- **X-as**: Waarden die het kenmerk kan aannemen.")
         st.markdown("- **Y-as**: De bijdrage (‘activatie output’) van elke waarde aan het uiteindelijke advies.")
-        st.markdown("- De paarse stippellijn markeert de minimale verandering van de waarde die nodig is om een ander advies te krijgen.")
+        st.markdown("- Het paarse vlak toont het gebied waar binnen de waarde moet komen om een ander advies te krijgen.")
         st.markdown("- De rode stippellijn markeert de waarde voor de huidige patiënt.")
         st.markdown("- Het bijbehorende punt toont hoe sterk deze specifieke waarde het advies beïnvloedt (positief of negatief).")
-        st.markdown("- **Blauwe punten** geven waarden die het risico op SAD **verlagen**.")
-        st.markdown("- **Oranje punten** geven waarden die het risico op SAD **verhogen**.")
+        st.markdown("- **Blauwe punten** geven waarden die de kans op SAD **verlagen**.")
+        st.markdown("- **Oranje punten** geven waarden die de kans op SAD **verhogen**.")
 
     # Dropdown with only valid features
     selected_idx, selected_label = st.selectbox(
@@ -227,7 +227,13 @@ with column2:
 
     st.markdown("#### Uitleg per Kenmerk")
     st.markdown("""
-    - Om het advies te veranderen van *SAD* naar *geen SAD*, zou het magnesiumgehalte moeten toenemen tot minstens 5.59 mg/dL.
-    - Om het advies te veranderen van *SAD* naar *geen SAD*, zou de protrombinetijd moeten toenemen tot minstens 13.71 seconden.
-    - Het ontvangen van mechanische ventilatie leidt in dit model tot een hogere kans op het advies *SAD*. Zonder mechanische ventilatie zou het advies veranderen naar *geen SAD*.
+    - De temperatuur moet tussen 30.22 en 33.85 °C worden om een andere uitkomst te krijgen.
+    - De glucosewaarde moet tussen 624.40 mg/dL en 924.00 mg/dL worden om een andere uitkomst te krijgen.
+    - Het natriumgehalte moet tussen 145.70 en 183.00 worden om een andere uitkomst te krijgen.
+    - De INR moet tussen 1.19 en 9.90 worden om een andere uitkomst te krijgen.
+    - Zolang de patiënt geen mechanische ventilatie ontvangt, blijft de uitkomst ongewijzigd; als dat wel het geval is, verandert het advies naar SAD.
+    - Zolang de patiënt geen beroerte heeft gehad, blijft het advies ongewijzigd; als dat wel het geval is, verandert het advies naar SAD.
+    - Zolang de patiënt niet is opgenomen op de NICU, blijft het advies ongewijzigd; als dat wel het geval is, verandert het advies naar SAD.
+    - De GCS-score moet 6 t/m 13 worden om een andere uitkomst te krijgen. 
+    - De SOFA-score moet 11 of hoger zijn om een andere uitkomst te krijgen.
         """)
