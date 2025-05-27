@@ -119,7 +119,7 @@ with col2:
             <div style="background-color:#F0F2F6; padding:20px; border-radius:10px">
                 <div style="font-size:20px; font-weight:600;">
                     Zekerheid: <span style="color:#faa63e;">erg laag</span>
-                    <span title="De mate waarin de beschikbare gegevens dit geval ondersteunen als een geval van sepsis-geassocieerd delirium (zeer laag, laag, gemiddeld, hoog, zeer hoog)."
+                    <span title="De mate van onzekerheid in de voorspelling van dit model (erg laag, laag, gemiddeld, hoog, erg hoog) op basis van de waarschijnlijkheidsverdeling over de mogelijke uitkomsten."
                         style="cursor: help; margin-left: 8px;">ℹ️</span>
                 </div>
                 <br>
