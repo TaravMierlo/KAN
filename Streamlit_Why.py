@@ -89,8 +89,8 @@ with col2:
             """
             <div style="background-color:#F0F2F6; padding:20px; border-radius:10px">
                 <div style="font-size:20px; font-weight:600;">
-                    Zekerheid: <span style="color:#faa63e;">erg laag</span>
-                    <span title="De mate van onzekerheid in de voorspelling van dit model (erg laag, laag, gemiddeld, hoog, erg hoog) op basis van de waarschijnlijkheidsverdeling over de mogelijke uitkomsten."
+                    Certainty: <span style="color:#faa63e;">very low</span>
+                    <span title="The level of uncertainty in the prediction of this model (very low, low, medium, high, very high) based on the probability distribution over the possible outcomes."
                         style="cursor: help; margin-left: 8px;">ℹ️</span>
                 </div>
             </div>
@@ -112,14 +112,14 @@ with col3:
             <table style="border-collapse: collapse; width: 100%; border: none; table-layout: fixed;">
                 <tr>
                     <th style="text-align: left; padding: 4px 8px; font-weight: 600; border: none;">Patient ID</th>
-                    <th style="text-align: left; padding: 4px 8px; font-weight: 600; border: none;">Leeftijd</th>
-                    <th style="text-align: left; padding: 4px 8px; font-weight: 600; border: none;">Geslacht</th>
+                    <th style="text-align: left; padding: 4px 8px; font-weight: 600; border: none;">Age</th>
+                    <th style="text-align: left; padding: 4px 8px; font-weight: 600; border: none;">Gender</th>
                     <th style="text-align: left; padding: 4px 8px; font-weight: 600; border: none;">ICU Type</th>
                 </tr>
                 <tr>
                     <td style="padding: 4px 8px; border: none;">2</td>               
                     <td style="padding: 4px 8px; border: none;">60</td>
-                    <td style="padding: 4px 8px; border: none;">Man</td>
+                    <td style="padding: 4px 8px; border: none;">Male</td>
                     <td style="padding: 4px 8px; border: none;">MICU/SICU</td>
                 </tr>
             </table>
@@ -128,19 +128,19 @@ with col3:
         unsafe_allow_html=True
     )
 
-    if st.toggle("Toon training data bron", key="toggle_data"):
+    if st.toggle("Show training data source", key="toggle_data"):
         st.markdown(
             """
-            **Data bron:** MIMIC-IV (2024)
+            **Data source:** MIMIC-IV (2024)
 
-            Kenmerken (zoals labwaarden) van **7837** patiënten die zijn opgenomen op de intensivecareafdeling van het Beth Israel Deaconess Medical Center in Boston, Massachusetts.""")
+            Characteristics (such as lab values) of **7837** patients who were admitted to the intensive care unit of the Beth Israel Deaconess Medical Center in Boston, Massachusetts.""")
         
         st.markdown("**Labelverdeling trainingsset:**")
 
         st.markdown(
         """
         <table style="text-align: left;">
-            <tr><th>SAD</th><th>Geen SAD</th></tr>
+            <tr><th>SAD</th><th>No SAD</th></tr>
             <tr><td>4705</td><td>3231</td></tr>
         </table>
         """,
@@ -148,23 +148,23 @@ with col3:
     )
         st.markdown(
             """
-            **Leeftijd**
+            **Age**
 
                 <45                 772
                 45-59               1574
                 60-74               2727
                 75+                 2764
-            **Geslacht**
+            **Gender**
                 
-                Vrouw               57.8%         
-                Man                 42.2%   
-            **Afkomst**
+                Female              57.8%         
+                Male                42.2%   
+            **Race**
 
-                Europees/Westers    65.7%
-                Afrikaans           8.4%
-                Latijn-Amerikaans   4.0%
-                Aziatisch           2.9%
-                Anders of onbekend  19.0%
+                European/Caucasian  65.7%
+                Afrikan             8.4%
+                Latin-American      4.0%
+                Asian               2.9%
+                Other or unknown    19.0%
             **ICU Type**
 
                 MICU                22.8%
